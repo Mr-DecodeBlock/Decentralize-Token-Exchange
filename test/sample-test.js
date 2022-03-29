@@ -71,6 +71,18 @@ describe("Token", function () {
           "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
         );
       });
+
+      it("Should reject invalid reciepients", async function () {
+        let invalidAmount;
+        invalidAmount = tokens(100000000);
+
+        const tx = token.transferTo(0x0, invalidAmount, {
+          from: owner.address,
+        });
+        await expect(tx).to.revertedWith(
+          "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
+        );
+      });
     });
   });
 });
