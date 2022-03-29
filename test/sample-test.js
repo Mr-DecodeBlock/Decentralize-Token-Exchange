@@ -68,8 +68,7 @@ describe("Token", function () {
         const tx = token.transferTo(addr1.address, invalidAmount, {
           from: owner.address,
         });
-        await expect(tx).eventually.to.rejectedWith(
-          Error,
+        await expect(tx).to.revertedWith(
           "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
         );
 
