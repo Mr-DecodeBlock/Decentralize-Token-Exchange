@@ -1,6 +1,8 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-
+const tokens = (n) => {
+  return ethers.utils.parseEther(n.toString());
+};
 describe("Token", function () {
   let Token;
   let token;
@@ -10,7 +12,7 @@ describe("Token", function () {
   let name = "Hyadum Coin";
   let decimal = 18;
   let symbol = "HYC";
-  let totalSupply = "1000000000000000000000000";
+  let totalSupply = tokens(1000000);
 
   beforeEach(async function () {
     Token = await ethers.getContractFactory("Token");
@@ -40,26 +42,17 @@ describe("Token", function () {
   });
 
   describe("Transfer Tokens", () => {
-    it("Transfer token balance", async function () {
-      //check if the balance was deducted from total balance
-      let balanceOwner;
-      let balanceReciever;
-
-      balanceOwner = await token.balanceOf(owner.address);
-      console.log("before tx", balanceOwner);
-      balanceReciever = await token.balanceOf(addr1.address);
-      console.log("before tx", balanceReciever);
-
-      await token.transferTo(addr1.address, "100000000000000000000", {
+    let result, amount;
+    beforeEach(async function () {
+      amount = tokens(100);
+      result = await token.transferTo(addr1.address, tokens(100), {
         from: owner.address,
       });
+    });
 
-      balanceOwner = await token.balanceOf(owner.address);
-      console.log("after tx", balanceOwner);
-      balanceReciever = await token.balanceOf(addr1.address);
-      console.log("after tx", balanceReciever);
-
-      // expect(await token.balanceOf(owner.address)).to.equal(totalSupply);
+    it("Transfer token balance", async function () {
+      expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
+      expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
     });
   });
 });
