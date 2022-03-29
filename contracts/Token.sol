@@ -11,7 +11,7 @@ contract Token {
 
     //track balances
     mapping(address => uint256) public balanceOf;
-
+    event Transfer(address indexed from , address indexed to, uint256 amout);
     //send tokens
 
     constructor (){
@@ -20,10 +20,11 @@ contract Token {
     }
 
     function transferTo(address _to, uint _value)public returns (bool success) {
-    //  require(totalSupply < 0 , 'not sufficient balance');
      balanceOf[msg.sender] = balanceOf[msg.sender].sub(_value);
      balanceOf[_to] = balanceOf[_to].add(_value);
+     emit Transfer(msg.sender, _to, _value);
      return true;
+
     }
 
 
