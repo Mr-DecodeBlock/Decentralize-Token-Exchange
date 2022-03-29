@@ -1,5 +1,7 @@
 const { expect } = require("chai");
+const chaiAsPromised = require("chai-as-promised");
 const { ethers } = require("hardhat");
+
 const tokens = (n) => {
   return ethers.utils.parseEther(n.toString());
 };
@@ -61,13 +63,17 @@ describe("Token", function () {
       it("Should reject insufficient balance", async function () {
         let invalidAmount;
         invalidAmount = tokens(100000000);
-        await token
-          .transferTo(addr1.address, invalidAmount, {
+        expect(
+          await token.transferTo(addr1.address, invalidAmount, {
             from: owner.address,
           })
-          .should.be.rejectedWith(
-            "VM Exception while processing transaction: revert"
-          );
+        ).to.eventually.to.rejectedWith(
+          "VM Exception while processing transaction: revert"
+        );
+
+        // .should.be.rejectedWith(
+        //   "VM Exception while processing transaction: revert"
+        // );
 
         // should( await token.transferTo(addr1.address,invalidAmount, {
         //   from: owner.address,
