@@ -50,9 +50,29 @@ describe("Token", function () {
       });
     });
 
-    it("Transfer token balance", async function () {
-      expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
-      expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
+    describe("Successs", () => {
+      it("Should Transfer token balance", async function () {
+        expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
+        expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
+      });
+    });
+
+    describe("Failure", async () => {
+      it("Should reject insufficient balance", async function () {
+        let invalidAmount;
+        invalidAmount = tokens(100000000);
+        await token
+          .transferTo(addr1.address, invalidAmount, {
+            from: owner.address,
+          })
+          .should.be.rejectedWith(
+            "VM Exception while processing transaction: revert"
+          );
+
+        // should( await token.transferTo(addr1.address,invalidAmount, {
+        //   from: owner.address,
+        // })).
+      });
     });
   });
 });
