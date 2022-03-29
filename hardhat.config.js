@@ -2,7 +2,7 @@
 require("@nomiclabs/hardhat-waffle");
 // const fs = require("fs");
 // const privateKey = fs.readFileSync("secret.txt").toString();
-// const projectId = "8b7ba5517c414450a93ec7334975a7fe";
+const projectId = "8b7ba5517c414450a93ec7334975a7fe";
 module.exports = {
   defaultNetwork: "hardhat",
   networks: {
@@ -13,11 +13,11 @@ module.exports = {
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       // url: "https://goerli.infura.io/v3/8b7ba5517c414450a93ec7334975a7fe",
-      accounts: [privateKey],
+      // accounts: [privateKey],
     },
     mainet: {
       url: `https://palm-mainnet.infura.io/v3/${projectId}`,
-      accounts: [privateKey],
+      // accounts: [privateKey],
     },
   },
   solidity: {
