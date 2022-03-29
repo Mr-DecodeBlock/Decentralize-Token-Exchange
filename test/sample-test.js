@@ -63,12 +63,14 @@ describe("Token", function () {
       it("Should reject insufficient balance", async function () {
         let invalidAmount;
         invalidAmount = tokens(100000000);
+        // invalidAmount = tokens(100);
+
         expect(
           await token.transferTo(addr1.address, invalidAmount, {
             from: owner.address,
           })
-        ).to.eventually.to.rejectedWith(
-          "VM Exception while processing transaction: revert"
+        ).to.throw(
+          "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
         );
 
         // .should.be.rejectedWith(
