@@ -74,7 +74,7 @@ describe("Token", function () {
 
       it("Should reject invalid reciepients", async function () {
         let invalidAmount;
-        invalidAmount = tokens(100000000);
+        invalidAmount = tokens(100);
 
         const tx = token.transferTo(0x0, invalidAmount, {
           from: owner.address,
