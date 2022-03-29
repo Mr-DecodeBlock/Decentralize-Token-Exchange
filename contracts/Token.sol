@@ -2,5 +2,5 @@
 pragma solidity ^0.8.4;
 
 contract Token {
-    string public name;
+    string public name = "My Name";
 }

@@ -1,19 +1,30 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("Token", function () {
+  let Token;
+  let token;
+  let owner;
+  let addr1;
+  let addr2;
+  let addrs;
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
-
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+  beforeEach(async function () {
+    Token = await ethers.getContractFactory("Token");
+    [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
+    token = await Token.deploy();
+    await token.deployed();
   });
+
+  it("Should have a name", async function () {
+    // const Token = await ethers.getContractFactory("Token");
+    // const token = await Token.deploy();
+    expect(await token.name()).to.equal("My Name");
+  });
+
+  it("Should have a symbol", async function () {});
+
+  it("Should have a decimal", async function () {});
+
+  it("Should have a total supply", async function () {});
 });
