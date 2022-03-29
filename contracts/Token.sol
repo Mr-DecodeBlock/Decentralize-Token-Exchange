@@ -21,7 +21,7 @@ contract Token {
 
     function transferTo(address _to, uint _value)public returns (bool success) {
      require(balanceOf[msg.sender] >= _value,'VM Exception while processing transaction: revert');
-     require(_to != address(0x0),'VM Exception while processing transaction: revert');
+     require(_to != address(0),'VM Exception while processing transaction: revert');
      balanceOf[msg.sender] = balanceOf[msg.sender].sub(_value);
      balanceOf[_to] = balanceOf[_to].add(_value);
      emit Transfer(msg.sender, _to, _value);

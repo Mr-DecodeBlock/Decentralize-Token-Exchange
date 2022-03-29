@@ -76,11 +76,12 @@ describe("Token", function () {
         let invalidAmount;
         invalidAmount = tokens(100);
 
-        const tx = token.transferTo(0x0, invalidAmount, {
+        const tx = token.transferTo("0x0", invalidAmount, {
           from: owner.address,
         });
         await expect(tx).to.revertedWith(
-          "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
+          Error,
+          `invalid address (argument="address", value="0x0", code=INVALID_ARGUMENT, version=address/5.6.0)`
         );
       });
     });
