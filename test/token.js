@@ -102,49 +102,64 @@ describe("Token", function () {
     });
   });
 
-  describe("Transfer from Tokens", () => {
-    let result, amount;
 
+  describe("Transfer tokens", () => {
+    let result, amount;
     beforeEach(async function () {
       amount = tokens(100);
-      // await token.approve(addr2.address, amount, { from: owner.address });
-      await token.approve(addr2.address, amount, {
+        await token.approve(addr2.address, tokens(100), {
         from: owner.address,
       });
     });
 
     describe("Successs", () => {
-      beforeEach(async function () {
-        //change the from to addres2 the error is because of signer approval
-        result = await token.transferFrom(
-          owner.address,
-          addr1.address,
-          tokens(100),
-          {
-            from: owner.address,
-          }
-        );
-        // console.log(addr2);
-      });
-
+      result = await token.transferFrom(
+        owner.address,
+        addr1.address,
+        tokens(100),
+        {
+          from: owner.address,
+        }
+      );
       it("Should Transfer token balance", async function () {
         expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
         expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
       });
     });
-
-    // describe("Failure", async () => {
-    //   it("Should reject insufficient balance", async function () {
-    //     let invalidAmount;
-    //     invalidAmount = tokens(100000000);
-
-    //     const tx = token.transferTo(addr1.address, invalidAmount, {
-    //       from: owner.address,
-    //     });
-    //     await expect(tx).to.revertedWith(
-    //       "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
-    //     );
-    //   });
-    // });
   });
+
+
+  // describe("Transfer from Tokens", () => {
+  //   let result, amount;
+
+  //   beforeEach(async function () {
+  //     amount = tokens(100);
+  //     // await token.approve(addr2.address, amount, { from: owner.address });
+  //     await token.approve(addr2.address, amount, {
+  //       from: owner.address,
+  //     });
+  //   });
+
+  //   describe("Successs", () => {
+  //     beforeEach(async function () {
+  //       //change the from to addres2 the error is because of signer approval
+  
+  //       result = await token.transferFrom(
+  //         owner.address,
+  //         addr1.address,
+  //         tokens(100),
+  //         {
+  //           from: owner.address,
+  //         }
+  //       );
+  //       // console.log(addr2);
+  //     });
+
+  //     it("Should Transfer token balance", async function () {
+  //       expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
+  //       expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
+  //     });
+  //   });
+
+  // });
 });

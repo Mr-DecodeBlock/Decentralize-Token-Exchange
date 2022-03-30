@@ -36,16 +36,21 @@ contract Token {
 
     function approve(address _spender, uint256 _amount ) public returns (bool success){
       allowance[msg.sender][_spender] = _amount;
+    //   console.log(allowance[msg.sender][_spender]);
       emit Approval(msg.sender,_spender, _amount);
       return true;
     }
 
     function transferFrom (address _from , address _to, uint256 _value) public returns (bool success) {
         console.log(_from,_to, _value);
-    //    require(_value <= balanceOf[_from]);
+        console.log(_value <= balanceOf[_from]);
+     
+        console.log(_value <= allowance[_from][msg.sender]);
+        console.log(allowance[_from][msg.sender]);
+       require(_value <= balanceOf[_from]);
     //    require(_value <= allowance[_from][msg.sender]);
     //    allowance[_from][msg.sender] = allowance[_from][msg.sender].sub(_value);
-    //   _transferTo(_from, _to, _value);
+      _transferTo(_from, _to, _value);
        return true;
     }
 
