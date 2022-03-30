@@ -61,23 +61,20 @@ describe("Exchange", function () {
     });
 
     describe("Deposite Ether", () => {
-      it("Deposite ether successfully", async function () {
-        let amount = ethers.utils.parseUnits(1, "ether").toString();
-
+      beforeEach(async function () {
+        // let amount = ethers.utils.parseUnits(1, "ether").toString();
         // await exchange
         //   .connect(addr2)
         //   .depositeEther({ from: addr2.address, value: tokens(1).toString() });
-
-        const transaction = await exchange
-          .connect(addr2)
-          .depositeEther({
-            from: addr2.address,
-            value: ethers.utils.parseEther("1"),
-          });
+        const transaction = await exchange.connect(addr2).depositeEther({
+          from: addr2.address,
+          value: ethers.utils.parseEther("2"),
+        });
         await transaction.wait();
+      });
 
+      it("Deposite ether successfully", async function () {
         // expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
-
         //   const tx = exchange
         //     .connect(addr2)
         //     .depositeToken("0x00000000000", tokens(10), {
