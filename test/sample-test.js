@@ -115,14 +115,13 @@ describe("Token", function () {
 
     describe("Successs", () => {
       beforeEach(async function () {
-        amount = tokens(100);
         result = await token.transferFrom(
-          addr2.address,
+          owner.address,
           addr1.address,
-          amount
-          // {
-          //   from: addr2.address,
-          // }
+          amount,
+          {
+            from: owner.address,
+          }
         );
       });
 
