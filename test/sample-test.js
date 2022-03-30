@@ -108,7 +108,7 @@ describe("Token", function () {
     beforeEach(async function () {
       amount = tokens(100);
       // await token.approve(addr2.address, amount, { from: owner.address });
-      await token.approve(addr2.address, amount), {
+      await token.approve(addr2.address, amount, {
         from: owner.address,
       });
     });
