@@ -33,10 +33,16 @@ contract Token {
      balanceOf[_to] = balanceOf[_to].add(_value);
      emit Transfer(_from, _to, _value);
     }
+
     function approve(address _spender, uint256 _amount ) public returns (bool success){
       allowance[msg.sender][_spender] = _amount;
       emit Approval(msg.sender,_spender, _amount);
       return true;
+    }
+
+    function transferFrom (address _from , address _to, uint256 _value) public returns (bool success) {
+   _transferTo(_from, _to, _value);
+  return true;
     }
 
 
