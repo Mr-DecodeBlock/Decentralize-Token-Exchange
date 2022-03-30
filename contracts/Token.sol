@@ -41,9 +41,7 @@ contract Token {
     }
 
     function transferFrom (address _from , address _to, uint256 _value) public returns (bool success) {
-       approve(_to, _value);
       _transferTo(_from, _to, _value);
-
        return true;
     }
 
