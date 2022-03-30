@@ -64,11 +64,19 @@ describe("Exchange", function () {
       it("Deposite ether successfully", async function () {
         let amount = ethers.utils.parseUnits(1, "ether").toString();
 
-        await exchange
-          .connect(addr2)
-          .depositeEther({ from: addr2.address, value: amount });
+        // await exchange
+        //   .connect(addr2)
+        //   .depositeEther({ from: addr2.address, value: tokens(1).toString() });
 
-        expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
+        const transaction = await exchange
+          .connect(addr2)
+          .depositeEther({
+            from: addr2.address,
+            value: ethers.utils.parseEther("1"),
+          });
+        await transaction.wait();
+
+        // expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
 
         //   const tx = exchange
         //     .connect(addr2)

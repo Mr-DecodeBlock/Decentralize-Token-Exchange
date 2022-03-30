@@ -18,6 +18,7 @@ contract Exchange {
      }
      
      function depositeEther() payable public{
+         console.log(msg.value);
        tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].add(msg.value);
        emit Deposite(ETHER, msg.sender, msg.value,  tokens[ETHER][msg.sender]);
      }
@@ -27,7 +28,6 @@ contract Exchange {
      }
 
      function depositeToken(address _token, uint _amount) public{
-         console.log(_amount);
     //    require(_token != ETHER,"VM Exception while processing transaction: revert");
        Token(_token).transferFrom(msg.sender , address(this),_amount);
        tokens[_token][msg.sender] = tokens[_token][msg.sender].add(_amount);
