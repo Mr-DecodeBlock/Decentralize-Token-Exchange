@@ -17,14 +17,14 @@ contract Exchange {
         feePercent = _feePercent;
      }
      
-     function depositeEther() payable public{
+     function depositeEther(address _ether) payable public{
          console.log(msg.value);
-       tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].add(msg.value);
-       emit Deposite(ETHER, msg.sender, msg.value,  tokens[ETHER][msg.sender]);
+       tokens[_ether][msg.sender] = tokens[_ether][msg.sender].add(msg.value);
+       emit Deposite(_ether, msg.sender, msg.value,  tokens[_ether][msg.sender]);
      }
 
-     function withdrawEther(uint _amount) public{
-        tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].sub(_amount);
+     function withdrawEther(uint _amount, address _ether) public{
+        tokens[_ether][msg.sender] = tokens[_ether][msg.sender].sub(_amount);
      }
 
      function depositeToken(address _token, uint _amount) public{

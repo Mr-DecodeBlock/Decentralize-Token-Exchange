@@ -62,11 +62,7 @@ describe("Exchange", function () {
 
     describe("Deposite Ether", () => {
       beforeEach(async function () {
-        // let amount = ethers.utils.parseUnits(1, "ether").toString();
-        // await exchange
-        //   .connect(addr2)
-        //   .depositeEther({ from: addr2.address, value: tokens(1).toString() });
-        const transaction = await exchange.connect(addr2).depositeEther({
+        const transaction = await exchange.connect(addr2).depositeEther(ether, {
           from: addr2.address,
           value: ethers.utils.parseEther("2"),
         });
@@ -74,18 +70,21 @@ describe("Exchange", function () {
       });
 
       it("Deposite ether successfully", async function () {
-        expect(exchange.tokens(0, addr2.address)).to.equal(
-          ethers.utils.parseEther("2")
-        );
-        //   const tx = exchange
-        //     .connect(addr2)
-        //     .depositeToken("0x00000000000", tokens(10), {
-        //       from: addr2.address,
-        //     });
-        //   await expect(tx).to.revertedWith(
-        //     "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
-        //   );
+        expect(await exchange.tokens(ether, addr2.address)).to.equal(tokens(2));
       });
+    });
+
+    describe("Withdraw Ether", () => {
+      //   beforeEach(async function () {
+      //     const transaction = await exchange.connect(addr2).withdrawEther( ether, {
+      //       from: addr2.address,
+      //       value: ethers.utils.parseEther("2"),
+      //     });
+      //     await transaction.wait();
+      //   });
+      //   it("Deposite ether successfully", async function () {
+      //     expect(await exchange.tokens(ether, addr2.address)).to.equal(tokens(1));
+      //   });
     });
   });
 });
