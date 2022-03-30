@@ -72,16 +72,31 @@ describe("Token", function () {
         );
       });
 
-      it("Should reject invalid reciepients", async function () {
-        let invalidAmount;
-        invalidAmount = tokens(100);
+      // it("Should reject invalid reciepients", async function () {
+      //   let invalidAmount;
+      //   invalidAmount = tokens(100);
 
-        const tx = token.transferTo("0x0", invalidAmount, {
-          from: owner.address,
-        });
-        await expect(tx).to.revertedWith(
-          Error,
-          `invalid address (argument="address", value="0x0", code=INVALID_ARGUMENT, version=address/5.6.0)`
+      //   const tx = token.transferTo(0x0, invalidAmount, {
+      //     from: owner.address,
+      //   });
+      //   await expect(tx).to.revertedWith(Error);
+      // });
+    });
+  });
+
+  describe("approving tokens", () => {
+    let result, amount;
+    beforeEach(async function () {
+      amount = tokens(100);
+      result = await token.approve(addr2.address, tokens(100), {
+        from: owner.address,
+      });
+    });
+
+    describe("Successs", () => {
+      it("allocate allowance for delegated token spending", async function () {
+        expect(await token.allowance(owner.address, addr2.address)).to.equal(
+          amount
         );
       });
     });

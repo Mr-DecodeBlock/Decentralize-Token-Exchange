@@ -9,9 +9,12 @@ contract Token {
     uint256 public decimals = 18;
     uint256 public totalSupply;
 
+
     //track balances
     mapping(address => uint256) public balanceOf;
+    mapping(address=>mapping(address=> uint256)) public allowance;
     event Transfer(address indexed from , address indexed to, uint256 amout);
+    event Approval(address indexed approver, address indexed spender , uint256  indexed amount);
     //send tokens
 
     constructor (){
@@ -21,12 +24,17 @@ contract Token {
 
     function transferTo(address _to, uint _value)public returns (bool success) {
      require(balanceOf[msg.sender] >= _value,'VM Exception while processing transaction: revert');
-     require(_to != address(0),'VM Exception while processing transaction: revert');
+    //  require(_to != address(0));
      balanceOf[msg.sender] = balanceOf[msg.sender].sub(_value);
      balanceOf[_to] = balanceOf[_to].add(_value);
      emit Transfer(msg.sender, _to, _value);
      return true;
+    }
 
+    function approve(address _spender, uint256 _amount ) public returns (bool success){
+      allowance[msg.sender][_spender] = _amount;
+      emit Approval(msg.sender,_spender, _amount);
+      return true;
     }
 
 
