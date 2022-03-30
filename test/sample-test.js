@@ -120,7 +120,7 @@ describe("Token", function () {
           addr1.address,
           amount,
           {
-            from: owner.address,
+            from: addr2.address,
           }
         );
       });
