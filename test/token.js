@@ -102,32 +102,33 @@ describe("Token", function () {
     });
   });
 
-
   describe("Transfer tokens", () => {
     let result, amount;
     beforeEach(async function () {
       amount = tokens(100);
-        await token.approve(addr2.address, tokens(100), {
+      await token.approve(addr2.address, tokens(100), {
         from: owner.address,
       });
     });
 
     describe("Successs", () => {
-      result = await token.transferFrom(
-        owner.address,
-        addr1.address,
-        tokens(100),
-        {
-          from: owner.address,
-        }
-      );
+      beforeEach(async function () {
+        result = await token.transferFrom(
+          owner.address,
+          addr1.address,
+          tokens(100),
+          {
+            from: owner.address,
+          }
+        );
+      });
+
       it("Should Transfer token balance", async function () {
         expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
         expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
       });
     });
   });
-
 
   // describe("Transfer from Tokens", () => {
   //   let result, amount;
@@ -143,7 +144,7 @@ describe("Token", function () {
   //   describe("Successs", () => {
   //     beforeEach(async function () {
   //       //change the from to addres2 the error is because of signer approval
-  
+
   //       result = await token.transferFrom(
   //         owner.address,
   //         addr1.address,
