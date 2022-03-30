@@ -60,21 +60,37 @@ describe("Exchange", function () {
       });
     });
 
-    describe("Deposite Ether", () => {
+    describe("Withdrawing Tokens", () => {
       beforeEach(async function () {
-        const transaction = await exchange
+        results = await exchange
           .connect(addr2)
-          .depositeEther(ether.address, {
+          .withdrawTokens(token.address, tokens(10), {
             from: addr2.address,
-            value: ethers.utils.parseEther("2"),
           });
-        await transaction.wait();
       });
-      it("Deposite ether successfully", async function () {
-        expect(await exchange.tokens(ether.address, addr2.address)).to.equal(
-          tokens(2)
+
+      it("Should withdraw token amount", async function () {
+        expect(await exchange.tokens(token.address, addr2.address)).to.equal(
+          tokens(0)
         );
       });
+    });
+  });
+
+  describe("Deposite Ether", () => {
+    beforeEach(async function () {
+      const transaction = await exchange
+        .connect(addr2)
+        .depositeEther(ether.address, {
+          from: addr2.address,
+          value: ethers.utils.parseEther("2"),
+        });
+      await transaction.wait();
+    });
+    it("Deposite ether successfully", async function () {
+      expect(await exchange.tokens(ether.address, addr2.address)).to.equal(
+        tokens(2)
+      );
     });
 
     describe("Withdraw Ether", () => {
