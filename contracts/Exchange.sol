@@ -11,14 +11,12 @@ contract Exchange {
      mapping(address=>mapping(address=> uint256)) public tokens;
 
      event Deposite(address token, address user, uint amount, uint balance);
+     
      constructor(address _feeAccount, uint256 _feePercent){
         feeAccount = _feeAccount;
         feePercent = _feePercent;
      }
-
-function() external{
- revert();
-}
+     
      function depositeEther() payable public{
        tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].add(msg.value);
        emit Deposite(ETHER, msg.sender, msg.value,  tokens[ETHER][msg.sender]);
@@ -30,4 +28,6 @@ function() external{
        tokens[_token][msg.sender] = tokens[_token][msg.sender].add(_amount);
        emit Deposite(_token, msg.sender,_amount,tokens[_token][msg.sender]);
      } 
+
+     fallback() external payable {}
 }
