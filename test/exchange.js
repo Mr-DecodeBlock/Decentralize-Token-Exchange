@@ -115,7 +115,7 @@ describe("Exchange", function () {
         });
         it("withdraw ether successfully", async function () {
           expect(await exchange.tokens(ether.address, addr2.address)).to.equal(
-            tokens(0)
+            tokens(2)
           );
         });
       });
