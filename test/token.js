@@ -119,7 +119,7 @@ describe("Token", function () {
         result = await token.transferFrom(
           owner.address,
           addr1.address,
-          amount,
+          tokens(100),
           {
             from: owner.address,
           }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
+import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
 contract Token {
     using SafeMath for uint;
     string public name = "Hyadum Coin";
@@ -41,11 +41,15 @@ contract Token {
     }
 
     function transferFrom (address _from , address _to, uint256 _value) public returns (bool success) {
-       require(_value <= balanceOf[_from]);
-       require(_value <= allowance[_from][msg.sender]);
-      _transferTo(_from, _to, _value);
+        console.log(_from,_to, _value);
+    //    require(_value <= balanceOf[_from]);
+    //    require(_value <= allowance[_from][msg.sender]);
+    //    allowance[_from][msg.sender] = allowance[_from][msg.sender].sub(_value);
+    //   _transferTo(_from, _to, _value);
        return true;
     }
 
+
+ 
 
 }
