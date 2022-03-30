@@ -117,12 +117,12 @@ describe("Token", function () {
       beforeEach(async function () {
         amount = tokens(100);
         result = await token.transferFrom(
-          owner.address,
+          addr2.address,
           addr1.address,
-          amount,
-          {
-            from: addr2.address,
-          }
+          amount
+          // {
+          //   from: addr2.address,
+          // }
         );
       });
 
