@@ -114,17 +114,17 @@ describe("Token", function () {
     });
 
     describe("Successs", () => {
-      // beforeEach(async function () {
-      //   amount = tokens(100);
-      //   result = await token.transferFrom(
-      //     owner.address,
-      //     addr1.address,
-      //     tokens(100),
-      //     {
-      //       from: addr2.address,
-      //     }
-      //   );
-      // });
+      beforeEach(async function () {
+        amount = tokens(100);
+        result = await token.transferFrom(
+          owner.address,
+          addr1.address,
+          amount,
+          {
+            from: addr2.address,
+          }
+        );
+      });
 
       it("Should Transfer token balance", async function () {
         // expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
