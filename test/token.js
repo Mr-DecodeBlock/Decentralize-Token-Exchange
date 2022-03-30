@@ -113,13 +113,13 @@ describe("Token", function () {
 
     describe("Successs", () => {
       beforeEach(async function () {
-        result = await token.transferFrom(
+        result = await token.connect(addr2).transferFrom(
           owner.address,
           addr1.address,
-          tokens(100),
-          {
-            from: owner.address,
-          }
+          tokens(100)
+          // {
+          //   from: addr2.address,
+          // }
         );
       });
 
