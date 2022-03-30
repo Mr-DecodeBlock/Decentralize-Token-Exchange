@@ -186,9 +186,7 @@ describe("Exchange", function () {
             }
           );
 
-        await exchange
-          .connect(user2)
-          .exchange.fillOrder(1, { from: user2.address });
+        await exchange.connect(user2).fillOrder(1, { from: user2.address });
       });
 
       it("execute trade and charges fee", async function () {
