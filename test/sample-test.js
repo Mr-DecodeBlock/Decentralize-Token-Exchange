@@ -123,11 +123,12 @@ describe("Token", function () {
             from: addr2.address,
           }
         );
+        // console.log(addr2);
       });
 
       it("Should Transfer token balance", async function () {
-        // expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
-        // expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
+        expect(await token.balanceOf(owner.address)).to.equal(tokens(999900));
+        expect(await token.balanceOf(addr1.address)).to.equal(tokens(100));
       });
     });
 
