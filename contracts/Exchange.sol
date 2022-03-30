@@ -22,6 +22,10 @@ contract Exchange {
        emit Deposite(ETHER, msg.sender, msg.value,  tokens[ETHER][msg.sender]);
      }
 
+     function withdrawEther() public{
+        tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].sub(msg.value);
+     }
+
      function depositeToken(address _token, uint _amount) public{
     //    require(_token != ETHER,"VM Exception while processing transaction: revert");
        Token(_token).transferFrom(msg.sender, address(this),_amount);
