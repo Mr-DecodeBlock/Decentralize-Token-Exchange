@@ -105,13 +105,13 @@ describe("Token", function () {
   describe("Transfer from Tokens", () => {
     let result, amount;
 
-    // beforeEach(async function () {
-    //   amount = tokens(100);
-    //   // await token.approve(addr2.address, amount, { from: owner.address });
-    //   await token.approve(addr2.address, amount, {
-    //     from: owner.address,
-    //   });
-    // });
+    beforeEach(async function () {
+      amount = tokens(100);
+      // await token.approve(addr2.address, amount, { from: owner.address });
+      await token.approve(addr2.address, amount, {
+        from: owner.address,
+      });
+    });
 
     describe("Successs", () => {
       beforeEach(async function () {
