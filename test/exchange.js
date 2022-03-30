@@ -186,9 +186,9 @@ describe("Exchange", function () {
             }
           );
 
-        await token
-          .connet(user2)
-          .exchange.fillOrder("1", { from: user2.address });
+        await exchange
+          .connect(user2)
+          .exchange.fillOrder(1, { from: user2.address });
       });
 
       it("execute trade and charges fee", async function () {
@@ -197,6 +197,8 @@ describe("Exchange", function () {
           user1.address
         );
         expect(user1Balance).to.equal(tokens(1));
+
+        //test for other things moro
       });
     });
 
