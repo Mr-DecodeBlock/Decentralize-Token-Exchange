@@ -28,7 +28,7 @@ contract Token {
      return true;
     }
 
-    function _transferTo(address _from, address _to, uint256 _value) internal virtual{
+    function _transferTo(address _from, address _to, uint256 _value) internal {
      balanceOf[_from] = balanceOf[_from].sub(_value);
      balanceOf[_to] = balanceOf[_to].add(_value);
      emit Transfer(_from, _to, _value);
@@ -48,6 +48,8 @@ contract Token {
       _transferTo(_from, _to, _value);
        return true;
     }
+
+
 
 
  
