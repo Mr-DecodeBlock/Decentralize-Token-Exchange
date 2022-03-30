@@ -11,6 +11,7 @@ contract Exchange {
      mapping(address=>mapping(address=> uint256)) public tokens;
 
      event Deposite(address token, address user, uint amount, uint balance);
+     event Withdraw(address token, address user, uint amount, uint balance);
      
      constructor(address _feeAccount, uint256 _feePercent){
         feeAccount = _feeAccount;
@@ -18,13 +19,14 @@ contract Exchange {
      }
      
      function depositeEther(address _ether) payable public{
-         console.log(msg.value);
        tokens[_ether][msg.sender] = tokens[_ether][msg.sender].add(msg.value);
        emit Deposite(_ether, msg.sender, msg.value,  tokens[_ether][msg.sender]);
      }
 
      function withdrawEther(uint _amount, address _ether) public{
         tokens[_ether][msg.sender] = tokens[_ether][msg.sender].sub(_amount);
+        msg.sender.transfer(_amount);
+        emit Withdraw(_ether, msg.sender, _amount,  tokens[_ether][msg.sender]);
      }
 
      function depositeToken(address _token, uint _amount) public{
