@@ -115,12 +115,13 @@ describe("Token", function () {
 
     describe("Successs", () => {
       beforeEach(async function () {
+        //change the from to addres2 the error is because of signer approval
         result = await token.transferFrom(
           owner.address,
           addr1.address,
           amount,
           {
-            from: addr2.address,
+            from: owner.address,
           }
         );
         // console.log(addr2);
