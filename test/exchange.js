@@ -59,17 +59,20 @@ describe("Exchange", function () {
       });
     });
 
-    describe("Failure", () => {
-      //   it("Should reject ether deposite", async function () {
-      //     const tx = exchange
-      //       .connect(addr2)
-      //       .depositeToken("0x00000000000", tokens(10), {
-      //         from: addr2.address,
-      //       });
-      //     await expect(tx).to.revertedWith(
-      //       "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
-      //     );
-      //   });
+    describe("Deposite Ether", () => {
+      it("Deposite ether successfully", async function () {
+        await exchange.depositeToken({ from: addr2.address, value: tokens(1) });
+
+        expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
+        //   const tx = exchange
+        //     .connect(addr2)
+        //     .depositeToken("0x00000000000", tokens(10), {
+        //       from: addr2.address,
+        //     });
+        //   await expect(tx).to.revertedWith(
+        //     "VM Exception while processing transaction: reverted with reason string 'VM Exception while processing transaction: revert"
+        //   );
+      });
     });
   });
 });
