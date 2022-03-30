@@ -27,10 +27,11 @@ contract Exchange {
      }
 
      function depositeToken(address _token, uint _amount) public{
+         console.log(_amount);
     //    require(_token != ETHER,"VM Exception while processing transaction: revert");
-       Token(_token).transferFrom(msg.sender, address(this),_amount);
+       Token(_token).transferFrom(msg.sender , address(this),_amount);
        tokens[_token][msg.sender] = tokens[_token][msg.sender].add(_amount);
-       emit Deposite(_token, msg.sender,_amount,tokens[_token][msg.sender]);
+       emit Deposite(_token, msg.sender , _amount,tokens[_token][msg.sender]);
      } 
 
      fallback() external payable {}
