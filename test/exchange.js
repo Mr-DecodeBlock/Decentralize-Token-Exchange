@@ -62,29 +62,47 @@ describe("Exchange", function () {
 
     describe("Deposite Ether", () => {
       beforeEach(async function () {
-        const transaction = await exchange.connect(addr2).depositeEther(ether, {
-          from: addr2.address,
-          value: ethers.utils.parseEther("2"),
-        });
+        const transaction = await exchange
+          .connect(addr2)
+          .depositeEther(ether.address, {
+            from: addr2.address,
+            value: ethers.utils.parseEther("2"),
+          });
         await transaction.wait();
       });
-
       it("Deposite ether successfully", async function () {
-        expect(await exchange.tokens(ether, addr2.address)).to.equal(tokens(2));
+        expect(await exchange.tokens(ether.address, addr2.address)).to.equal(
+          tokens(2)
+        );
       });
     });
 
     describe("Withdraw Ether", () => {
-      //   beforeEach(async function () {
-      //     const transaction = await exchange.connect(addr2).withdrawEther( ether, {
-      //       from: addr2.address,
-      //       value: ethers.utils.parseEther("2"),
-      //     });
-      //     await transaction.wait();
-      //   });
-      //   it("Deposite ether successfully", async function () {
-      //     expect(await exchange.tokens(ether, addr2.address)).to.equal(tokens(1));
-      //   });
+      beforeEach(async function () {
+        const transaction = await exchange
+          .connect(addr2)
+          .depositeEther(ether.address, {
+            from: addr2.address,
+            value: ethers.utils.parseEther("2"),
+          });
+        await transaction.wait();
+      });
+
+      describe("success", () => {
+        beforeEach(async function () {
+          const transaction = await exchange
+            .connect(addr2)
+            .withdrawEther(ethers.utils.parseEther("2"), ether.address, {
+              from: addr2.address,
+            });
+          await transaction.wait();
+        });
+        it("withdraw ether successfully", async function () {
+          expect(await exchange.tokens(ether.address, addr2.address)).to.equal(
+            tokens(0)
+          );
+        });
+      });
     });
   });
 });
