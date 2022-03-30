@@ -43,6 +43,10 @@ contract Exchange {
        emit Withdraw(_token, msg.sender, _amount, tokens[_token][msg.sender]);
      }
 
+     function balanceOf(address _token, address _user ) public view{
+         return tokens[_token][_user];
+     }
+
      fallback() external payable {}
      receive() external payable{}
 }
