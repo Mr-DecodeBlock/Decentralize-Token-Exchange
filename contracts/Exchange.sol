@@ -7,7 +7,7 @@ contract Exchange {
      using SafeMath for uint;
      address public feeAccount;
      uint256 public feePercent;
-     address constant ETHER = address(0);
+     address payable constant ETHER = address(0);
      mapping(address=>mapping(address=> uint256)) public tokens;
 
      event Deposite(address token, address user, uint amount, uint balance);
@@ -24,6 +24,7 @@ contract Exchange {
      }
 
      function withdrawEther(uint _amount, address _ether) public{
+        require(tokens[_ether][msg.sender] >= _amount);
         tokens[_ether][msg.sender] = tokens[_ether][msg.sender].sub(_amount);
         msg.sender.transfer(_amount);
         emit Withdraw(_ether, msg.sender, _amount,  tokens[_ether][msg.sender]);
