@@ -13,13 +13,14 @@ describe("Exchange", function () {
   let owner;
   let addr1;
   let addr2;
+  let ether;
   let feePercent = 10;
   beforeEach(async function () {
     Token = await ethers.getContractFactory("Token");
     token = await Token.deploy();
     await token.deployed();
     Exchange = await ethers.getContractFactory("Exchange");
-    [owner, addr1, addr2] = await ethers.getSigners();
+    [owner, addr1, addr2, ether] = await ethers.getSigners();
     exchange = await Exchange.deploy(addr1.address, feePercent);
     await exchange.deployed();
     token.transferTo(addr2.address, tokens(100), { from: owner.address });
@@ -61,7 +62,10 @@ describe("Exchange", function () {
 
     describe("Deposite Ether", () => {
       it("Deposite ether successfully", async function () {
-        await exchange.depositeToken({ from: addr2.address, value: tokens(1) });
+        await exchange.connect(addr2).depositeEther({
+          from: addr2.address,
+          value: ethers.utils.parseUnits(1, 18),
+        });
 
         expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
         //   const tx = exchange
