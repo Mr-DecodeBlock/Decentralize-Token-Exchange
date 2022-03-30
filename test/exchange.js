@@ -74,7 +74,9 @@ describe("Exchange", function () {
       });
 
       it("Deposite ether successfully", async function () {
-        // expect(exchange.tokens(0, addr2.address)).to.equal(tokens(1));
+        expect(exchange.tokens(0, addr2.address)).to.equal(
+          ethers.utils.parseEther("2")
+        );
         //   const tx = exchange
         //     .connect(addr2)
         //     .depositeToken("0x00000000000", tokens(10), {
