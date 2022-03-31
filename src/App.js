@@ -37,7 +37,7 @@ export default function App() {
           </div>
         </nav>
 
-        <main className="w-9/12">
+        <main className="w-9/12 p-4">
           <p>fsdfs</p>
         </main>
       </div>
