@@ -1,5 +1,5 @@
 import avtr from "./avrt-image.png";
-import eth from "./eth.png";
+import eth from "./ethereum-eth.svg";
 import "./App.css";
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
           </div>
           <div>
             <div className="hidden lg:block p-4 rounded-md w-full  bg-[#4181DB]">
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between items-center">
                 <div className="py-6 text-white">
                   <p className="font-bold">Total Balance</p>
                   <p className="font-bold text-xl">0.00123</p>
@@ -21,11 +21,7 @@ export default function App() {
                     DDAP
                   </p>
                 </div>
-                {/* <img
-                  // className="w-40 h-20"
-                  src={eth}
-                  alt="Display"
-                /> */}
+                <img className="w-20 h-20" src={eth} alt="Display" />
               </div>
             </div>
           </div>
