@@ -40,8 +40,6 @@ export default function App() {
         </nav>
 
         <main className="w-9/12 p-4">
-          {/* title */}
-
           <div class="grid grid-cols-3 gap-4">
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
@@ -53,11 +51,11 @@ export default function App() {
                 height="350"
               />
             </div>
-            <div className="bg-[#20232C] rounded-md text-white">
-              <p>transactions</p>
+            <div className="bg-[#20232C] p-4 rounded-md text-white">
+              <p className="text-lg">Market Summary</p>
             </div>
             <div className="bg-[#20232C] col-span-2 rounded-md text-white">
-              <p>transactions</p>
+              <p className="text-lg">My Transaction </p>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
