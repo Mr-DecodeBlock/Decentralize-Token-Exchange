@@ -40,10 +40,12 @@ export default function App() {
             </div>
           </div>
           <div>
-            <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-sm w-full space-y-4">
+            <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
               Deposite
             </div>
-            <div>Withdraw</div>
+            <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+              Withdraw
+            </div>
           </div>
         </div>
       </div>
