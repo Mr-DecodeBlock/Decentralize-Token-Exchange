@@ -11,8 +11,8 @@ export default function App() {
             <p className="text-white text-lg">0xafd....88e8f</p>
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
-          <div>
-            <div className="hidden lg:block p-4 rounded-md w-full  bg-[#4181DB]">
+          <div className="hidden lg:block">
+            <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
               <div className="flex flex-row justify-between items-center">
                 <div className="py-6 text-white">
                   <p className="font-bold">Total Balance</p>
@@ -26,6 +26,20 @@ export default function App() {
             </div>
           </div>
         </nav>
+        <div className="lg:hidden">
+          <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
+            <div className="flex flex-row justify-between items-center">
+              <div className="py-6 text-white">
+                <p className="font-bold">Total Balance</p>
+                <p className="font-bold text-xl">0.00123</p>
+                <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
+                  DDAP
+                </p>
+              </div>
+              <img className="w-20 h-20" src={eth} alt="Display" />
+            </div>
+          </div>
+        </div>
       </div>
       {/* side bar for desktop */}
       {/* <div></div> */}
