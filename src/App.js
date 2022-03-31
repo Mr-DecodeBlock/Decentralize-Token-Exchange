@@ -14,16 +14,16 @@ export default function App() {
           <div>
             <div className="hidden lg:block p-4 rounded-md w-full  bg-[#4181DB]">
               <div className="flex flex-row justify-between">
-                <div className="py-3">
-                  <p>Total Balance</p>
-                  <p>0.00123</p>
+                <div className="py-3 text-white">
+                  <p className="font-bold">Total Balance</p>
+                  <p className="font-bold text-xl">0.00123</p>
                   <p>DDAP</p>
                 </div>
-                <img
+                {/* <img
                   // className="w-40 h-20"
                   src={eth}
                   alt="Display"
-                />
+                /> */}
               </div>
             </div>
           </div>
