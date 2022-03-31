@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Fragment, useRef, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import avtr from "./avrt-image.png";
 import eth from "./ethereum-eth.svg";
 import Chart from "react-apexcharts";
 import "./App.css";
 import { chartOptions, dummyData } from "./components/PriceChartConfig";
+import Modal from "./components/Modal";
 
 export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
+  const [open, setOpen] = useState(true);
+
+  const cancelButtonRef = useRef(null);
   return (
     <div className="bg-[#1A1D26] w-full  font-Montserrat">
       <div className="flex flex-col lg:flex lg:flex-row ">
@@ -253,6 +258,10 @@ export default function App() {
             </div>
           </div>
         </main>
+
+        <Modal open={open}>
+          <p>fsddffds</p>
+        </Modal>
       </div>
     </div>
   );
