@@ -17,7 +17,9 @@ export default function App() {
                 <div className="py-3 text-white">
                   <p className="font-bold">Total Balance</p>
                   <p className="font-bold text-xl">0.00123</p>
-                  <p>DDAP</p>
+                  <p className="bg-yellow-400 text-black rounded-full text-center w-16">
+                    DDAP
+                  </p>
                 </div>
                 {/* <img
                   // className="w-40 h-20"
