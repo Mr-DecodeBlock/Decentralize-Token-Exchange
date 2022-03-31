@@ -6,8 +6,8 @@ export default function App() {
   return (
     <div className="bg-[#1A1D26] w-full h-screen font-Montserrat">
       <div className="flex flex-col lg:flex lg:flex-row ">
-        <nav className="bg-[#20232C] lg:p-4 sm:w-full lg:w-3/12 lg:h-screen ">
-          <div className="px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
+        <nav className="bg-transparent lg:bg-[#20232C] lg:p-4 lg:w-3/12 lg:h-screen ">
+          <div className="bg-[#20232C] lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
             <p className="text-white text-lg">0xafd....88e8f</p>
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
