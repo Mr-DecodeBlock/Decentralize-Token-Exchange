@@ -42,18 +42,23 @@ export default function App() {
         </nav>
 
         <main className="w-9/12 p-4">
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row justify-between items-center py-3">
             <div className="flex flex-row space-x-3 items-center text-xl text-white">
               <p className="font-bold">DDAP/ETH</p>
               {/* <div class="w-16 overflow-hidden inline-block">
                 <div class=" h-5 w-5 bg-black rotate-45 transform origin-bottom-left"></div>
-              </div> */}
-
+  </div> */}
               <p className="font-bold  text-green-600"> 0.01</p>
             </div>
             <div>
-              <div>Buy</div>
-              <div>Sell</div>
+              <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 ">
+                <div className="bg-[#FA3E66] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+                  Buy
+                </div>
+                <div className="bg-[#02B156] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+                  Sell
+                </div>
+              </div>
             </div>
           </div>
           <div class="grid grid-cols-3 gap-4">
