@@ -14,10 +14,10 @@ export default function App() {
           <div>
             <div className="hidden lg:block p-4 rounded-md w-full  bg-[#4181DB]">
               <div className="flex flex-row justify-between">
-                <div className="py-3 text-white">
+                <div className="py-6 text-white">
                   <p className="font-bold">Total Balance</p>
                   <p className="font-bold text-xl">0.00123</p>
-                  <p className="bg-yellow-400 text-black rounded-full text-center w-16">
+                  <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
                     DDAP
                   </p>
                 </div>
