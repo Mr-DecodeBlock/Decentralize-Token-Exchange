@@ -12,7 +12,16 @@ export default function App() {
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <div>
-            <div className="hidden lg:flex lg:flex-row rounded-md w-full  bg-[#4181DB]"></div>
+            <div className="hidden lg:block p-4 rounded-md w-full  bg-[#4181DB]">
+              <div className="flex flex-row justify-between">
+                <div className="py-3">
+                  <p>Total Balance</p>
+                  <p>0.00123</p>
+                  <p>DDAP</p>
+                </div>
+                <img className="" src={eth} alt="Display" width="" />
+              </div>
+            </div>
           </div>
         </nav>
       </div>
