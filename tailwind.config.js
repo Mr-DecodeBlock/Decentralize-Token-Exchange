@@ -8,7 +8,7 @@ module.exports = {
       },
     },
     backgroundImage: {
-      "avrt-image": "url('/public/images/avrt-image.png')",
+      // "avrt-image": "url('/images/avrt-image.png')",
     },
   },
   plugins: [],
