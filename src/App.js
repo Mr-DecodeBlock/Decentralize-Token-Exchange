@@ -58,11 +58,12 @@ export default function App() {
             </div>
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
-              <div className="flex flex-row justify-end items-center space-x-4 cursor-pointer">
+              <div className="flex flex-row justify-end  items-center space-x-4 cursor-pointer">
                 <div
                   onClick={() => {
                     setOpenTab(1);
                   }}
+                  className='class="inline-block p-2 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500"'
                 >
                   Trade
                 </div>
