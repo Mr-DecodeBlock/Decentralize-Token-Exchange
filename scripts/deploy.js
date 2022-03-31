@@ -12,7 +12,7 @@ async function main() {
   let feePercent = 10;
   [owner, addr1, addr2, ether, user1, user2, feeAccount] =
     await ethers.getSigners();
-  const exchange = await Exchange.deploy(feeAccount, feePercent);
+  const exchange = await Exchange.deploy(feeAccount.address, feePercent);
 
   await exchange.deployed();
 
