@@ -57,27 +57,9 @@ export default function App() {
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
               <div className="flex flex-row justify-end items-center space-x-4">
-                <div class="border-b border-gray-200 dark:border-gray-700">
-                  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                    <li class="mr-2">
-                      <a
-                        href="#"
-                        class="active inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
-                        aria-current="page"
-                      >
-                        Trade
-                      </a>
-                    </li>
-                    <li class="mr-2">
-                      <a
-                        href="#"
-                        class="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
-                      >
-                        Order
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                {/* <div class="border-b border-gray-200 dark:border-gray-700">
+                
+                </div> */}
               </div>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
