@@ -61,7 +61,7 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid lg:grid-cols-3 lg:gap-4 grid-cols-1 lg:gap-2">
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
               <Chart
