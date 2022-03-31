@@ -11,6 +11,7 @@ export default function App() {
             <p className="text-white text-lg">0xafd....88e8f</p>
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
+          <hr />
           <div className="hidden lg:block">
             <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
               <div className="flex flex-row justify-between items-center">
