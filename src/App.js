@@ -23,8 +23,8 @@ export default function App() {
                   className=""
                   src={eth}
                   alt="Display"
-                  width={80}
-                  height={10}
+                  // width={80}
+                  height={40}
                 />
               </div>
             </div>
