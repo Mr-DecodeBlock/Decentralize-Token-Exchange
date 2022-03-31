@@ -54,8 +54,12 @@ export default function App() {
             <div className="bg-[#20232C] p-4 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
             </div>
-            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
+            <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
+              <div className="flex flex-row justify-end items-center space-x-4">
+                <div>Trade</div>
+                <div>Order</div>
+              </div>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
