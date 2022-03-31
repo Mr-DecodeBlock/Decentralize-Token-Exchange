@@ -63,7 +63,11 @@ export default function App() {
                   onClick={() => {
                     setOpenTab(1);
                   }}
-                  className='class="inline-block p-2 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500"'
+                  className={
+                    openTab === 1
+                      ? `class="inline-block p-2 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500`
+                      : ""
+                  }
                 >
                   Trade
                 </div>
