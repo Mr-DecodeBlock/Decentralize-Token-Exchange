@@ -53,6 +53,30 @@ export default function App() {
               <p>transactions</p>
             </div>
           </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div className="bg-[#20232C] rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] rounded-md text-white">
+              <p>transactions</p>
+            </div>
+            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
+              <p>transactions</p>
+            </div>
+          </div>
         </main>
       </div>
     </div>
