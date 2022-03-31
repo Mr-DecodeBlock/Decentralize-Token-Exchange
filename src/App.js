@@ -12,9 +12,11 @@ export default function App() {
           </div>
           <div>
             <div className="hidden lg:flex rounded-md w-full h-24 bg-gradient-to-r from-cyan-500 to-blue-500">
-              fdsfsdf
+              fdsfsdffdsfdf
             </div>
-            <div className=" bg-gradient-to-r from-cyan-500 to-blue-500 w-32 h-32"></div>
+            <div className="rounded-full text-center py-2 px-5 text-lg w-6/12 cursor-default bg-gradient-to-r from-pink-500 to-yellow-500 ">
+              <p>Get Started</p>
+            </div>
           </div>
         </nav>
       </div>
