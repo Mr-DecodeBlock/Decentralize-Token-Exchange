@@ -20,11 +20,9 @@ export default function App() {
                   <p>DDAP</p>
                 </div>
                 <img
-                  className=""
+                  // className="w-40 h-20"
                   src={eth}
                   alt="Display"
-                  width={120}
-                  height={20}
                 />
               </div>
             </div>
