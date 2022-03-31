@@ -12,7 +12,7 @@ export default function App() {
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <hr className="hidden lg:block opacity-20 mt-8" />
-          <div className="hidden lg:block">
+          <div className=" lg:block">
             <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
               <div className="flex flex-row justify-between items-center">
                 <div className="py-6 text-white">
@@ -26,8 +26,8 @@ export default function App() {
               </div>
             </div>
             <hr className="hidden lg:block opacity-20 mt-8" />
-            <div>
-              <div className="bg-[#FA3E66] py-2 cursor-pointer mt-8 text-white text-lg text-center rounded-md w-full space-y-4">
+            <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 lg:flex lg:flex-col lg:space-x-0">
+              <div className="bg-[#FA3E66] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
                 Deposite
               </div>
               <div className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
@@ -36,28 +36,6 @@ export default function App() {
             </div>
           </div>
         </nav>
-        <div className="mx-4 lg:hidden">
-          <div className=" mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
-            <div className="flex flex-row justify-between items-center">
-              <div className="py-6 text-white">
-                <p className="font-bold">Total Balance</p>
-                <p className="font-bold text-xl">0.00123</p>
-                <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
-                  DDAP
-                </p>
-              </div>
-              <img className="w-20 h-20" src={eth} alt="Display" />
-            </div>
-          </div>
-          <div className="flex flex-row items-center justify-between space-x-4">
-            <div className="bg-[#FA3E66] py-2 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
-              Deposite
-            </div>
-            <div className="bg-[#02B156] py-2 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
-              Withdraw
-            </div>
-          </div>
-        </div>
 
         <main className="w-9/12">
           <p>fsdfs</p>
