@@ -41,8 +41,8 @@ export default function App() {
           </div>
         </nav>
 
-        <main className="w-9/12 p-4">
-          <div className="flex flex-row justify-between items-center py-3">
+        <main className=" w-full lg:w-9/12 p-4">
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center  lg:py-3">
             <div className="flex flex-row space-x-3 items-center text-xl text-white">
               <p className="font-bold">DDAP/ETH</p>
               {/* <div class="w-16 overflow-hidden inline-block">
@@ -51,7 +51,7 @@ export default function App() {
               <p className="font-bold  text-green-600"> 0.01</p>
             </div>
             <div>
-              <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 ">
+              <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between lg:space-x-4 ">
                 <div className="bg-[#26BEAF] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
                   Buy
                 </div>
@@ -61,8 +61,8 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div class="grid lg:grid-cols-3 lg:gap-4 grid-cols-1 lg:gap-2">
-            <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
+          <div class="grid lg:grid-cols-3 gap-4 grid-cols-1 lg:gap-4">
+            <div className="bg-[#20232C] p-4 lg:col-span-2 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
               <Chart
                 options={chartOptions}
@@ -109,7 +109,7 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
+            <div className="bg-[#20232C] p-4 lg:col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
               <div className="flex flex-row justify-end mb-5  items-center space-x-8 cursor-pointer">
                 <div
