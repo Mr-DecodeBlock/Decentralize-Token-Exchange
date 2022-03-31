@@ -5,13 +5,13 @@ import "./App.css";
 export default function App() {
   return (
     <div className="bg-[#1A1D26] w-full h-screen font-Montserrat">
-      <div>
+      <div className="flex flex-col lg:flex lg:flex-row ">
         <nav className="bg-[#20232C] lg:p-4 sm:w-full lg:w-3/12 lg:h-screen ">
           <div className="px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
             <p className="text-white text-lg">0xafd....88e8f</p>
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
-          <hr className="opacity-20" />
+          <hr className="hidden lg:block opacity-20 mt-8" />
           <div className="hidden lg:block">
             <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
               <div className="flex flex-row justify-between items-center">
@@ -25,7 +25,7 @@ export default function App() {
                 <img className="w-20 h-20" src={eth} alt="Display" />
               </div>
             </div>
-            <hr className="opacity-20 mt-8" />
+            <hr className="hidden lg:block opacity-20 mt-8" />
             <div>
               <div className="bg-[#FA3E66] py-2 cursor-pointer mt-8 text-white text-lg text-center rounded-md w-full space-y-4">
                 Deposite
@@ -58,9 +58,11 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        <main className="w-9/12">
+          <p>fsdfs</p>
+        </main>
       </div>
-      {/* side bar for desktop */}
-      {/* <div></div> */}
     </div>
   );
 }
