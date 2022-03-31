@@ -7,6 +7,9 @@ module.exports = {
         LeagueGothis: "'League Gothic', sans-serif",
       },
     },
+    backgroundImage: {
+      "avrt-image": "url('/images/avrt-image.jpg')",
+    },
   },
   plugins: [],
 };
