@@ -14,6 +14,7 @@ export default function App() {
             <div className="hidden lg:flex rounded-md w-full h-24 bg-gradient-to-r from-cyan-500 to-blue-500">
               fdsfsdf
             </div>
+            <div className=" bg-gradient-to-r from-cyan-500 to-blue-500 w-32 h-32"></div>
           </div>
         </nav>
       </div>
