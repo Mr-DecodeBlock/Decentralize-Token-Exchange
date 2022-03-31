@@ -38,7 +38,21 @@ export default function App() {
         </nav>
 
         <main className="w-9/12 p-4">
-          <p>fsdfs</p>
+          {/* title */}
+          <div className="grid grid-cols-2">
+            <div>
+              <p>market</p>
+            </div>
+            <div>
+              <p>Order book</p>
+            </div>
+            <div>
+              <p>transactions</p>
+            </div>
+            <div>
+              <p>trades</p>
+            </div>
+          </div>
         </main>
       </div>
     </div>
