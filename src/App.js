@@ -43,10 +43,13 @@ export default function App() {
 
         <main className="w-9/12 p-4">
           <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-row space-x-3 text-white">
+            <div className="flex flex-row space-x-3 items-center text-xl text-white">
               <p className="font-bold">DDAP/ETH</p>
-              <p>icon</p>
-              <p className="font-bold"> 0.01</p>
+              {/* <div class="w-16 overflow-hidden inline-block">
+                <div class=" h-5 w-5 bg-black rotate-45 transform origin-bottom-left"></div>
+              </div> */}
+
+              <p className="font-bold  text-green-600"> 0.01</p>
             </div>
             <div>
               <div>Buy</div>
