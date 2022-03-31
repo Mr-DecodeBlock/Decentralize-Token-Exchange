@@ -8,7 +8,7 @@ export default function App() {
         <p className="text-white text-lg">0xafd....88e8f</p>
 
         {/* <div className="bg-avrt-image rounded-full w-8 h-8"></div> */}
-        <img className="" src={avtr} alt="Display" width={20} />
+        <img className="" src={avtr} alt="Display" width={30} />
       </nav>
     </div>
   );
