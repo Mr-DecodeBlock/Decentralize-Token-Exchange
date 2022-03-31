@@ -112,7 +112,6 @@ contract Exchange {
 
      function _trader(uint _orderId, address _user, address _tokenGet, uint _amountGet , address _tokenGive, uint _amountGive) internal{
         uint _feeAmount = _amountGive.mul(feePercent).div(100);
-      
         tokens[_tokenGet][msg.sender] = tokens[_tokenGet][msg.sender].sub(_amountGet.add(_feeAmount));
         tokens[_tokenGet][_user] = tokens[_tokenGet][_user].add(_amountGet);
         tokens[_tokenGet][feeAccount] = tokens[_tokenGet][feeAccount].add(_feeAmount);
