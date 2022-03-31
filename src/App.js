@@ -1,7 +1,8 @@
 import avtr from "./avrt-image.png";
 import eth from "./ethereum-eth.svg";
-import ApexCharts from "apexcharts";
+import Chart from "react-apexcharts";
 import "./App.css";
+import { chartOptions, dummyData } from "./components/PriceChartConfig";
 
 export default function App() {
   return (
@@ -44,6 +45,13 @@ export default function App() {
           <div class="grid grid-cols-3 gap-4">
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
+              <Chart
+                options={chartOptions}
+                series={dummyData}
+                type="candlestick"
+                width="100%"
+                height="100%"
+              />
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
