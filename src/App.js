@@ -1,4 +1,5 @@
 import avtr from "./avrt-image.png";
+import eth from "./eth.png";
 import "./App.css";
 
 export default function App() {
@@ -11,11 +12,8 @@ export default function App() {
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <div>
-            <div className="hidden lg:flex rounded-md w-full h-24 bg-gradient-to-r from-pink-500 to-yellow-500">
+            <div className="hidden lg:flex rounded-md w-full  bg-[#4181DB]">
               fdsfsdffdsfdf
-            </div>
-            <div className="  bg-gradient-to-r from-cyan-500 to-blue-500">
-              <p>Get Started</p>
             </div>
           </div>
         </nav>
