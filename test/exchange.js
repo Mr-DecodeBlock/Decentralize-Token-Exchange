@@ -194,7 +194,12 @@ describe("Exchange", function () {
           token.address,
           user1.address
         );
+        const user2Balance = await exchange.balanceOf(
+          ether.address,
+          user2.address
+        );
         expect(user1Balance).to.equal(tokens(1));
+        expect(user2Balance).to.equal(tokens(1));
 
         //test for other things moro
       });
