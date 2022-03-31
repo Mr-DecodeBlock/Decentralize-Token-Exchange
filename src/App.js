@@ -50,7 +50,7 @@ export default function App() {
                 series={dummyData}
                 type="candlestick"
                 width="100%"
-                height="100%"
+                height="350"
               />
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
