@@ -56,69 +56,7 @@ export default function App() {
             </div>
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
-              <div className="flex flex-row justify-end items-center space-x-4">
-                <ul
-                  class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4"
-                  id="tabs-tab"
-                  role="tablist"
-                >
-                  <li class="nav-item" role="presentation">
-                    <a
-                      href="#tabs-home"
-                      class="
-      nav-link
-      block
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      border-x-0 border-t-0 border-b-2 border-transparent
-      px-6
-      py-3
-      my-2
-     
-      focus:border-transparent
-      active
-    "
-                      id="tabs-home-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tabs-home"
-                      role="tab"
-                      aria-controls="tabs-home"
-                      aria-selected="true"
-                    >
-                      Trade
-                    </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a
-                      href="#tabs-profile"
-                      class="
-      nav-link
-      block
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      border-x-0 border-t-0 border-b-2 border-transparent
-      px-6
-      py-3
-      my-2
-     
-      focus:border-transparent
-    "
-                      id="tabs-profile-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tabs-profile"
-                      role="tab"
-                      aria-controls="tabs-profile"
-                      aria-selected="false"
-                    >
-                      Order
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <div className="flex flex-row justify-end items-center space-x-4"></div>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
