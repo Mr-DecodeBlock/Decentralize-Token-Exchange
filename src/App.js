@@ -12,9 +12,7 @@ export default function App() {
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <div>
-            <div className="hidden lg:flex rounded-md w-full  bg-[#4181DB]">
-              fdsfsdffdsfdf
-            </div>
+            <div className="hidden lg:flex lg:flex-row rounded-md w-full  bg-[#4181DB]"></div>
           </div>
         </nav>
       </div>
