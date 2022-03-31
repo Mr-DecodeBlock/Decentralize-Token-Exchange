@@ -8,7 +8,7 @@ import { chartOptions, dummyData } from "./components/PriceChartConfig";
 export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
   return (
-    <div className="bg-[#1A1D26] w-full h-screen font-Montserrat">
+    <div className="bg-[#1A1D26] w-full  font-Montserrat">
       <div className="flex flex-col lg:flex lg:flex-row ">
         <nav className="bg-transparent lg:bg-[#20232C] lg:p-4 lg:w-3/12 lg:h-screen ">
           <div className="bg-[#20232C] lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
@@ -58,7 +58,7 @@ export default function App() {
             </div>
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
-              <div className="flex flex-row justify-end  items-center space-x-8 cursor-pointer">
+              <div className="flex flex-row justify-end mb-5  items-center space-x-8 cursor-pointer">
                 <div
                   onClick={() => {
                     setOpenTab(1);
@@ -84,7 +84,44 @@ export default function App() {
                   Order
                 </div>
               </div>
-              {openTab === 1 ? <div>Trade content</div> : ""}
+              {openTab === 1 ? (
+                <div>
+                  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#20232C] dark:text-gray-400">
+                        <tr>
+                          <th scope="col" class="px-6 py-3"></th>
+                          <th scope="col" class="px-6 py-3">
+                            DDAP
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                            DDAP/ETH
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                          <td class="px-6 py-4">9:00am</td>
+                          <td class="px-6 py-4">20</td>
+                          <td class="px-6 py-4">0.01</td>
+                        </tr>
+                        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                          <td class="px-6 py-4">9:00am</td>
+                          <td class="px-6 py-4">20</td>
+                          <td class="px-6 py-4">0.01</td>
+                        </tr>
+                        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                          <td class="px-6 py-4">9:00am</td>
+                          <td class="px-6 py-4">20</td>
+                          <td class="px-6 py-4">0.01</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
               {openTab === 2 ? <div>Order content</div> : ""}
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
