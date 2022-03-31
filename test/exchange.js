@@ -150,17 +150,19 @@ describe("Exchange", function () {
         .makeOrder(token.address, tokens(1), ether.address, tokens(1), {
           from: addr2.address,
         });
+
+      const transaction = await exchange
+        .connect(user1)
+        .depositeEther(ether.address, {
+          from: user1.address,
+          value: ethers.utils.parseEther("2"),
+        });
+
+      await transaction.wait();
     });
 
     describe("filling order", () => {
       beforeEach(async () => {
-        const transaction = await exchange
-          .connect(user1)
-          .depositeEther(ether.address, {
-            from: user1.address,
-            value: ethers.utils.parseEther("1"),
-          });
-
         await token.transferTo(user2.address, tokens(100), {
           from: owner.address,
         });
@@ -173,7 +175,6 @@ describe("Exchange", function () {
           .connect(user2)
           .depositeToken(token.address, tokens(10), { from: user2.address });
 
-        await transaction.wait();
         result = await exchange
           .connect(user1)
           .makeOrder(
