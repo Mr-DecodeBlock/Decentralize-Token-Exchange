@@ -39,11 +39,11 @@ export default function App() {
 
         <main className="w-9/12 p-4">
           {/* title */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#20232C] rounded-md text-white">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
               <p>transactions</p>
             </div>
-            <div className="bg-[#20232C] rounded-md text-white">
+            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
               <p>transactions</p>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
