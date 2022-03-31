@@ -42,6 +42,17 @@ export default function App() {
         </nav>
 
         <main className="w-9/12 p-4">
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row space-x-3 text-white">
+              <p className="font-bold">DDAP/ETH</p>
+              <p>icon</p>
+              <p className="font-bold"> 0.01</p>
+            </div>
+            <div>
+              <div>Buy</div>
+              <div>Sell</div>
+            </div>
+          </div>
           <div class="grid grid-cols-3 gap-4">
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">Market Summary</p>
@@ -54,7 +65,41 @@ export default function App() {
               />
             </div>
             <div className="bg-[#20232C] p-4 rounded-md text-white">
-              <p className="text-lg">Market Summary</p>
+              <p className="text-lg mb-5">Order Book</p>
+              <div>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                  <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
+                      <tr>
+                        <th scope="col" class="px-6 py-3"></th>
+                        <th scope="col" class="px-6 py-3">
+                          DDAP
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          DDAP/ETH
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
@@ -161,8 +206,42 @@ export default function App() {
                 ""
               )}
             </div>
-            <div className="bg-[#20232C] rounded-md text-white">
-              <p>transactions</p>
+            <div className="bg-[#20232C] p-4 rounded-md text-white">
+              <p className="text-lg mb-5">Trades</p>
+              <div>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                  <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
+                      <tr>
+                        <th scope="col" class="px-6 py-3"></th>
+                        <th scope="col" class="px-6 py-3">
+                          DDAP
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          DDAP/ETH
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                      <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                        <td class="px-6 py-4">9:00am</td>
+                        <td class="px-6 py-4">20</td>
+                        <td class="px-6 py-4">0.01</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </main>
