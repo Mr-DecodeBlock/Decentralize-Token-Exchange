@@ -19,7 +19,13 @@ export default function App() {
                   <p>0.00123</p>
                   <p>DDAP</p>
                 </div>
-                <img className="" src={eth} alt="Display" width="" />
+                <img
+                  className=""
+                  src={eth}
+                  alt="Display"
+                  width={80}
+                  height={10}
+                />
               </div>
             </div>
           </div>
