@@ -1,3 +1,4 @@
+import React from "react";
 import avtr from "./avrt-image.png";
 import eth from "./ethereum-eth.svg";
 import Chart from "react-apexcharts";
@@ -5,6 +6,7 @@ import "./App.css";
 import { chartOptions, dummyData } from "./components/PriceChartConfig";
 
 export default function App() {
+  const [openTab, setOpenTab] = React.useState(1);
   return (
     <div className="bg-[#1A1D26] w-full h-screen font-Montserrat">
       <div className="flex flex-col lg:flex lg:flex-row ">
@@ -56,11 +58,24 @@ export default function App() {
             </div>
             <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
               <p className="text-lg">My Transaction </p>
-              <div className="flex flex-row justify-end items-center space-x-4">
-                {/* <div class="border-b border-gray-200 dark:border-gray-700">
-                
-                </div> */}
+              <div className="flex flex-row justify-end items-center space-x-4 cursor-pointer">
+                <div
+                  onClick={() => {
+                    setOpenTab(1);
+                  }}
+                >
+                  Trade
+                </div>
+                <div
+                  onClick={() => {
+                    setOpenTab(2);
+                  }}
+                >
+                  Order
+                </div>
               </div>
+              {openTab === 1 ? <div>Trade content</div> : ""}
+              {openTab === 2 ? <div>Order content</div> : ""}
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
