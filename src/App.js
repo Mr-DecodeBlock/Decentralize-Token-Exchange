@@ -26,8 +26,8 @@ export default function App() {
             </div>
           </div>
         </nav>
-        <div className="lg:hidden">
-          <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
+        <div className="mx-4 lg:hidden">
+          <div className=" mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
             <div className="flex flex-row justify-between items-center">
               <div className="py-6 text-white">
                 <p className="font-bold">Total Balance</p>
@@ -38,6 +38,12 @@ export default function App() {
               </div>
               <img className="w-20 h-20" src={eth} alt="Display" />
             </div>
+          </div>
+          <div>
+            <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-sm w-full space-y-4">
+              Deposite
+            </div>
+            <div>Withdraw</div>
           </div>
         </div>
       </div>
