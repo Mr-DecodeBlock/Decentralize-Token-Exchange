@@ -51,7 +51,7 @@ export default function App() {
               <p className="font-bold  text-green-600"> 0.01</p>
             </div>
             <div>
-              <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between lg:space-x-4 ">
+              <div className="mx-0 mb-4 lg:mb-0 lg:mx-4 flex flex-row items-center justify-between space-x-4 ">
                 <div className="bg-[#26BEAF] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
                   Buy
                 </div>
