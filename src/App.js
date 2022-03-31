@@ -52,10 +52,10 @@ export default function App() {
             </div>
             <div>
               <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 ">
-                <div className="bg-[#FA3E66] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+                <div className="bg-[#26BEAF] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
                   Buy
                 </div>
-                <div className="bg-[#02B156] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+                <div className="bg-[#4743D6] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
                   Sell
                 </div>
               </div>
