@@ -41,8 +41,8 @@ export default function App() {
           {/* title */}
 
           <div class="grid grid-cols-3 gap-4">
-            <div className="bg-[#20232C] col-span-2 rounded-md text-white">
-              <p>transactions</p>
+            <div className="bg-[#20232C] p-4 col-span-2 rounded-md text-white">
+              <p className="text-lg">Market Summary</p>
             </div>
             <div className="bg-[#20232C] rounded-md text-white">
               <p>transactions</p>
