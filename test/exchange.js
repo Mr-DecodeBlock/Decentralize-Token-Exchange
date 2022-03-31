@@ -189,12 +189,12 @@ describe("Exchange", function () {
       });
 
       it("execute trade and charges fee", async function () {
-        await exchange.connect(user2).fillOrder("1", { from: user2.address });
+        await exchange.connect(user2).fillOrder("2", { from: user2.address });
         const user1Balance = await exchange.balanceOf(
           token.address,
           user1.address
         );
-        // expect(user1Balance).to.equal(tokens(1));
+        expect(user1Balance).to.equal(tokens(1));
 
         //test for other things moro
       });
