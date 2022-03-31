@@ -11,7 +11,9 @@ export default function App() {
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <div>
-            <div className="hidden lg:flex w-full h-24  rounded-md  bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+            <div className="w-full h-24 bg-gradient-to-r from-cyan-500 to-blue-500">
+              fdsfsdf
+            </div>
           </div>
         </nav>
       </div>
