@@ -1,5 +1,6 @@
 import avtr from "./avrt-image.png";
 import eth from "./ethereum-eth.svg";
+import ApexCharts from "apexcharts";
 import "./App.css";
 
 export default function App() {
