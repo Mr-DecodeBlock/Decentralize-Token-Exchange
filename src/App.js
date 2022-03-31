@@ -24,6 +24,14 @@ export default function App() {
                 <img className="w-20 h-20" src={eth} alt="Display" />
               </div>
             </div>
+            <div>
+              <div className="bg-[#FA3E66] py-2 mt-14 text-white text-lg text-center rounded-md w-full space-y-4">
+                Deposite
+              </div>
+              <div className="bg-[#02B156] py-2 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+                Withdraw
+              </div>
+            </div>
           </div>
         </nav>
         <div className="mx-4 lg:hidden">
@@ -43,7 +51,7 @@ export default function App() {
             <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
               Deposite
             </div>
-            <div className="bg-[#FA3E66] py-3 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+            <div className="bg-[#02B156] py-3 mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
               Withdraw
             </div>
           </div>
