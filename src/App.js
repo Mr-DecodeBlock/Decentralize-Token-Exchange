@@ -6,11 +6,12 @@ import Chart from "react-apexcharts";
 import "./App.css";
 import { chartOptions, dummyData } from "./components/PriceChartConfig";
 import Modal from "./components/Modal";
+import Comp from "./components/Comp";
 
 export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
-  const [open, setOpen] = useState(true);
-
+  const [open, setOpen] = useState(false);
+  const [comp, setComp] = useState("");
   const cancelButtonRef = useRef(null);
   return (
     <div className="bg-[#1A1D26] w-full  font-Montserrat">
@@ -36,7 +37,13 @@ export default function App() {
             </div>
             <hr className="hidden lg:block opacity-20 mt-8" />
             <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 lg:flex lg:flex-col lg:space-x-0">
-              <div className="bg-[#FA3E66] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+              <div
+                onClick={() => {
+                  setOpen(true);
+                  setComp(<Comp />);
+                }}
+                className="bg-[#FA3E66] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
+              >
                 Deposite
               </div>
               <div className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
@@ -259,7 +266,7 @@ export default function App() {
           </div>
         </main>
 
-        <Modal open={open}></Modal>
+        <Modal open={open}>{comp}</Modal>
       </div>
     </div>
   );
