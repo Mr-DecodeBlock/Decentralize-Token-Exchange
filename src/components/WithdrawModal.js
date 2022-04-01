@@ -1,6 +1,6 @@
 import React from "react";
-import { Dialog, Transition } from "@headlessui/react";
-const Comp = () => {
+
+const WithdrawModal = () => {
   return (
     <div className="text-white flex flex-col">
       <form>
@@ -34,4 +34,4 @@ const Comp = () => {
   );
 };
 
-export default Comp;
+export default WithdrawModal;
