@@ -6,7 +6,7 @@ import Chart from "react-apexcharts";
 import "./App.css";
 import { chartOptions, dummyData } from "./components/PriceChartConfig";
 import Modal from "./components/Modal";
-import Comp from "./components/Comp";
+import Comp from "./components/DepositeModal";
 
 export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
@@ -270,7 +270,7 @@ export default function App() {
           </div>
         </main>
         <Modal open={open} onClose={() => setOpen(false)}>
-          Hello world!
+          {comp}
         </Modal>
       </div>
     </div>
