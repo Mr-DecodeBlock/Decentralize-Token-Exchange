@@ -39,7 +39,7 @@ export default function App() {
             <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 lg:flex lg:flex-col lg:space-x-0">
               <div
                 onClick={() => {
-                  setOpen(true);
+                  setOpen(!open);
                   setComp(<Comp />);
                 }}
                 className="bg-[#FA3E66] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"

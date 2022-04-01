@@ -3,12 +3,15 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function Modal(props) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const cancelButtonRef = useRef(null);
 
   return (
-    <Transition.Root show={props.open} as={Fragment}>
+    <Transition.Root
+      show={props.open == true ? props.open : open}
+      as={Fragment}
+    >
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
