@@ -4,10 +4,16 @@ import { Dialog, Transition } from "@headlessui/react";
 export default function Modal(props) {
   const [open, setOpen] = useState(false);
 
+  console.log(props.open);
+  useEffect(() => {
+    console.log("called");
+    setOpen(props.open);
+  }, [props.open]);
+
   const cancelButtonRef = useRef(null);
 
   return (
-    <Transition.Root show={isToggled}>
+    <Transition.Root show={open}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
