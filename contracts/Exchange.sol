@@ -119,8 +119,6 @@ contract Exchange {
         tokens[_tokenGet][feeAccount] = tokens[_tokenGet][feeAccount].add(_feeAmount);
         tokens[_tokenGive][_user]= tokens[_tokenGive][_user].sub(_amountGive);
         tokens[_tokenGive][msg.sender] = tokens[_tokenGive][msg.sender].add(_amountGive);
-        console.log(tokens[_tokenGet][msg.sender]);
-        console.log(tokens[_tokenGive][_user]);
         emit Trade(_orderId, _user, _tokenGet, _amountGet, _tokenGive, _amountGive, msg.sender, block.timestamp);
      }
 
