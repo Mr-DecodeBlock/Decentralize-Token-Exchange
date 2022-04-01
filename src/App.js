@@ -12,7 +12,7 @@ export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
   const [open, setOpen] = useState(false);
   const [comp, setComp] = useState("");
-  const [openToggle, setopenToggle] = useState(false);
+
   const cancelButtonRef = useRef(null);
   return (
     <div className="bg-[#1A1D26] w-full  font-Montserrat">
@@ -41,7 +41,7 @@ export default function App() {
               <div
                 onClick={() => {
                   setOpen(!open);
-                  setopenToggle(!openToggle);
+
                   // console.log(open);
                   setComp(<Comp />);
                 }}
@@ -269,9 +269,7 @@ export default function App() {
           </div>
         </main>
 
-        <Modal open={open} openToggle={openToggle}>
-          {comp}
-        </Modal>
+        <Modal open={open}>{comp}</Modal>
       </div>
     </div>
   );
