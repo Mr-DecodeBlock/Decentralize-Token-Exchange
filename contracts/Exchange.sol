@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "./Token.sol";
+import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 contract Exchange {
@@ -71,7 +72,7 @@ contract Exchange {
      }
 
      function depositeToken(address _token, uint _amount) public{
-       Token(_token).transferFrom(msg.sender , address(this),_amount);
+       Token(_token).transferFrom(msg.sender , address(this), _amount);
        tokens[_token][msg.sender] = tokens[_token][msg.sender].add(_amount);
        emit Deposite(_token, msg.sender , _amount,tokens[_token][msg.sender]);
      } 
@@ -106,6 +107,7 @@ contract Exchange {
         require(!orderCancelled[_id]);
         require(!orderFilled[_id]);
         _Order storage _order = orders[_id];
+        // console.log(_order);
         _trader(_order.id, _order.user, _order.tokenGet, _order.amountGet, _order.tokenGive, _order.amountGive);
         orderFilled[_id] = true;
      }
@@ -117,6 +119,8 @@ contract Exchange {
         tokens[_tokenGet][feeAccount] = tokens[_tokenGet][feeAccount].add(_feeAmount);
         tokens[_tokenGive][_user]= tokens[_tokenGive][_user].sub(_amountGive);
         tokens[_tokenGive][msg.sender] = tokens[_tokenGive][msg.sender].add(_amountGive);
+        console.log(tokens[_tokenGet][msg.sender]);
+        console.log(tokens[_tokenGive][_user]);
         emit Trade(_orderId, _user, _tokenGet, _amountGet, _tokenGive, _amountGive, msg.sender, block.timestamp);
      }
 

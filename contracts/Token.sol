@@ -43,6 +43,7 @@ contract Token {
     function transferFrom (address _from , address _to, uint256 _value) public returns (bool success) {
        //this code failed because of signer of addresse two not working
        require(_value <= balanceOf[_from]);
+
        require(_value <= allowance[_from][msg.sender]);
        allowance[_from][msg.sender] = allowance[_from][msg.sender].sub(_value);
       _transferTo(_from, _to, _value);

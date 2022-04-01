@@ -1,11 +1,11 @@
 const { ethers } = require("hardhat");
 
-const Token = await ethers.getContractFactory("Token");
-const Exchange = await ethers.getContractFactory("Exchange");
-const tokens = (n) => {
-  return ethers.utils.parseEther(n.toString());
-};
 module.exports = async function (callback) {
+  const Token = await ethers.getContractFactory("Token");
+  const Exchange = await ethers.getContractFactory("Exchange");
+  const tokens = (n) => {
+    return ethers.utils.parseEther(n.toString());
+  };
   try {
     let owner;
     let addr1;
