@@ -7,7 +7,7 @@ export default function Modal(props) {
   const cancelButtonRef = useRef(null);
   React.useEffect(() => {
     setOpen(props.open);
-  }, [props.open]);
+  }, [props.openToggle]);
 
   return (
     <Transition.Root show={open}>
