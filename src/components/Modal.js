@@ -2,22 +2,12 @@ import React, { Fragment, useRef, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function Modal(props) {
-  console.log(props.open);
+  //   console.log(props.open);
   const [open, setOpen] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
-  //   console.log(open);
-
-  // console.log(props.open);
-  useEffect(() => {
-    setOpen(props.open);
-  }, []);
-
-  //   if (props.open) {
-  //     setOpen(props.open);
-  //   }
-
   const cancelButtonRef = useRef(null);
-
+  React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
   return (
     <Transition.Root show={open}>
       <Dialog
@@ -64,7 +54,6 @@ export default function Modal(props) {
                   onClick={() => {
                     // state = false;
                     setOpen(false);
-                    setIsDeleted(!isDeleted);
                   }}
                 >
                   Deactivate
@@ -75,7 +64,6 @@ export default function Modal(props) {
                   onClick={() => {
                     // state = false;
                     setOpen(false);
-                    setIsDeleted(!isDeleted);
                   }}
                   ref={cancelButtonRef}
                 >
