@@ -3,18 +3,11 @@ import { Dialog, Transition } from "@headlessui/react";
 
 export default function Modal(props) {
   const [open, setOpen] = useState(false);
-  const [isToggled, setIsToggled] = React.useState(props.open);
 
-  // put [setIsToggled] into the useCallback's dependencies array
-  // this value never changes so the callback is not going to be ever re-created
-  const toggle = React.useCallback(
-    () => setIsToggled((state) => !state),
-    [setIsToggled]
-  );
-  const cancelButtonRef = useRef(isToggled);
+  const cancelButtonRef = useRef(null);
 
   return (
-    <Transition.Root show={open}>
+    <Transition.Root show={isToggled}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
