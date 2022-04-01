@@ -3,7 +3,12 @@ import { Dialog, Transition } from "@headlessui/react";
 
 export default function Modal(props) {
   const [open, setOpen] = useState(false);
+
   console.log(props.open);
+  useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
+
   const cancelButtonRef = useRef(null);
 
   return (
