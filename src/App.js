@@ -6,8 +6,8 @@ import Chart from "react-apexcharts";
 import "./App.css";
 import { chartOptions, dummyData } from "./components/PriceChartConfig";
 import Modal from "./components/Modal";
-import Comp from "./components/DepositeModal";
-
+import DepositeModal from "./components/DepositeModal";
+import WithdrawModal from "./components/WithdrawModal";
 export default function App() {
   const [openTab, setOpenTab] = React.useState(1);
   const [open, setOpen] = useState(false);
@@ -42,15 +42,19 @@ export default function App() {
               <div
                 onClick={() => {
                   setOpen(!open);
-
-                  // console.log(open);
-                  setComp(<Comp />);
+                  setComp(<DepositeModal />);
                 }}
                 className="bg-[#FA3E66] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
               >
                 Deposite
               </div>
-              <div className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4">
+              <div
+                onClick={() => {
+                  setOpen(!open);
+                  setComp(<WithdrawModal />);
+                }}
+                className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
+              >
                 Withdraw
               </div>
             </div>
