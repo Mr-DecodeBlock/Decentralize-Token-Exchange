@@ -1,6 +1,5 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-
 const Comp = () => {
   return (
     <div className="relative inline-block align-bottom bg-[#1A1D26] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">

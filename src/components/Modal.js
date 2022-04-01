@@ -10,14 +10,13 @@ export default function Modal(props) {
   }, [props.open]);
 
   return (
-    <Transition.Root show={open}>
+    <Transition appear show={open}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
-        initialFocus={cancelButtonRef}
+        className="fixed inset-0 z-10 overflow-y-auto"
         onClose={setOpen}
       >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="min-h-screen px-4 text-center">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -27,12 +26,12 @@ export default function Modal(props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-[#1a1d26b6] bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            className="inline-block h-screen align-middle"
             aria-hidden="true"
           >
             &#8203;
@@ -40,30 +39,41 @@ export default function Modal(props) {
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
             leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
           >
-            <div className="relative inline-block align-bottom bg-[#1A1D26] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              {props.children}
-              <div className="bg-[#1A1D26] px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <Dialog.Title
+                as="h3"
+                className="text-lg font-medium leading-6 text-gray-900"
+              >
+                Payment successful
+              </Dialog.Title>
+              <div className="mt-2">
+                <p className="text-sm text-gray-500">
+                  Your payment has been successfully submitted. We’ve sent you
+                  an email with all of the details of your order.
+                </p>
+              </div>
+
+              <div className="mt-4">
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                   onClick={() => {
                     setOpen(false);
                   }}
-                  ref={cancelButtonRef}
                 >
-                  Cancel
+                  Got it, thanks!
                 </button>
               </div>
             </div>
           </Transition.Child>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   );
 }
