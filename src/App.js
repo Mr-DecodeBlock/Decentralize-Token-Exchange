@@ -269,8 +269,10 @@ export default function App() {
             </div>
           </div>
         </main>
-
-        <Modal open={open}>{comp}</Modal>
+        <Modal open={open} onClose={() => setOpen(false)}>
+          Hello world!
+        </Modal>
+        {/* <Modal open={open}>{comp}</Modal> */}
       </div>
     </div>
   );
