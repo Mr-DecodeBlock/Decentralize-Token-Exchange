@@ -14,6 +14,7 @@ export default function App() {
   const [comp, setComp] = useState("");
 
   const cancelButtonRef = useRef(null);
+
   return (
     <div className="bg-[#1A1D26] w-full  font-Montserrat">
       <div className="flex flex-col lg:flex lg:flex-row ">

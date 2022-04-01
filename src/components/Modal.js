@@ -7,7 +7,7 @@ export default function Modal(props) {
   const cancelButtonRef = useRef(null);
   React.useEffect(() => {
     setOpen(props.open);
-  }, [props.openToggle]);
+  }, [props.open]);
 
   return (
     <Transition.Root show={open}>
@@ -48,7 +48,7 @@ export default function Modal(props) {
           >
             <div className="relative inline-block align-bottom bg-[#1A1D26] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               {props.children}
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="bg-[#1A1D26] px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
