@@ -8,6 +8,7 @@ export default function Modal(props) {
   React.useEffect(() => {
     setOpen(props.open);
   }, [props.open]);
+
   return (
     <Transition.Root show={open}>
       <Dialog

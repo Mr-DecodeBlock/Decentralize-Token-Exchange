@@ -39,7 +39,7 @@ export default function App() {
             <div className="mx-4 lg:mx-0 flex flex-row items-center justify-between space-x-4 lg:flex lg:flex-col lg:space-x-0">
               <div
                 onClick={() => {
-                  setOpen(true);
+                  setOpen(!open);
                   // console.log(open);
                   setComp(<Comp />);
                 }}
