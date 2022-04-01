@@ -272,7 +272,6 @@ export default function App() {
         <Modal open={open} onClose={() => setOpen(false)}>
           Hello world!
         </Modal>
-        {/* <Modal open={open}>{comp}</Modal> */}
       </div>
     </div>
   );
