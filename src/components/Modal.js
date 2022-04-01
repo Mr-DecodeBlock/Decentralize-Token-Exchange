@@ -1,10 +1,17 @@
-import { Fragment, useRef, useEffect, useState } from "react";
+import React, { Fragment, useRef, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function Modal(props) {
   const [open, setOpen] = useState(false);
+  const [isToggled, setIsToggled] = React.useState(props.open);
 
-  const cancelButtonRef = useRef(null);
+  // put [setIsToggled] into the useCallback's dependencies array
+  // this value never changes so the callback is not going to be ever re-created
+  const toggle = React.useCallback(
+    () => setIsToggled((state) => !state),
+    [setIsToggled]
+  );
+  const cancelButtonRef = useRef(isToggled);
 
   return (
     <Transition.Root show={open}>
