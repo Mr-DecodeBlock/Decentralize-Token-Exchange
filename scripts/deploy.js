@@ -16,14 +16,14 @@ async function main() {
   let feeAccount;
   let feePercent = 10;
 
-  let owner;
-  let addr1;
+  let sender;
+  let receiver;
   let addr2;
   let ether;
   let user1;
   let user2;
 
-  [owner, addr1, addr2, ether, user1, user2, feeAccount] =
+  [sender, receiver, addr2, ether, user1, user2, feeAccount] =
     await hre.ethers.getSigners();
   const exchange = await Exchange.deploy(feeAccount.address, feePercent);
 
@@ -31,64 +31,54 @@ async function main() {
   console.log("Token deployed to:", token.address);
   console.log("Exchange deployed to:", exchange.address);
 
-  //give token to address 1;
-  await token.transferTo(user2.address, tokens("1000000"), {
-    from: owner.address,
-  });
-  await token.connect(user2).approve(exchange.address, tokens("100000"), {
-    from: user2.address,
-  });
+  let amount = tokens("10000"); // 10,000 tokens
 
+  await token.transferTo(receiver.address, amount, { from: sender.address });
+  await token.transferTo(user2.address, amount, { from: sender.address });
   console.log(
-    `transfered ${tokens(10000)} to ${user2.address} from ${owner.address}`
+    `Transferred ${amount} tokens from ${sender.address} to ${receiver.address}`
   );
 
-  //user 1 deposites ether
-  const transaction = await exchange
+  // Set up exchange users
+
+  // User .1 Deposits Ether
+  await exchange
     .connect(user1)
-    .depositeEther(ether.address, {
-      from: user1.address,
-      value: tokens("5"),
-    });
-  await transaction.wait();
+    .depositeEther(ether.address, { from: user1.address, value: tokens(0.1) });
+  console.log(`Deposited ${amount} Ether from ${user1.address}`);
 
-  console.log(
-    `deposited ${ethers.utils.parseEther("5")} ether from ${user1.address} `
-  );
+  // User 2 Approves Tokens
+  amount = 10000;
+  await token
+    .connect(user2)
+    .approve(exchange.address, tokens(amount), { from: user2.address });
+  console.log(`Approved ${amount} tokens from ${user2.address}`);
 
-  //user 2 approve tokens
-  await token.connect(user2).approve(exchange.address, tokens("100000"), {
-    from: user2.address,
-  });
+  // User 2 Deposits Tokens
+  await exchange
+    .connect(user2)
+    .depositeToken(token.address, tokens(amount), { from: user2.address });
+  console.log(`Deposited ${amount} tokens from ${user2.address}`);
 
-  console.log(`Approved  ${tokens("100000")} from ${user2.address} `);
-  console.log(await token.allowance(user2.address, exchange.address));
-
-  //user2 deposite tokens
-  await exchange.connect(user2).depositeToken(token.address, tokens("10"), {
-    from: user2.address,
-  });
-
-  console.log(`Deposite ${tokens(10000)} from ${user2.address} `);
-  console.log(await exchange.tokens(token.address, user2.address));
+  /////////////////////////////////////////////////////////////
+  // Seed a Cancelled Order
+  //
 
   // User 1 makes order to get tokens
   let result;
   let orderId;
-
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens("100"), ether.address, tokens("0.01"), {
+    .makeOrder(token.address, tokens(100), ether.address, tokens(0.01), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
 
   // User 1 cancells order
   let tx = await result.wait();
-  let id = tx.events[0].args.id;
-  console.log(id);
+  orderId = tx.events[0].args.id;
   // orderId = result.logs[0].args.id;
-  await exchange.connect(user1).cancelOrder(id, { from: user1.address });
+  await exchange.connect(user1).cancelOrder(orderId, { from: user1.address });
   console.log(`Cancelled order from ${user1.address}`);
 
   /////////////////////////////////////////////////////////////
@@ -98,86 +88,195 @@ async function main() {
   // User 1 makes order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens("50"), ether.address, tokens("0.01"), {
+    .makeOrder(token.address, tokens(100), ether.address, tokens(0.01), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
 
   // User 2 fills order
   tx = await result.wait();
-  id = tx.events[0].args.id;
-  console.log("id-----", id);
-  const user1Balance = await exchange.balanceOf(token.address, user1.address);
-  const user2Balance = await exchange.balanceOf(ether.address, user2.address);
-  // console.log(user1Balance, user2Balance);
-  await exchange.connect(user2).fillOrder("2", { from: user2.address });
-  console.log(`Filled order from ${user2.address}`);
+  orderId = tx.events[0].args.id;
+  await exchange.connect(user2).fillOrder(orderId, { from: user2.address });
+  console.log(`Filled order from ${user1.address}`);
 
   // Wait 1 second
-  await wait(1);
+  // await wait(1);
 
   // User 1 makes another order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens(50), ether.address, tokens("0.001"), {
+    .makeOrder(token.address, tokens(50), ether.address, tokens(0.001), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
 
   // User 2 fills another order
   tx = await result.wait();
-  id = tx.events[0].args.id;
-  await exchange.connect(user2).fillOrder(id, { from: user2.address });
+  orderId = tx.events[0].args.id;
+  await exchange.connect(user2).fillOrder(orderId, { from: user2.address });
   console.log(`Filled order from ${user1.address}`);
 
   // Wait 1 second
-  await wait(1);
+  // await wait(1);
 
   // User 1 makes final order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens("200"), ether.address, tokens("0.015"), {
+    .makeOrder(token.address, tokens(200), ether.address, tokens(0.015), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
 
   // User 2 fills final order
-
   tx = await result.wait();
-  id = tx.events[0].args.id;
-  await exchange.connect(user2).fillOrder(id, { from: user2 });
+  orderId = tx.events[0].args.id;
+  await exchange.connect(user2).fillOrder(orderId, { from: user2.address });
   console.log(`Filled order from ${user1.address}`);
 
   // Wait 1 second
-  await wait(1);
+  // await wait(1);
 
-  /////////////////////////////////////////////////////////////
-  // Seed Open Orders
-  //
+  // //give token to address 1;
+  // await token.transferTo(user2.address, tokens("1000000"), {
+  //   from: owner.address,
+  // });
+  // await token.connect(user2).approve(exchange.address, tokens("100000"), {
+  //   from: user2.address,
+  // });
 
-  // User 1 makes 10 orders
-  for (let i = 1; i <= 10; i++) {
-    result = await exchange
-      .connect(user1)
-      .makeOrder(token.address, tokens(10 * i), ether.address, tokens(0.001), {
-        from: user1.address,
-      });
-    console.log(`Made order from ${user1.address}`);
-    // Wait 1 second
-    await wait(1);
-  }
+  // console.log(
+  //   `transfered ${tokens(10000)} to ${user2.address} from ${owner.address}`
+  // );
 
-  // User 2 makes 10 orders
-  for (let i = 1; i <= 10; i++) {
-    result = await exchange
-      .connect(user2)
-      .makeOrder(ether.address, tokens(0.001), token.address, tokens(10 * i), {
-        from: user2.address,
-      });
-    console.log(`Made order from ${user2.address}`);
-    // Wait 1 second
-    await wait(1);
-  }
+  // //user 1 deposites ether
+  // const transaction = await exchange
+  //   .connect(user1)
+  //   .depositeEther(ether.address, {
+  //     from: user1.address,
+  //     value: tokens("5"),
+  //   });
+  // await transaction.wait();
+
+  // console.log(
+  //   `deposited ${ethers.utils.parseEther("5")} ether from ${user1.address} `
+  // );
+
+  // //user 2 approve tokens
+  // await token.connect(user2).approve(exchange.address, tokens("100000"), {
+  //   from: user2.address,
+  // });
+
+  // console.log(`Approved  ${tokens("100000")} from ${user2.address} `);
+  // console.log(await token.allowance(user2.address, exchange.address));
+
+  // //user2 deposite tokens
+  // await exchange.connect(user2).depositeToken(token.address, tokens("10"), {
+  //   from: user2.address,
+  // });
+
+  // console.log(`Deposite ${tokens(10000)} from ${user2.address} `);
+  // console.log(await exchange.tokens(token.address, user2.address));
+
+  // // User 1 makes order to get tokens
+  // let result;
+  // let orderId;
+
+  // result = await exchange
+  //   .connect(user1)
+  //   .makeOrder(token.address, tokens("100"), ether.address, tokens("0.01"), {
+  //     from: user1.address,
+  //   });
+  // console.log(`Made order from ${user1.address}`);
+
+  // // User 1 cancells order
+  // let tx = await result.wait();
+  // let id = tx.events[0].args.id;
+  // console.log(id);
+  // // orderId = result.logs[0].args.id;
+  // await exchange.connect(user1).cancelOrder(id, { from: user1.address });
+  // console.log(`Cancelled order from ${user1.address}`);
+
+  // /////////////////////////////////////////////////////////////
+  // // Seed Filled Orders
+  // //
+
+  // // User 1 makes order
+  // result = await exchange
+  //   .connect(user1)
+  //   .makeOrder(token.address, tokens("50"), ether.address, tokens("0.01"), {
+  //     from: user1.address,
+  //   });
+  // console.log(`Made order from ${user1.address}`);
+
+  // // User 2 fills order
+  // tx = await result.wait();
+  // id = tx.events[0].args.id;
+  // await exchange.connect(user2).fillOrder("2", { from: user2.address });
+  // console.log(`Filled order from ${user2.address}`);
+
+  // // Wait 1 second
+  // await wait(1);
+
+  // // User 1 makes another order
+  // result = await exchange
+  //   .connect(user1)
+  //   .makeOrder(token.address, tokens(50), ether.address, tokens("0.001"), {
+  //     from: user1.address,
+  //   });
+  // console.log(`Made order from ${user1.address}`);
+
+  // // User 2 fills another order
+  // tx = await result.wait();
+  // id = tx.events[0].args.id;
+  // await exchange.connect(user2).fillOrder(id, { from: user2.address });
+  // console.log(`Filled order from ${user1.address}`);
+
+  // // Wait 1 second
+  // await wait(1);
+
+  // // User 1 makes final order
+  // result = await exchange
+  //   .connect(user1)
+  //   .makeOrder(token.address, tokens("200"), ether.address, tokens("0.015"), {
+  //     from: user1.address,
+  //   });
+  // console.log(`Made order from ${user1.address}`);
+
+  // // User 2 fills final order
+  // tx = await result.wait();
+  // id = tx.events[0].args.id;
+  // await exchange.connect(user2).fillOrder(id, { from: user2 });
+  // console.log(`Filled order from ${user1.address}`);
+  // // Wait 1 second
+  // await wait(1);
+
+  // /////////////////////////////////////////////////////////////
+  // // Seed Open Orders
+  // //
+
+  // // User 1 makes 10 orders
+  // for (let i = 1; i <= 10; i++) {
+  //   result = await exchange
+  //     .connect(user1)
+  //     .makeOrder(token.address, tokens(10 * i), ether.address, tokens(0.001), {
+  //       from: user1.address,
+  //     });
+  //   console.log(`Made order from ${user1.address}`);
+  //   // Wait 1 second
+  //   await wait(1);
+  // }
+
+  // // User 2 makes 10 orders
+  // for (let i = 1; i <= 10; i++) {
+  //   result = await exchange
+  //     .connect(user2)
+  //     .makeOrder(ether.address, tokens(0.001), token.address, tokens(10 * i), {
+  //       from: user2.address,
+  //     });
+  //   console.log(`Made order from ${user2.address}`);
+  //   // Wait 1 second
+  //   await wait(1);
+  // }
 }
 
 main()
