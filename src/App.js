@@ -17,14 +17,14 @@ export default function App() {
 
   return (
     <div className="bg-[#1A1D26] w-full  font-Montserrat">
-      <div className="flex flex-col lg:flex lg:flex-row ">
-        <nav className="bg-transparent lg:bg-[#20232C] lg:p-4 lg:w-3/12 lg:h-screen ">
+      <div className="flex flex-col lg:flex lg:flex-row h-3/6">
+        <nav className="bg-transparent  lg:bg-[#20232C] lg:p-4 lg:w-3/12  ">
           <div className="bg-[#20232C] lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
             <p className="text-white text-lg">0xafd....88e8f</p>
             <img className="lg:mb-4" src={avtr} alt="Display" width={40} />
           </div>
           <hr className="hidden lg:block opacity-20 mt-8" />
-          <div className=" lg:block">
+          <div className="lg:block">
             <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
               <div className="flex flex-row justify-between items-center">
                 <div className="py-6 text-white">
@@ -53,7 +53,7 @@ export default function App() {
                   setOpen(!open);
                   setComp(<WithdrawModal />);
                 }}
-                className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
+                className="bg-[#02B156]  py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
               >
                 Withdraw
               </div>
