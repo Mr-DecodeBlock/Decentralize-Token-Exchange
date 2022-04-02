@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
@@ -24,7 +25,10 @@ const App = (props) => {
   }, []);
 
   const loadBlockchain = async (dispatch) => {
-    const provider = await loadWeb3(dispatch);
+    // let provider = await loadWeb3(dispatch);
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
     const address = await loadAccount(provider, dispatch);
     const tokenContract = await loadToken(
       tokenAddress,
@@ -48,12 +52,6 @@ const App = (props) => {
       <Layout>
         <Sidebar />
         <Main />
-      </Layout>
-    );
-  } else {
-    return (
-      <Layout>
-        <p>Loading</p>
         {!tokenContract ? (
           <Modal open={true} onClose={() => setOpen(false)}>
             <p>fasdfsf</p>
@@ -61,6 +59,12 @@ const App = (props) => {
         ) : (
           ""
         )}
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout>
+        <p>Loading</p>
       </Layout>
     );
   }

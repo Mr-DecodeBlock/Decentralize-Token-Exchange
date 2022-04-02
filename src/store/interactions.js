@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 import Token from "../artifacts/contracts/Token.sol/Token.json";
 import Exchange from "../artifacts/contracts/Exchange.sol/Exchange.json";
 
@@ -28,6 +29,7 @@ import {
 export const loadWeb3 = async (dispatch) => {
   if (typeof window.ethereum !== "undefined") {
     const web3 = new ethers.providers.JsonRpcProvider();
+
     dispatch(web3Loaded(web3));
     return web3;
   } else {
