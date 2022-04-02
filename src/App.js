@@ -7,7 +7,7 @@ import Main from "./components/Main/Main";
 import { tokenAddress, exchangeAddress } from "./config";
 import Token from "./artifacts/contracts/Token.sol/Token.json";
 import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
-import { loadWeb3 } from "./store/interactions";
+import { loadAccount, loadExchange, loadWeb3 } from "./store/interactions";
 import { connect } from "react-redux";
 
 const App = (props) => {
@@ -19,24 +19,34 @@ const App = (props) => {
   }, []);
 
   const loadBlockchain = async (dispatch) => {
-    const provider = loadWeb3(dispatch);
-    console.log(provider);
-    // const provider = new ethers.providers.JsonRpcProvider();
-    const exchangeContract = new ethers.Contract(
+    const provider = await loadWeb3(dispatch);
+    const address = await loadAccount(provider, dispatch);
+    const tokenContract = await loadExchange(tokenAddress, Token.abi, provider);
+    const exchangeContract = await loadExchange(
       exchangeAddress,
       Exchange.abi,
       provider
     );
-    const tokenContract = new ethers.Contract(
-      tokenAddress,
-      Token.abi,
-      provider
-    );
-    const signer = provider.getSigner();
-    const address = await signer.getAddress();
-    setAccount(address);
-    setExchange(exchangeContract);
-    setToken(tokenContract);
+    console.log(provider);
+    console.log(address);
+    console.log(tokenContract);
+    console.log(exchangeAddress);
+    // const provider = new ethers.providers.JsonRpcProvider();
+    // const exchangeContract = new ethers.Contract(
+    //   exchangeAddress,
+    //   Exchange.abi,
+    //   provider
+    // );
+    // const tokenContract = new ethers.Contract(
+    //   tokenAddress,
+    //   Token.abi,
+    //   provider
+    // );
+    // const signer = provider.getSigner();
+    // const address = await signer.getAddress();
+    // setAccount(address);
+    // setExchange(exchangeContract);
+    // setToken(tokenContract);
   };
   return (
     <Layout>

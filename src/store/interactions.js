@@ -5,8 +5,8 @@ import Exchange from "../artifacts/contracts/Exchange.sol/Exchange.json";
 import {
   web3Loaded,
   web3AccountLoaded,
-  //   tokenLoaded,
-  //   exchangeLoaded,
+  tokenLoaded,
+  exchangeLoaded,
   //   cancelledOrdersLoaded,
   //   filledOrdersLoaded,
   //   allOrdersLoaded,
@@ -27,7 +27,6 @@ import {
 
 export const loadWeb3 = async (dispatch) => {
   if (typeof window.ethereum !== "undefined") {
-    // const web3 = new Web3(window.ethereum);
     const web3 = new ethers.providers.JsonRpcProvider();
     dispatch(web3Loaded(web3));
     return web3;
@@ -37,34 +36,47 @@ export const loadWeb3 = async (dispatch) => {
   }
 };
 
-// export const loadAccount = async (web3, dispatch) => {
-//   const accounts = await web3.eth.getAccounts();
-//   const account = accounts[0];
-//   dispatch(web3AccountLoaded(account));
-//   return account;
-// };
+export const loadAccount = async (provider, dispatch) => {
+  const signer = provider.getSigner();
+  const address = await signer.getAddress();
+  dispatch(web3AccountLoaded(address));
+  return address;
+};
 
-// export const loadToken = async (web3, networkId, dispatch) => {
-//   try {
-//     const token = new web3.eth.Contract(Token.abi, Token.networks[networkId].address)
-//     dispatch(tokenLoaded(token))
-//     return token
-//   } catch (error) {
-//     console.log('Contract not deployed to the current network. Please select another network with Metamask.')
-//     return null
-//   }
-// }
+export const loadToken = async (tokenAddress, tokenabi, provider, dispatch) => {
+  try {
+    const tokenContract = new ethers.Contract(tokenAddress, tokenabi, provider);
+    dispatch(tokenLoaded(tokenContract));
+    return tokenContract;
+  } catch (error) {
+    console.log(
+      "Contract not deployed to the current network. Please select another network with Metamask."
+    );
+    return null;
+  }
+};
 
-// export const loadExchange = async (web3, networkId, dispatch) => {
-//   try {
-//     const exchange = new web3.eth.Contract(Exchange.abi, Exchange.networks[networkId].address)
-//     dispatch(exchangeLoaded(exchange))
-//     return exchange
-//   } catch (error) {
-//     console.log('Contract not deployed to the current network. Please select another network with Metamask.')
-//     return null
-//   }
-// }
+export const loadExchange = async (
+  exchangeAddress,
+  exchangeabi,
+  provider,
+  dispatch
+) => {
+  try {
+    const exchangeContract = new ethers.Contract(
+      exchangeAddress,
+      exchangeabi,
+      provider
+    );
+    dispatch(exchangeLoaded(exchangeContract));
+    return exchangeContract;
+  } catch (error) {
+    console.log(
+      "Contract not deployed to the current network. Please select another network with Metamask."
+    );
+    return null;
+  }
+};
 
 // export const loadAllOrders = async (exchange, dispatch) => {
 //   // Fetch cancelled orders with the "Cancel" event stream
