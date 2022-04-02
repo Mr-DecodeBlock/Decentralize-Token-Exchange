@@ -33,8 +33,6 @@ export default function App() {
     setAccount(address);
     setExchange(exchangeContract);
     setToken(tokenContract);
-    console.log(exchangeContract);
-    console.log(tokenContract);
   };
   return (
     <Layout>
