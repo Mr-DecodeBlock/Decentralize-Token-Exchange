@@ -30,7 +30,7 @@ const App = (props) => {
     console.log(provider);
     console.log(address);
     console.log(tokenContract);
-    console.log(exchangeAddress);
+    console.log(exchangeContract);
     // const provider = new ethers.providers.JsonRpcProvider();
     // const exchangeContract = new ethers.Contract(
     //   exchangeAddress,
