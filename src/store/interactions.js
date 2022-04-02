@@ -88,8 +88,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   //   let eventFilter = exchange.filters.Cancel();
   //   let events = await exchange.queryFilter(eventFilter);
 
-  let eventFilter = exchange.filters.Cancel();
-  let events = await exchange.queryFilter(eventFilter.address);
+  let events = await exchange.queryFilter(exchange.filters.Cancel());
   console.log(events);
   // Receive an event when that filter occurs
   //   exchange.on(filter, (from, to, amount, event) => {
