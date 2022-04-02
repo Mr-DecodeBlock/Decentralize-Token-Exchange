@@ -8,8 +8,9 @@ import { tokenAddress, exchangeAddress } from "./config";
 import Token from "./artifacts/contracts/Token.sol/Token.json";
 import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
 import { loadWeb3 } from "./store/interactions";
+import { connect } from "react-redux";
 
-export default function App(props) {
+const App = (props) => {
   const [exchange, setExchange] = useState("");
   const [token, setToken] = useState("");
   const [account, setAccount] = useState("");
@@ -43,4 +44,12 @@ export default function App(props) {
       <Main />
     </Layout>
   );
+};
+
+function mapStateToProps(state) {
+  return {
+    // contractsLoaded: contractsLoadedSelector(state)
+  };
 }
+
+export default connect(mapStateToProps)(App);
