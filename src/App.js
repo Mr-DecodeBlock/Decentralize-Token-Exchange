@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Web3Modal from "web3modal";
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
@@ -14,8 +14,11 @@ import {
 } from "./store/interactions";
 import { connect } from "react-redux";
 import { contractsLoadedSelector } from "./store/selectors";
+import Modal from "./components/Modal";
 
 const App = (props) => {
+  const [open, setOpen] = useState(false);
+  const [tokenContract, setTokenContract] = useState("");
   useEffect(() => {
     loadBlockchain(props.dispatch);
   }, []);
@@ -29,6 +32,9 @@ const App = (props) => {
       provider,
       dispatch
     );
+
+    setTokenContract(tokenContract);
+
     const exchangeContract = await loadExchange(
       exchangeAddress,
       Exchange.abi,
@@ -48,6 +54,13 @@ const App = (props) => {
     return (
       <Layout>
         <p>Loading</p>
+        {!tokenContract ? (
+          <Modal open={true} onClose={() => setOpen(false)}>
+            <p>fasdfsf</p>
+          </Modal>
+        ) : (
+          ""
+        )}
       </Layout>
     );
   }
