@@ -84,9 +84,14 @@ export const loadExchange = async (
 };
 
 export const loadAllOrders = async (exchange, dispatch) => {
-  let eventFilter = await exchange.filters.Cancel();
-  let events = await exchange.queryFilter(eventFilter);
-  console.log(events);
+  // A filter for when a specific address receives tokens
+  let filter = exchange.filters.Cancel();
+  console.log(exchange);
+  // Receive an event when that filter occurs
+  exchange.on(filter, (from, to, amount, event) => {
+    console.log(`to: ${to}`);
+  });
+
   // Fetch cancelled orders with the "Cancel" event stream
   //   const cancelStream = await exchange.getPastEvents("Cancel", {
   //     fromBlock: 0,
