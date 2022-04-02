@@ -52,13 +52,12 @@ const App = (props) => {
       <Layout>
         <Sidebar />
         <Main />
-        {!tokenContract ? (
-          <Modal open={true} onClose={() => setOpen(false)}>
-            <p>fasdfsf</p>
-          </Modal>
-        ) : (
-          ""
-        )}
+        {!tokenContract
+          ? console.log("fsdfdsffsfsf")
+          : // <Modal open={true} onClose={() => setOpen(false)}>
+            //   <p>fasdfsf</p>
+            // </Modal>
+            ""}
       </Layout>
     );
   } else {
