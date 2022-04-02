@@ -32,6 +32,7 @@ const App = (props) => {
       Exchange.abi,
       provider
     );
+
     console.log(provider);
     console.log(address);
     console.log(tokenContract);
