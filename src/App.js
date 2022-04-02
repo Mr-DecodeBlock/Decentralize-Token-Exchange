@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { ethers, providers } from "ethers";
 import Web3Modal from "web3modal";
+
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main/Main";
@@ -20,6 +21,9 @@ import Modal from "./components/Modal";
 const App = (props) => {
   const [open, setOpen] = useState(false);
   const [tokenContract, setTokenContract] = useState("");
+
+  const [web3Modal, setWeb3Modal] = useState(null);
+
   useEffect(() => {
     loadBlockchain(props.dispatch);
   }, []);
@@ -30,6 +34,7 @@ const App = (props) => {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
 
+    // setAddress(userAddress);
     const address = await loadAccount(provider, dispatch);
     const tokenContract = await loadToken(
       tokenAddress,
