@@ -7,17 +7,20 @@ import Main from "./components/Main/Main";
 import { tokenAddress, exchangeAddress } from "./config";
 import Token from "./artifacts/contracts/Token.sol/Token.json";
 import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
+import { loadWeb3 } from "./store/interactions";
 
-export default function App() {
+export default function App(props) {
   const [exchange, setExchange] = useState("");
   const [token, setToken] = useState("");
   const [account, setAccount] = useState("");
   useEffect(() => {
-    loadBlockchain();
+    loadBlockchain(props.dispatch);
   }, []);
 
-  const loadBlockchain = async () => {
-    const provider = new ethers.providers.JsonRpcProvider();
+  const loadBlockchain = async (dispatch) => {
+    const provider = loadWeb3(dispatch);
+    console.log(provider);
+    // const provider = new ethers.providers.JsonRpcProvider();
     const exchangeContract = new ethers.Contract(
       exchangeAddress,
       Exchange.abi,
