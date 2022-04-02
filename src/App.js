@@ -29,6 +29,7 @@ const App = (props) => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
+
     const address = await loadAccount(provider, dispatch);
     const tokenContract = await loadToken(
       tokenAddress,
