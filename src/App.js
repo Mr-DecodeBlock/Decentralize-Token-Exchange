@@ -7,7 +7,12 @@ import Main from "./components/Main/Main";
 import { tokenAddress, exchangeAddress } from "./config";
 import Token from "./artifacts/contracts/Token.sol/Token.json";
 import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
-import { loadAccount, loadExchange, loadWeb3 } from "./store/interactions";
+import {
+  loadAccount,
+  loadExchange,
+  loadToken,
+  loadWeb3,
+} from "./store/interactions";
 import { connect } from "react-redux";
 
 const App = (props) => {
@@ -21,7 +26,7 @@ const App = (props) => {
   const loadBlockchain = async (dispatch) => {
     const provider = await loadWeb3(dispatch);
     const address = await loadAccount(provider, dispatch);
-    const tokenContract = await loadExchange(tokenAddress, Token.abi, provider);
+    const tokenContract = await loadToken(tokenAddress, Token.abi, provider);
     const exchangeContract = await loadExchange(
       exchangeAddress,
       Exchange.abi,
