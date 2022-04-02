@@ -13,7 +13,7 @@ const OrderBook = (props) => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-    await loadAllOrders(props.exchange, dispatch, providers);
+    await loadAllOrders(props.exchange, dispatch, provider);
   };
 
   return (

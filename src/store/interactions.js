@@ -28,7 +28,7 @@ import {
 
 export const loadWeb3 = async (dispatch) => {
   if (typeof window.ethereum !== "undefined") {
-    const web3 = new ethers.providers.JsonRpcProvider();
+    const web3 = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545/");
 
     dispatch(web3Loaded(web3));
     return web3;
@@ -83,32 +83,24 @@ export const loadExchange = async (
   }
 };
 
-export const loadAllOrders = async (exchange, dispatch, provider) => {
-  // A filter for when a specific address receives tokens
-  //   let eventFilter = await exchange.filters.Cancel();
-  //   let events = await exchange.queryFilter(eventFilter);
-  //   console.log(eventFilter);
-  //   let events = await exchange.queryFilter(eventFilter);
-  //   console.log(events);
-
-  const filter = exchange.filters.Cancel();
-  const logs = await provider.getLogs({
-    filter,
-    fromBlock: 0,
-    toBlock: "latest",
+export const loadAllOrders = async (exchange, dispatch, contract) => {
+  console.log(exchange);
+  exchange.on("Cancel", (from, to, value, event) => {
+    console.log({
+      from: from,
+      to: to,
+      value: value.toNumber(),
+      data: event,
+    });
   });
-  console.log(logs);
-  // Receive an event when that filter occurs
-  //   exchange.on(filter, (from, to, amount, event) => {
-  //     console.log(`to: ${to}`);
-  //   });
-
   // Fetch cancelled orders with the "Cancel" event stream
-  //   const cancelStream = await exchange.getPastEvents("Cancel", {
+  //   const cancelStream = await exchange.filter("Cancel", {
   //     fromBlock: 0,
   //     toBlock: "latest",
   //   });
-  //   // Format cancelled orders
+
+  //   console.log(cancelStream);
+  //   Format cancelled orders
   //   const cancelledOrders = cancelStream.map((event) => event.returnValues);
   //   // Add cancelled orders to the redux store
   //   dispatch(cancelledOrdersLoaded(cancelledOrders));
