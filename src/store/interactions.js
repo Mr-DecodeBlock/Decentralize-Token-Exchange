@@ -83,14 +83,21 @@ export const loadExchange = async (
   }
 };
 
-export const loadAllOrders = async (exchange, dispatch) => {
+export const loadAllOrders = async (exchange, dispatch, provider) => {
   // A filter for when a specific address receives tokens
-  let eventFilter = exchange.filters.Cancel();
+  //   let eventFilter = await exchange.filters.Cancel();
   //   let events = await exchange.queryFilter(eventFilter);
-  console.log(eventFilter);
-  let events = await exchange.queryFilter(eventFilter);
-  console.log(events);
+  //   console.log(eventFilter);
+  //   let events = await exchange.queryFilter(eventFilter);
+  //   console.log(events);
 
+  const filter = exchange.filters.Cancel();
+  const logs = await provider.getLogs({
+    filter,
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+  console.log(logs);
   // Receive an event when that filter occurs
   //   exchange.on(filter, (from, to, amount, event) => {
   //     console.log(`to: ${to}`);

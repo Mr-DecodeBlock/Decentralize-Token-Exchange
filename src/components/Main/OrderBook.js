@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { ethers, providers } from "ethers";
+import Web3Modal from "web3modal";
 import { connect } from "react-redux";
 import { loadAllOrders } from "../../store/interactions";
 import { exchangeSelector } from "../../store/selectors";
@@ -8,7 +10,10 @@ const OrderBook = (props) => {
     loadBlockchain(props.dispatch);
   }, []);
   const loadBlockchain = async (dispatch) => {
-    await loadAllOrders(props.exchange, dispatch);
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    await loadAllOrders(props.exchange, dispatch, providers);
   };
 
   return (
