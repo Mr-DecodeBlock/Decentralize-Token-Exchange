@@ -14,7 +14,7 @@ const Sidebar = (props) => {
         <p className="text-white text-lg">
           {props.account.substring(0, 5) +
             "..." +
-            props.account.substring(20, props.account.length)}
+            props.account.substring(30, props.account.length)}
         </p>
         <img
           className="lg:mb-4"
