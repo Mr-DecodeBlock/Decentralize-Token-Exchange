@@ -8,9 +8,9 @@ import {
   web3AccountLoaded,
   tokenLoaded,
   exchangeLoaded,
-  //   cancelledOrdersLoaded,
-  //   filledOrdersLoaded,
-  //   allOrdersLoaded,
+  cancelledOrdersLoaded,
+  filledOrdersLoaded,
+  allOrdersLoaded,
   //   orderCancelling,
   //   orderCancelled,
   //   orderFilling,
@@ -83,28 +83,40 @@ export const loadExchange = async (
   }
 };
 
-// export const loadAllOrders = async (exchange, dispatch) => {
-//   // Fetch cancelled orders with the "Cancel" event stream
-//   const cancelStream = await exchange.getPastEvents('Cancel', { fromBlock: 0, toBlock: 'latest' })
-//   // Format cancelled orders
-//   const cancelledOrders = cancelStream.map((event) => event.returnValues)
-//   // Add cancelled orders to the redux store
-//   dispatch(cancelledOrdersLoaded(cancelledOrders))
+export const loadAllOrders = async (exchange, dispatch) => {
+  let eventFilter = await exchange.filters.Cancel();
+  let events = await exchange.queryFilter(eventFilter);
+  console.log(events);
+  // Fetch cancelled orders with the "Cancel" event stream
+  //   const cancelStream = await exchange.getPastEvents("Cancel", {
+  //     fromBlock: 0,
+  //     toBlock: "latest",
+  //   });
+  //   // Format cancelled orders
+  //   const cancelledOrders = cancelStream.map((event) => event.returnValues);
+  //   // Add cancelled orders to the redux store
+  //   dispatch(cancelledOrdersLoaded(cancelledOrders));
 
-//   // Fetch filled orders with the "Trade" event stream
-//   const tradeStream = await exchange.getPastEvents('Trade', { fromBlock: 0, toBlock: 'latest' })
-//   // Format filled orders
-//   const filledOrders = tradeStream.map((event) => event.returnValues)
-//   // Add cancelled orders to the redux store
-//   dispatch(filledOrdersLoaded(filledOrders))
+  //   // Fetch filled orders with the "Trade" event stream
+  //   const tradeStream = await exchange.getPastEvents("Trade", {
+  //     fromBlock: 0,
+  //     toBlock: "latest",
+  //   });
+  //   // Format filled orders
+  //   const filledOrders = tradeStream.map((event) => event.returnValues);
+  //   // Add cancelled orders to the redux store
+  //   dispatch(filledOrdersLoaded(filledOrders));
 
-//   // Load order stream
-//   const orderStream = await exchange.getPastEvents('Order', { fromBlock: 0,  toBlock: 'latest' })
-//   // Format order stream
-//   const allOrders = orderStream.map((event) => event.returnValues)
-//   // Add open orders to the redux store
-//   dispatch(allOrdersLoaded(allOrders))
-// }
+  //   // Load order stream
+  //   const orderStream = await exchange.getPastEvents("Order", {
+  //     fromBlock: 0,
+  //     toBlock: "latest",
+  //   });
+  //   // Format order stream
+  //   const allOrders = orderStream.map((event) => event.returnValues);
+  //   // Add open orders to the redux store
+  //   dispatch(allOrdersLoaded(allOrders));
+};
 
 // export const subscribeToEvents = async (exchange, dispatch) => {
 //   exchange.events.Cancel({}, (error, event) => {

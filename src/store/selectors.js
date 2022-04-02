@@ -40,9 +40,10 @@ export const contractsLoadedSelector = createSelector(
   (tl, el) => tl && el
 );
 
-// // All Orders
-// const allOrdersLoaded = state => get(state, 'exchange.allOrders.loaded', false)
-// const allOrders = state => get(state, 'exchange.allOrders.data', [])
+// All Orders
+const allOrdersLoaded = (state) =>
+  get(state, "exchange.allOrders.loaded", false);
+const allOrders = (state) => get(state, "exchange.allOrders.data", []);
 
 // // Cancelled orders
 // const cancelledOrdersLoaded = state => get(state, 'exchange.cancelledOrders.loaded', false)

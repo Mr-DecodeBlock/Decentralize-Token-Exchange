@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { loadAllOrders } from "../../store/interactions";
+import { exchangeSelector } from "../../store/selectors";
 
-const OrderBook = () => {
+const OrderBook = (props) => {
+  useEffect(() => {
+    loadBlockchain(props.dispatch);
+  }, []);
+  const loadBlockchain = async (dispatch) => {
+    await loadAllOrders(props.exchange, dispatch);
+  };
+
   return (
     <div className="bg-[#20232C] p-4 rounded-md text-white">
       <p className="text-lg mb-5">Order Book</p>
@@ -42,4 +52,10 @@ const OrderBook = () => {
   );
 };
 
-export default OrderBook;
+function mapStateToProps(state) {
+  return {
+    exchange: exchangeSelector(state),
+  };
+}
+
+export default connect(mapStateToProps)(OrderBook);
