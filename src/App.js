@@ -14,6 +14,7 @@ import {
   loadWeb3,
 } from "./store/interactions";
 import { connect } from "react-redux";
+import { accountSelector } from "./store/selectors";
 
 const App = (props) => {
   const [exchange, setExchange] = useState("");
@@ -26,17 +27,23 @@ const App = (props) => {
   const loadBlockchain = async (dispatch) => {
     const provider = await loadWeb3(dispatch);
     const address = await loadAccount(provider, dispatch);
-    const tokenContract = await loadToken(tokenAddress, Token.abi, provider);
+    const tokenContract = await loadToken(
+      tokenAddress,
+      Token.abi,
+      provider,
+      dispatch
+    );
     const exchangeContract = await loadExchange(
       exchangeAddress,
       Exchange.abi,
-      provider
+      provider,
+      dispatch
     );
 
-    console.log(provider);
-    console.log(address);
-    console.log(tokenContract);
-    console.log(exchangeContract);
+    // console.log(provider);
+    // console.log(address);
+    // console.log(tokenContract);
+    // console.log(exchangeContract);
     // const provider = new ethers.providers.JsonRpcProvider();
     // const exchangeContract = new ethers.Contract(
     //   exchangeAddress,
@@ -54,6 +61,7 @@ const App = (props) => {
     // setExchange(exchangeContract);
     // setToken(tokenContract);
   };
+  console.log(props.account);
   return (
     <Layout>
       <Sidebar />
@@ -63,7 +71,9 @@ const App = (props) => {
 };
 
 function mapStateToProps(state) {
+  // console.log(state);
   return {
+    account: accountSelector(state),
     // contractsLoaded: contractsLoadedSelector(state)
   };
 }

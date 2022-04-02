@@ -44,19 +44,19 @@ export const loadAccount = async (provider, dispatch) => {
 };
 
 export const loadToken = async (tokenAddress, tokenabi, provider, dispatch) => {
-  //   try {
-  const token = new ethers.Contract(tokenAddress, tokenabi, provider);
-  console.log(token);
+  try {
+    const token = new ethers.Contract(tokenAddress, tokenabi, provider);
+    console.log(token);
 
-  dispatch(tokenLoaded(token));
-  return token;
-  //   } catch (error) {
-  //     console.log(error);
-  //     console.log(
-  //       "Contract not deployed to the current network. Please select another network with Metamask."
-  //     );
-  //     return null;
-  //   }
+    dispatch(tokenLoaded(token));
+    return token;
+  } catch (error) {
+    console.log(error);
+    console.log(
+      "Contract not deployed to the current network. Please select another network with Metamask."
+    );
+    return null;
+  }
 };
 
 export const loadExchange = async (
