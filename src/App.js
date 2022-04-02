@@ -37,12 +37,20 @@ const App = (props) => {
     );
   };
 
-  return (
-    <Layout>
-      <Sidebar />
-      {props.contractsLoaded ? <Main /> : <p>Loading</p>}
-    </Layout>
-  );
+  if (props.contractsLoaded) {
+    return (
+      <Layout>
+        <Sidebar />
+        <Main />
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout>
+        <p>Loading</p>
+      </Layout>
+    );
+  }
 };
 
 function mapStateToProps(state) {
