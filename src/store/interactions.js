@@ -45,9 +45,9 @@ export const loadAccount = async (provider, dispatch) => {
 
 export const loadToken = async (tokenAddress, tokenabi, provider, dispatch) => {
   try {
-    const tokenContract = new ethers.Contract(tokenAddress, tokenabi, provider);
-    dispatch(tokenLoaded(tokenContract));
-    return tokenContract;
+    const token = new ethers.Contract(tokenAddress, tokenabi, provider);
+    dispatch(tokenLoaded(token));
+    return token;
   } catch (error) {
     console.log(
       "Contract not deployed to the current network. Please select another network with Metamask."
@@ -63,13 +63,13 @@ export const loadExchange = async (
   dispatch
 ) => {
   try {
-    const exchangeContract = new ethers.Contract(
+    const exchange = new ethers.Contract(
       exchangeAddress,
       exchangeabi,
       provider
     );
-    dispatch(exchangeLoaded(exchangeContract));
-    return exchangeContract;
+    dispatch(exchangeLoaded(exchange));
+    return exchange;
   } catch (error) {
     console.log(
       "Contract not deployed to the current network. Please select another network with Metamask."
