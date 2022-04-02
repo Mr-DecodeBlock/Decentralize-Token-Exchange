@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-
+import { connect } from "react-redux";
 import Modal from "./Modal";
 import DepositeModal from "./DepositeModal";
 import WithdrawModal from "./WithdrawModal";
+import { accountSelector } from "../store/selectors";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const [open, setOpen] = useState(false);
   const [comp, setComp] = useState("");
   return (
     <nav className="bg-transparent  lg:bg-[#20232C] lg:p-4 lg:w-3/12  ">
       <div className="bg-[#20232C] lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
-        <p className="text-white text-lg">0xafd....88e8f</p>
+        <p className="text-white text-lg">
+          {props.account.substring(0, 5) +
+            "..." +
+            props.account.substring(20, props.account.length)}
+        </p>
         <img
           className="lg:mb-4"
           src="/images/avrt-image.png"
@@ -65,4 +70,12 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+function mapStateToProps(state) {
+  // console.log(state);
+  return {
+    account: accountSelector(state),
+    // contractsLoaded: contractsLoadedSelector(state)
+  };
+}
+
+export default connect(mapStateToProps)(Sidebar);
