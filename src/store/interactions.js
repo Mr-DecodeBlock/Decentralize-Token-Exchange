@@ -1,8 +1,4 @@
-import { ethers } from "ethers";
-import Web3Modal from "web3modal";
-import Token from "../artifacts/contracts/Token.sol/Token.json";
-import Exchange from "../artifacts/contracts/Exchange.sol/Exchange.json";
-
+import Web3 from "web3";
 import {
   web3Loaded,
   web3AccountLoaded,
@@ -11,25 +7,27 @@ import {
   cancelledOrdersLoaded,
   filledOrdersLoaded,
   allOrdersLoaded,
-  //   orderCancelling,
-  //   orderCancelled,
-  //   orderFilling,
-  //   orderFilled,
-  //   etherBalanceLoaded,
-  //   tokenBalanceLoaded,
-  //   exchangeEtherBalanceLoaded,
-  //   exchangeTokenBalanceLoaded,
-  //   balancesLoaded,
-  //   balancesLoading,
-  //   buyOrderMaking,
-  //   sellOrderMaking,
-  //   orderMade
+  // orderCancelling,
+  // orderCancelled,
+  // orderFilling,
+  // orderFilled,
+  // etherBalanceLoaded,
+  // tokenBalanceLoaded,
+  // exchangeEtherBalanceLoaded,
+  // exchangeTokenBalanceLoaded,
+  // balancesLoaded,
+  // balancesLoading,
+  // buyOrderMaking,
+  // sellOrderMaking,
+  // orderMade
 } from "./actions";
+import Token from "../artifacts/contracts/Token.sol/Token.json";
+import Exchange from "../artifacts/contracts/Exchange.sol/Exchange.json";
+import { ETHER_ADDRESS } from "../helpers";
 
 export const loadWeb3 = async (dispatch) => {
   if (typeof window.ethereum !== "undefined") {
-    const web3 = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545/");
-
+    const web3 = new Web3(window.ethereum);
     dispatch(web3Loaded(web3));
     return web3;
   } else {
@@ -38,22 +36,28 @@ export const loadWeb3 = async (dispatch) => {
   }
 };
 
-export const loadAccount = async (provider, dispatch) => {
-  const signer = provider.getSigner();
-  const address = await signer.getAddress();
-  dispatch(web3AccountLoaded(address));
-  return address;
+export const loadAccount = async (web3, dispatch) => {
+  const accounts = await web3.eth.getAccounts();
+  const account = accounts[0];
+  console.log(account);
+  dispatch(web3AccountLoaded(account));
+  return account;
 };
 
-export const loadToken = async (tokenAddress, tokenabi, provider, dispatch) => {
+export const loadToken = async (web3, networkId, dispatch) => {
   try {
-    const token = new ethers.Contract(tokenAddress, tokenabi, provider);
+    // console.log(web3, networkId, dispatch);
+    const token = new web3.eth.Contract(
+      Token.abi,
+      "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      // Token.networks[networkId].address
+    );
+    // console.log();
     console.log(token);
-
     dispatch(tokenLoaded(token));
     return token;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     console.log(
       "Contract not deployed to the current network. Please select another network with Metamask."
     );
@@ -61,17 +65,11 @@ export const loadToken = async (tokenAddress, tokenabi, provider, dispatch) => {
   }
 };
 
-export const loadExchange = async (
-  exchangeAddress,
-  exchangeabi,
-  provider,
-  dispatch
-) => {
+export const loadExchange = async (web3, networkId, dispatch) => {
   try {
-    const exchange = new ethers.Contract(
-      exchangeAddress,
-      exchangeabi,
-      provider
+    const exchange = new web3.eth.Contract(
+      Exchange.abi,
+      "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
     );
     dispatch(exchangeLoaded(exchange));
     return exchange;
@@ -83,47 +81,37 @@ export const loadExchange = async (
   }
 };
 
-export const loadAllOrders = async (exchange, dispatch, contract) => {
-  console.log(exchange);
-  exchange.on("Cancel", (from, to, value, event) => {
-    console.log({
-      from: from,
-      to: to,
-      value: value.toNumber(),
-      data: event,
-    });
-  });
+export const loadAllOrders = async (exchange, dispatch) => {
   // Fetch cancelled orders with the "Cancel" event stream
-  //   const cancelStream = await exchange.filter("Cancel", {
-  //     fromBlock: 0,
-  //     toBlock: "latest",
-  //   });
+  const cancelStream = await exchange.getPastEvents("Cancel", {
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+  console.log(cancelStream);
+  // Format cancelled orders
+  const cancelledOrders = cancelStream.map((event) => event.returnValues);
+  // Add cancelled orders to the redux store
+  dispatch(cancelledOrdersLoaded(cancelledOrders));
 
-  //   console.log(cancelStream);
-  //   Format cancelled orders
-  //   const cancelledOrders = cancelStream.map((event) => event.returnValues);
-  //   // Add cancelled orders to the redux store
-  //   dispatch(cancelledOrdersLoaded(cancelledOrders));
+  // Fetch filled orders with the "Trade" event stream
+  const tradeStream = await exchange.getPastEvents("Trade", {
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+  // Format filled orders
+  const filledOrders = tradeStream.map((event) => event.returnValues);
+  // Add cancelled orders to the redux store
+  dispatch(filledOrdersLoaded(filledOrders));
 
-  //   // Fetch filled orders with the "Trade" event stream
-  //   const tradeStream = await exchange.getPastEvents("Trade", {
-  //     fromBlock: 0,
-  //     toBlock: "latest",
-  //   });
-  //   // Format filled orders
-  //   const filledOrders = tradeStream.map((event) => event.returnValues);
-  //   // Add cancelled orders to the redux store
-  //   dispatch(filledOrdersLoaded(filledOrders));
-
-  //   // Load order stream
-  //   const orderStream = await exchange.getPastEvents("Order", {
-  //     fromBlock: 0,
-  //     toBlock: "latest",
-  //   });
-  //   // Format order stream
-  //   const allOrders = orderStream.map((event) => event.returnValues);
-  //   // Add open orders to the redux store
-  //   dispatch(allOrdersLoaded(allOrders));
+  // Load order stream
+  const orderStream = await exchange.getPastEvents("Order", {
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+  // Format order stream
+  const allOrders = orderStream.map((event) => event.returnValues);
+  // Add open orders to the redux store
+  dispatch(allOrdersLoaded(allOrders));
 };
 
 // export const subscribeToEvents = async (exchange, dispatch) => {

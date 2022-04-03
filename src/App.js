@@ -19,38 +19,29 @@ import { contractsLoadedSelector } from "./store/selectors";
 import Modal from "./components/Modal";
 
 const App = (props) => {
-  const [open, setOpen] = useState(false);
-  const [tokenContract, setTokenContract] = useState("");
-
-  const [web3Modal, setWeb3Modal] = useState(null);
-
   useEffect(() => {
     loadBlockchain(props.dispatch);
   }, []);
 
   const loadBlockchain = async (dispatch) => {
-    // let provider = await loadWeb3(dispatch);
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-
-    // setAddress(userAddress);
-    const address = await loadAccount(provider, dispatch);
-    const tokenContract = await loadToken(
-      tokenAddress,
-      Token.abi,
-      provider,
-      dispatch
-    );
-
-    setTokenContract(tokenContract);
-
-    const exchangeContract = await loadExchange(
-      exchangeAddress,
-      Exchange.abi,
-      provider,
-      dispatch
-    );
+    const web3 = await loadWeb3(dispatch);
+    const networkId = await web3.eth.net.getId();
+    await loadAccount(web3, dispatch);
+    const token = await loadToken(web3, networkId, dispatch);
+    // console.log(web3);
+    if (!token) {
+      window.alert(
+        "Token smart contract not detected on the current network. Please select another network with Metamask."
+      );
+      return;
+    }
+    const exchange = await loadExchange(web3, networkId, dispatch);
+    if (!exchange) {
+      window.alert(
+        "Exchange smart contract not detected on the current network. Please select another network with Metamask."
+      );
+      return;
+    }
   };
 
   if (props.contractsLoaded) {
@@ -58,12 +49,6 @@ const App = (props) => {
       <Layout>
         <Sidebar />
         <Main />
-        {!tokenContract
-          ? console.log("fsdfdsffsfsf")
-          : // <Modal open={true} onClose={() => setOpen(false)}>
-            //   <p>fasdfsf</p>
-            // </Modal>
-            ""}
       </Layout>
     );
   } else {
