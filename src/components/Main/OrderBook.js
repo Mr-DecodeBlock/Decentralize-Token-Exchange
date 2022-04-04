@@ -2,19 +2,25 @@ import React, { useEffect } from "react";
 import { ethers, providers } from "ethers";
 import Web3Modal from "web3modal";
 import { connect } from "react-redux";
-import { loadAllOrders } from "../../store/interactions";
+import { fillOrder } from "../../store/interactions";
 import {
+  accountSelector,
   exchangeSelector,
   orderBookLoadedSelector,
   orderBookSelector,
+  orderFillingSelector,
 } from "../../store/selectors";
 
 const OrderBook = (props) => {
-  const { orderBook } = props;
+  const { orderBook, exchange, account, dispatch } = props;
   // console.log(props);
   const renderSellOrderTable = (sellOrder) => {
     return sellOrder.map((orders, index) => (
       <tr
+        onClick={(e) => {
+          fillOrder(dispatch, exchange, orders, account);
+          console.log("buying order......");
+        }}
         key={index}
         class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
       >
@@ -36,6 +42,10 @@ const OrderBook = (props) => {
   const renderBuyOrderTable = (buyOrder) => {
     return buyOrder.map((orders, index) => (
       <tr
+        onClick={(e) => {
+          fillOrder(dispatch, exchange, orders, account);
+          console.log("buying order......");
+        }}
         key={index}
         class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
       >
@@ -89,9 +99,11 @@ const OrderBook = (props) => {
 };
 function mapStateToProps(state) {
   return {
-    // exchange: exchangeSelector(state),
+    exchange: exchangeSelector(state),
     orderBook: orderBookSelector(state),
     showOrderBook: orderBookLoadedSelector(state),
+    account: accountSelector(state),
+    // fdf:orderFillingSelector
   };
 }
 

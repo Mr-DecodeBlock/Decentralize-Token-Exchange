@@ -14,6 +14,7 @@ import {
   loadExchange,
   loadToken,
   loadWeb3,
+  subscribeToEvents,
 } from "./store/interactions";
 import { connect } from "react-redux";
 import { contractsLoadedSelector, exchangeSelector } from "./store/selectors";
@@ -28,6 +29,7 @@ const App = (props) => {
     const web3 = await loadWeb3(dispatch);
     const networkId = await web3.eth.net.getId();
     await loadAccount(web3, dispatch);
+
     const token = await loadToken(web3, networkId, dispatch);
     // console.log(web3);
     if (!token) {
@@ -43,6 +45,7 @@ const App = (props) => {
       );
       return;
     }
+    // await subscribeToEvents(exchange, dispatch);
     await loadAllOrders(exchange, dispatch);
   };
 
