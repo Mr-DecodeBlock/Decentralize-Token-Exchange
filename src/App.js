@@ -10,12 +10,13 @@ import Token from "./artifacts/contracts/Token.sol/Token.json";
 import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
 import {
   loadAccount,
+  loadAllOrders,
   loadExchange,
   loadToken,
   loadWeb3,
 } from "./store/interactions";
 import { connect } from "react-redux";
-import { contractsLoadedSelector } from "./store/selectors";
+import { contractsLoadedSelector, exchangeSelector } from "./store/selectors";
 import Modal from "./components/Modal";
 
 const App = (props) => {
@@ -42,6 +43,7 @@ const App = (props) => {
       );
       return;
     }
+    await loadAllOrders(exchange, dispatch);
   };
 
   if (props.contractsLoaded) {
@@ -63,6 +65,7 @@ const App = (props) => {
 function mapStateToProps(state) {
   return {
     contractsLoaded: contractsLoadedSelector(state),
+    exchange: exchangeSelector(state),
   };
 }
 

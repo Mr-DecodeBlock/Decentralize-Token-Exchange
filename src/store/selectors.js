@@ -151,6 +151,7 @@ const openOrders = (state) => {
     return orderFilled || orderCancelled;
   });
 
+  // console.log(openOrders);
   return openOrders;
 };
 
@@ -167,6 +168,7 @@ export const orderBookLoadedSelector = createSelector(
 export const orderBookSelector = createSelector(openOrders, (orders) => {
   // Decorate orders
   orders = decorateOrderBookOrders(orders);
+  console.log(orders);
   // Group orders by "orderType"
   orders = groupBy(orders, "orderType");
   // Fetch buy orders
@@ -176,9 +178,11 @@ export const orderBookSelector = createSelector(openOrders, (orders) => {
     ...orders,
     buyOrders: buyOrders.sort((a, b) => b.tokenPrice - a.tokenPrice),
   };
+  // console.log(buyOrders);
   // Fetch sell orders
   const sellOrders = get(orders, "sell", []);
   // Sort sell orders by token price
+  // console.log(sellOrders);
   orders = {
     ...orders,
     sellOrders: sellOrders.sort((a, b) => b.tokenPrice - a.tokenPrice),
@@ -195,7 +199,9 @@ const decorateOrderBookOrders = (orders) => {
 };
 
 const decorateOrderBookOrder = (order) => {
-  const orderType = order.tokenGive === ETHER_ADDRESS ? "buy" : "sell";
+  const orderType =
+    order.tokenGive.toLowerCase() == ETHER_ADDRESS ? "buy" : "sell";
+
   return {
     ...order,
     orderType,

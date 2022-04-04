@@ -3,19 +3,17 @@ import { ethers, providers } from "ethers";
 import Web3Modal from "web3modal";
 import { connect } from "react-redux";
 import { loadAllOrders } from "../../store/interactions";
-import { exchangeSelector } from "../../store/selectors";
+import {
+  exchangeSelector,
+  orderBookLoadedSelector,
+  orderBookSelector,
+} from "../../store/selectors";
 
 const OrderBook = (props) => {
-  useEffect(() => {
-    loadBlockchain(props.dispatch);
-  }, []);
-
-  const loadBlockchain = async (dispatch) => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    await loadAllOrders(props.exchange, dispatch, provider);
-  };
+  // useEffect(() => {
+  console.log(props.orderBook);
+  // loadAllOrders(props.exchange, props.dispatch);
+  // }, []);
 
   return (
     <div className="bg-[#20232C] p-4 rounded-md text-white">
@@ -59,10 +57,11 @@ const OrderBook = (props) => {
     </div>
   );
 };
-
 function mapStateToProps(state) {
   return {
-    exchange: exchangeSelector(state),
+    // exchange: exchangeSelector(state),
+    orderBook: orderBookSelector(state),
+    showOrderBook: orderBookLoadedSelector(state),
   };
 }
 
