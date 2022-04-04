@@ -7,13 +7,7 @@ import {
 } from "../../store/selectors";
 
 const Trades = (props) => {
-  console.log(props.filledOrders);
-  const [filledOrders, setFilledOrders] = useState([]);
-  useEffect(() => {
-    setFilledOrders(props.filledOrders);
-  }, []);
-
-  const renderTradesTable = () => {
+  const renderTradesTable = (filledOrders) => {
     return filledOrders.map((orders, index) => (
       <tr
         key={index}
@@ -53,7 +47,9 @@ const Trades = (props) => {
               </tr>
             </thead>
             <tbody>
-              {props.fillOrdersLoaded ? renderTradesTable() : "Loading"}
+              {props.fillOrdersLoaded
+                ? renderTradesTable(props.filledOrders)
+                : "Loading"}
             </tbody>
           </table>
         </div>
