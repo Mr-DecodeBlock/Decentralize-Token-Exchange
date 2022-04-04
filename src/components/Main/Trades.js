@@ -27,6 +27,7 @@ const Trades = (props) => {
       </tr>
     ));
   };
+
   return (
     <div className="bg-[#20232C] p-4 rounded-md text-white">
       <p className="text-lg mb-5">Trades</p>
