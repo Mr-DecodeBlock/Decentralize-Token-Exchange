@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { filledOrdersLoaded } from "../../store/actions";
 import {
@@ -8,6 +8,31 @@ import {
 
 const Trades = (props) => {
   console.log(props.filledOrders);
+  const [filledOrders, setFilledOrders] = useState([]);
+  useEffect(() => {
+    setFilledOrders(props.filledOrders);
+  }, []);
+
+  const renderTradesTable = () => {
+    return filledOrders.map((orders, index) => (
+      <tr
+        key={index}
+        class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
+      >
+        <td class="px-6 py-4">{orders.formattedTimestamp}</td>
+        <td class="px-6 py-4">{orders.tokenPrice}</td>
+        <td
+          class={
+            orders.tokenPriceClass === "success"
+              ? "px-6 py-4 text-green-500"
+              : " px-6 py-4 text-red-500"
+          }
+        >
+          {orders.tokenAmount}
+        </td>
+      </tr>
+    ));
+  };
   return (
     <div className="bg-[#20232C] p-4 rounded-md text-white">
       <p className="text-lg mb-5">Trades</p>
@@ -28,21 +53,7 @@ const Trades = (props) => {
               </tr>
             </thead>
             <tbody>
-              {props.filledOrders.map((orders, index) => (
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">{orders.formattedTimestamp}</td>
-                  <td class="px-6 py-4">{orders.tokenPrice}</td>
-                  <td
-                    class={
-                      orders.tokenPriceClass === "success"
-                        ? "px-6 py-4 text-green-500"
-                        : " px-6 py-4 text-red-500"
-                    }
-                  >
-                    {orders.tokenAmount}
-                  </td>
-                </tr>
-              ))}
+              {props.fillOrdersLoaded ? renderTradesTable() : "Loading"}
             </tbody>
           </table>
         </div>
