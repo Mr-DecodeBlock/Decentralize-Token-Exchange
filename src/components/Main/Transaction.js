@@ -1,9 +1,39 @@
 import React from "react";
+import { connect } from "react-redux";
+import {
+  myFilledOrdersLoadedSelector,
+  myFilledOrdersSelector,
+  myOpenOrdersLoadedSelector,
+  myOpenOrdersSelector,
+} from "../../store/selectors";
 
-const Transaction = () => {
+const Transaction = (props) => {
+  console.log(props.myFilledOrders);
+  console.log(props.myOpenOrders);
+  const renderMyFilledOrders = (fillOrder) => {
+    return fillOrder.map((orders, index) => (
+      <tr
+        key={index}
+        class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
+      >
+        <td class="px-2 py-4">{orders.formattedTimestamp}</td>
+        <td class="px-2 py-4">{orders.tokenPrice}</td>
+        <td
+          class={
+            orders.tokenPriceClass === "success"
+              ? "px-2 py-4 text-green-500"
+              : " px-2 py-4 text-red-500"
+          }
+        >
+          {orders.tokenAmount}
+        </td>
+      </tr>
+    ));
+  };
+
   const [openTab, setOpenTab] = React.useState(1);
   return (
-    <div className="bg-[#20232C] p-4 lg:col-span-2 rounded-md text-white">
+    <div className="bg-[#20232C] p-4 lg:col-span-3 rounded-md text-white">
       <p className="text-lg">My Transaction </p>
       <div className="flex flex-row justify-end mb-5  items-center space-x-8 cursor-pointer">
         <div
@@ -37,31 +67,21 @@ const Transaction = () => {
             <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="px-6 py-3"></th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-4 py-3">
+                    TIME
+                  </th>
+                  <th scope="col" class="px-4 py-3">
                     DDAP
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-4 py-3">
                     DDAP/ETH
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
-                </tr>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
-                </tr>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
-                </tr>
+                {props.showMyFilledOrders
+                  ? renderMyFilledOrders(props.myFilledOrders)
+                  : "Loading"}
               </tbody>
             </table>
           </div>
@@ -75,30 +95,30 @@ const Transaction = () => {
             <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="px-6 py-3"></th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-4 py-3"></th>
+                  <th scope="col" class="px-4 py-3">
                     DDAP
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-4 py-3">
                     DDAP/ETH
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
+                  <td class="px-4 py-4">9:00am</td>
+                  <td class="px-4 py-4">20</td>
+                  <td class="px-4 py-4">0.01</td>
                 </tr>
                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
+                  <td class="px-4 py-4">9:00am</td>
+                  <td class="px-4 py-4">20</td>
+                  <td class="px-4 py-4">0.01</td>
                 </tr>
                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-6 py-4">9:00am</td>
-                  <td class="px-6 py-4">20</td>
-                  <td class="px-6 py-4">0.01</td>
+                  <td class="px-4 py-4">9:00am</td>
+                  <td class="px-4 py-4">20</td>
+                  <td class="px-4 py-4">0.01</td>
                 </tr>
               </tbody>
             </table>
@@ -111,4 +131,13 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+function mapStateToProps(state) {
+  return {
+    myFilledOrders: myFilledOrdersSelector(state),
+    showMyFilledOrders: myFilledOrdersLoadedSelector(state),
+    myOpenOrders: myOpenOrdersSelector(state),
+    showMyOpenOrders: myOpenOrdersLoadedSelector(state),
+  };
+}
+
+export default connect(mapStateToProps)(Transaction);

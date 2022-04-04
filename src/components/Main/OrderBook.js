@@ -10,46 +10,76 @@ import {
 } from "../../store/selectors";
 
 const OrderBook = (props) => {
-  // useEffect(() => {
-  console.log(props.orderBook);
-  // loadAllOrders(props.exchange, props.dispatch);
-  // }, []);
+  const { orderBook } = props;
+  // console.log(props);
+  const renderSellOrderTable = (sellOrder) => {
+    return sellOrder.map((orders, index) => (
+      <tr
+        key={index}
+        class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
+      >
+        <td class="px-4 py-4">{orders.tokenAmount}</td>
+        <td
+          class={
+            orders.orderTypeClass === "success"
+              ? "px-4 py-4 text-green-500"
+              : " px-4 py-4 text-red-500"
+          }
+        >
+          {orders.tokenPrice}
+        </td>
+        <td class="px-4 py-4">{orders.etherAmount}</td>
+      </tr>
+    ));
+  };
 
+  const renderBuyOrderTable = (buyOrder) => {
+    return buyOrder.map((orders, index) => (
+      <tr
+        key={index}
+        class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
+      >
+        <td class="px-4 py-4">{orders.tokenAmount}</td>
+        <td
+          class={
+            orders.orderTypeClass === "success"
+              ? "px-4 py-4 text-green-500"
+              : " px-4 py-4 text-red-500"
+          }
+        >
+          {orders.tokenPrice}
+        </td>
+        <td class="px-4 py-4">{orders.etherAmount}</td>
+      </tr>
+    ));
+  };
   return (
-    <div className="bg-[#20232C] p-4 rounded-md text-white">
+    <div className="bg-[#20232C] w-full lg:w-3/12 p-4 rounded-md text-white">
       <p className="text-lg mb-5">Order Book</p>
       <div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+        <div class=" relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table class="w-full  text-sm text-left  text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-4 py-3">
                   TIME
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-4 py-3">
                   DDAP
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-4 py-3">
                   DDAP/ETH
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
+              {props.showOrderBook
+                ? renderSellOrderTable(orderBook.sellOrders)
+                : "Loading"}
+
+              {props.showOrderBook
+                ? renderBuyOrderTable(orderBook.buyOrders)
+                : "Loading"}
             </tbody>
           </table>
         </div>
