@@ -96,7 +96,7 @@ const decorateOrder = (order) => {
   let etherAmount;
   let tokenAmount;
 
-  if (order.tokenGive === ETHER_ADDRESS) {
+  if (order.tokenGive.toLowerCase() === ETHER_ADDRESS) {
     etherAmount = order.amountGive;
     tokenAmount = order.amountGet;
   } else {
@@ -242,9 +242,11 @@ const decorateMyFilledOrder = (order, account) => {
 
   let orderType;
   if (myOrder) {
-    orderType = order.tokenGive === ETHER_ADDRESS ? "buy" : "sell";
+    orderType =
+      order.tokenGive.toLowerCase() === ETHER_ADDRESS ? "buy" : "sell";
   } else {
-    orderType = order.tokenGive === ETHER_ADDRESS ? "sell" : "buy";
+    orderType =
+      order.tokenGive.toLowerCase() === ETHER_ADDRESS ? "sell" : "buy";
   }
 
   return {
@@ -283,7 +285,8 @@ const decorateMyOpenOrders = (orders, account) => {
 };
 
 const decorateMyOpenOrder = (order, account) => {
-  let orderType = order.tokenGive === ETHER_ADDRESS ? "buy" : "sell";
+  let orderType =
+    order.tokenGive.toLowerCase() === ETHER_ADDRESS ? "buy" : "sell";
 
   return {
     ...order,

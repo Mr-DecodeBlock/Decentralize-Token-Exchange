@@ -17,10 +17,20 @@ const Transaction = (props) => {
         class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
       >
         <td class="px-2 py-4">{orders.formattedTimestamp}</td>
-        <td class="px-2 py-4">{orders.tokenPrice}</td>
         <td
           class={
-            orders.tokenPriceClass === "success"
+            orders.orderTypeClass === "success"
+              ? "px-2 py-4 text-green-500"
+              : " px-2 py-4 text-red-500"
+          }
+        >
+          {" "}
+          {orders.orderSign}
+          {orders.tokenPrice}
+        </td>
+        <td
+          class={
+            orders.orderTypeClass === "success"
               ? "px-2 py-4 text-green-500"
               : " px-2 py-4 text-red-500"
           }
@@ -37,10 +47,18 @@ const Transaction = (props) => {
         key={index}
         class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
       >
-        <td class="px-2 py-4">{orders.tokenPrice}</td>
         <td
           class={
-            orders.orderTypeClass === "success"
+            orders.orderTypeClass == "success"
+              ? "px-2 py-4 text-green-500"
+              : " px-2 py-4 text-red-500"
+          }
+        >
+          {orders.tokenPrice}
+        </td>
+        <td
+          class={
+            orders.orderTypeClass == "success"
               ? "px-2 py-4 text-green-500"
               : " px-2 py-4 text-red-500"
           }
@@ -115,7 +133,9 @@ const Transaction = (props) => {
             <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="px-4 py-3"></th>
+                  <th scope="col" class="px-4 py-3">
+                    Amount
+                  </th>
                   <th scope="col" class="px-4 py-3">
                     DDAP
                   </th>
