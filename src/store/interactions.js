@@ -87,7 +87,6 @@ export const loadAllOrders = async (exchange, dispatch) => {
     fromBlock: 0,
     toBlock: "latest",
   });
-  console.log(cancelStream);
   // Format cancelled orders
   const cancelledOrders = cancelStream.map((event) => event.returnValues);
   // Add cancelled orders to the redux store

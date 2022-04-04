@@ -1,6 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+import { filledOrdersLoaded } from "../../store/actions";
+import {
+  filledOrdersLoadedSelector,
+  filledOrdersSelector,
+} from "../../store/selectors";
 
-const Trades = () => {
+const Trades = (props) => {
+  console.log(props.filledOrders);
   return (
     <div className="bg-[#20232C] p-4 rounded-md text-white">
       <p className="text-lg mb-5">Trades</p>
@@ -9,7 +16,9 @@ const Trades = () => {
           <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3"></th>
+                <th scope="col" class="px-6 py-3">
+                  TIME
+                </th>
                 <th scope="col" class="px-6 py-3">
                   DDAP
                 </th>
@@ -19,21 +28,21 @@ const Trades = () => {
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
-              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                <td class="px-6 py-4">9:00am</td>
-                <td class="px-6 py-4">20</td>
-                <td class="px-6 py-4">0.01</td>
-              </tr>
+              {props.filledOrders.map((orders, index) => (
+                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
+                  <td class="px-6 py-4">{orders.formattedTimestamp}</td>
+                  <td class="px-6 py-4">{orders.tokenPrice}</td>
+                  <td
+                    class={
+                      orders.tokenPriceClass === "success"
+                        ? "px-6 py-4 text-green-500"
+                        : " px-6 py-4 text-red-500"
+                    }
+                  >
+                    {orders.tokenAmount}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -42,4 +51,11 @@ const Trades = () => {
   );
 };
 
-export default Trades;
+function mapStateToProps(state) {
+  return {
+    fillOrdersLoaded: filledOrdersLoadedSelector(state),
+    filledOrders: filledOrdersSelector(state),
+  };
+}
+
+export default connect(mapStateToProps)(Trades);

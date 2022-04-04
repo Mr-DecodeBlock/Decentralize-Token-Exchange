@@ -9,6 +9,7 @@ const OrderBook = (props) => {
   useEffect(() => {
     loadBlockchain(props.dispatch);
   }, []);
+
   const loadBlockchain = async (dispatch) => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
@@ -24,7 +25,9 @@ const OrderBook = (props) => {
           <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1A1D26] dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3"></th>
+                <th scope="col" class="px-6 py-3">
+                  TIME
+                </th>
                 <th scope="col" class="px-6 py-3">
                   DDAP
                 </th>
