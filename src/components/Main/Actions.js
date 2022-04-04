@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import {
+  priceChartLoadedSelector,
+  priceChartSelector,
+} from "../../store/selectors";
 import Modal from "../Modal";
 import BuyModal from "./BuyModal";
 import SellModal from "./SellModal";
 
-const Actions = () => {
+const Actions = (props) => {
   const [open, setOpen] = useState(false);
   const [comp, setComp] = useState("");
   return (
@@ -11,7 +16,17 @@ const Actions = () => {
       <div className="flex flex-row space-x-3 items-center text-xl text-white">
         <p className="font-bold">DDAP/ETH</p>
 
-        <p className="font-bold  text-green-600"> 0.01</p>
+        {/* <p className="font-bold  text-green-600"> 0.01</p> */}
+        <h4
+          className={
+            props.priceChart.lastPriceChange == "+"
+              ? "text-green-500"
+              : "text-red-400"
+          }
+        >
+          {props.priceChart.lastPriceChange}
+          {props.priceChart.lastPrice}
+        </h4>
       </div>
       <div>
         <div className="mx-0 mb-4 lg:mb-0 lg:mx-4 flex flex-row items-center justify-between space-x-4 ">
@@ -43,4 +58,11 @@ const Actions = () => {
   );
 };
 
-export default Actions;
+function mapStateToProps(state) {
+  return {
+    priceChartLoded: priceChartLoadedSelector(state),
+    priceChart: priceChartSelector(state),
+  };
+}
+
+export default connect(mapStateToProps)(Actions);
