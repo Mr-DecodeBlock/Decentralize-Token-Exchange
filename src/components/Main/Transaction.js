@@ -31,6 +31,26 @@ const Transaction = (props) => {
     ));
   };
 
+  const renderMyOpenOrders = (fillOrder) => {
+    return fillOrder.map((orders, index) => (
+      <tr
+        key={index}
+        class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]"
+      >
+        <td class="px-2 py-4">{orders.tokenPrice}</td>
+        <td
+          class={
+            orders.orderTypeClass === "success"
+              ? "px-2 py-4 text-green-500"
+              : " px-2 py-4 text-red-500"
+          }
+        >
+          {orders.tokenAmount}
+        </td>
+        <td class="px-2 py-4">X</td>
+      </tr>
+    ));
+  };
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <div className="bg-[#20232C] p-4 lg:col-span-3 rounded-md text-white">
@@ -105,21 +125,9 @@ const Transaction = (props) => {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-4 py-4">9:00am</td>
-                  <td class="px-4 py-4">20</td>
-                  <td class="px-4 py-4">0.01</td>
-                </tr>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-4 py-4">9:00am</td>
-                  <td class="px-4 py-4">20</td>
-                  <td class="px-4 py-4">0.01</td>
-                </tr>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-[#20232C] even:dark:bg-[#1A1D26]">
-                  <td class="px-4 py-4">9:00am</td>
-                  <td class="px-4 py-4">20</td>
-                  <td class="px-4 py-4">0.01</td>
-                </tr>
+                {props.showMyOpenOrders
+                  ? renderMyOpenOrders(props.myOpenOrders)
+                  : "Loading"}
               </tbody>
             </table>
           </div>
