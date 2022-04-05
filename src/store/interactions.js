@@ -224,7 +224,7 @@ export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
     });
 };
 
-export const depositeToken = (
+export const depositToken = (
   dispatch,
   exchange,
   web3,
@@ -233,13 +233,13 @@ export const depositeToken = (
   account
 ) => {
   amount = web3.utils.toWei(amount, "ether");
-
+  console.log(exchange.options.address);
   token.methods
     .approve(exchange.options.address, amount)
     .send({ from: account })
     .on("transactionHash", (hash) => {
       exchange.methods
-        .depositToken(token.options.address, amount)
+        .depositeToken(token.options.address, amount)
         .send({ from: account })
         .on("transactionHash", (hash) => {
           dispatch(balancesLoading());

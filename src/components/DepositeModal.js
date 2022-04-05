@@ -31,7 +31,7 @@ const DepositeModal = (props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
+          // depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
           depositToken(
             dispatch,
             exchange,
