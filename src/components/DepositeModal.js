@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-const DepositeModal = () => {
+import { connect } from "react-redux";
+import { etherDepositAmountChanged } from "../store/actions";
+import {
+  etherDepositAmountSelector,
+  accountSelector,
+  exchangeSelector,
+  tokenSelector,
+  web3Selector,
+} from "../store/selectors";
+import { depositEther } from "../store/interactions";
+
+const DepositeModal = (props) => {
+  const { dispatch, exchange, web3, etherDepositeAmount, account } = props;
   return (
     <div className="text-white flex flex-col">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
+        }}
+      >
         <div class="mb-6">
           <input
-            type="email"
-            id="email"
+            type="number"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="ETH Amount"
+            onChange={(e) => {
+              dispatch(etherDepositAmountChanged(e.target.value));
+            }}
             required=""
           />
         </div>
@@ -19,7 +38,6 @@ const DepositeModal = () => {
             id="password"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="DDAP Amount"
-            required=""
           />
         </div>
 
@@ -34,4 +52,14 @@ const DepositeModal = () => {
   );
 };
 
-export default DepositeModal;
+function mapStateToProps(state) {
+  return {
+    etherDepositeAmount: etherDepositAmountSelector(state),
+    account: accountSelector(state),
+    exchange: exchangeSelector(state),
+    web3: web3Selector(state),
+    token: tokenSelector(state),
+  };
+}
+
+export default connect(mapStateToProps)(DepositeModal);
