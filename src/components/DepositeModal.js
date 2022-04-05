@@ -1,24 +1,45 @@
 import React, { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
-import { etherDepositAmountChanged } from "../store/actions";
+import {
+  etherDepositAmountChanged,
+  tokenDepositAmountChanged,
+} from "../store/actions";
 import {
   etherDepositAmountSelector,
   accountSelector,
   exchangeSelector,
   tokenSelector,
   web3Selector,
+  tokenDepositAmountSelector,
 } from "../store/selectors";
-import { depositEther } from "../store/interactions";
+import { depositEther, depositToken } from "../store/interactions";
 
 const DepositeModal = (props) => {
-  const { dispatch, exchange, web3, etherDepositeAmount, account } = props;
+  const [etherAmount, setEtherAmount] = useState(0);
+  const {
+    dispatch,
+    exchange,
+    web3,
+    etherDepositeAmount,
+    account,
+    token,
+    tokenDepositeAmount,
+  } = props;
   return (
     <div className="text-white flex flex-col">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
+          depositToken(
+            dispatch,
+            exchange,
+            web3,
+            token,
+            tokenDepositeAmount,
+            account
+          );
         }}
       >
         <div class="mb-6">
@@ -34,8 +55,10 @@ const DepositeModal = (props) => {
         </div>
         <div class="mb-6">
           <input
-            type="password"
-            id="password"
+            type="number"
+            onChange={(e) => {
+              dispatch(tokenDepositAmountChanged(e.target.value));
+            }}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="DDAP Amount"
           />
@@ -55,6 +78,7 @@ const DepositeModal = (props) => {
 function mapStateToProps(state) {
   return {
     etherDepositeAmount: etherDepositAmountSelector(state),
+    tokenDepositeAmount: tokenDepositAmountSelector(state),
     account: accountSelector(state),
     exchange: exchangeSelector(state),
     web3: web3Selector(state),

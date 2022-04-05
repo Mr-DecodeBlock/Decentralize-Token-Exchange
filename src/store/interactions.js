@@ -198,8 +198,9 @@ export const loadBalances = async (
 };
 
 export const depositEther = (dispatch, exchange, web3, amount, account) => {
+  console.log(amount, account);
   exchange.methods
-    .depositEther()
+    .depositeEther(ETHER_ADDRESS)
     .send({ from: account, value: web3.utils.toWei(amount, "ether") })
     .on("transactionHash", (hash) => {
       dispatch(balancesLoading());
