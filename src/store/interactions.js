@@ -224,7 +224,7 @@ export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
     });
 };
 
-export const depositToken = (
+export const depositeToken = (
   dispatch,
   exchange,
   web3,

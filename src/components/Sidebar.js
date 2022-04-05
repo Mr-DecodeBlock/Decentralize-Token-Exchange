@@ -56,7 +56,7 @@ const Sidebar = (props) => {
                 ETH
               </p>
               <p className="font-bold text-xl">{props.tokenBalance}</p>
-              {/* <p className="font-bold text-xl">{props.exchangeTokenBalance}</p> */}
+              <p className="font-bold text-xl">{props.exchangeTokenBalance}</p>
               <p className="bg-pink-400 font-bold text-black rounded-full text-center w-16">
                 DDAP
               </p>
