@@ -215,7 +215,7 @@ export const depositEther = (dispatch, exchange, web3, amount, account) => {
 
 export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
   exchange.methods
-    .withdrawEther(web3.utils.toWei(amount, "ether"))
+    .withdrawEther(web3.utils.toWei(amount, "ether"), ETHER_ADDRESS)
     .send({ from: account })
     .on("transactionHash", (hash) => {
       dispatch(balancesLoading());
@@ -264,7 +264,7 @@ export const withdrawToken = (
   account
 ) => {
   exchange.methods
-    .withdrawToken(token.options.address, web3.utils.toWei(amount, "ether"))
+    .withdrawTokens(token.options.address, web3.utils.toWei(amount, "ether"))
     .send({ from: account })
     .on("transactionHash", (hash) => {
       dispatch(balancesLoading());
