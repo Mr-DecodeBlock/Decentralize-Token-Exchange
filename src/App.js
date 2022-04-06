@@ -58,9 +58,9 @@ const App = (props) => {
     );
   } else {
     return (
-      <Layout>
+      <div className="bg-[#1A1D26] w-full p-8">
         <p>Loading</p>
-      </Layout>
+      </div>
     );
   }
 };
