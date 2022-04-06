@@ -35,16 +35,7 @@ const Actions = (props) => {
             }}
             className="bg-[#26BEAF] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
           >
-            Buy
-          </div>
-          <div
-            onClick={() => {
-              setOpen(!open);
-              setComp(<SellModal />);
-            }}
-            className="bg-[#4743D6] px-5 py-1 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
-          >
-            Sell
+            Make Order
           </div>
         </div>
       </div>
