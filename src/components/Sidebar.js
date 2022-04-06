@@ -30,7 +30,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <nav className="bg-transparent  lg:bg-[#20232C] lg:p-4 lg:w-2/12  ">
+    <nav className="bg-transparent  lg:bg-[#20232C] lg:p-4 lg:w-3/12  ">
       <div className="bg-[#20232C]  lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
         <p className="text-white text-lg">
           {props.account.substring(0, 5) +

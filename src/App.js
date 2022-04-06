@@ -58,8 +58,12 @@ const App = (props) => {
     );
   } else {
     return (
-      <div className="bg-[#1A1D26] w-full p-8">
-        <p>Loading</p>
+      <div className="bg-[#1A1D26] flex flex-col items-center justify-center w-full  h-screen">
+        <img
+          className="w-20 h-20 animate-pulse"
+          src="/images/ethereum-eth.svg"
+          alt="Display"
+        />
       </div>
     );
   }
