@@ -67,7 +67,7 @@ const BuyModal = (props) => {
         >
           <div class="mb-6">
             <input
-              type="number"
+              type="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Buy Amount(DDAP)"
               onChange={(e) => dispatch(buyOrderAmountChanged(e.target.value))}
@@ -75,7 +75,7 @@ const BuyModal = (props) => {
           </div>
           <div class="mb-6">
             <input
-              type="number"
+              type="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Buy price"
               onChange={(e) => dispatch(buyOrderPriceChanged(e.target.value))}
@@ -101,7 +101,7 @@ const BuyModal = (props) => {
         >
           <div class="mb-6">
             <input
-              type="number"
+              type="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Buy Amount(DDAP)"
               onChange={(e) => dispatch(sellOrderAmountChanged(e.target.value))}
@@ -109,7 +109,7 @@ const BuyModal = (props) => {
           </div>
           <div class="mb-6">
             <input
-              type="number"
+              type="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Buy price"
               onChange={(e) => dispatch(sellOrderPriceChanged(e.target.value))}

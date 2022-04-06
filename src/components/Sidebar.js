@@ -92,7 +92,7 @@ const Sidebar = (props) => {
       </div>
 
       <div className="lg:block">
-        <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
+        <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-pink-700">
           <div className="flex flex-row justify-between items-center">
             <div className="py-6 text-white">
               <p className="font-bold">Exchange Balance</p>
