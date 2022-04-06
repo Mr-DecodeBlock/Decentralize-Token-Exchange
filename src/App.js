@@ -45,8 +45,9 @@ const App = (props) => {
       );
       return;
     }
-    // await subscribeToEvents(exchange, dispatch);
     await loadAllOrders(exchange, dispatch);
+    await subscribeToEvents(exchange, dispatch);
+    // await subscribeToEvents(dispatch, exchange)
   };
 
   if (props.contractsLoaded) {
