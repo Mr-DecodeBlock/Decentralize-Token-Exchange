@@ -51,12 +51,12 @@ const Sidebar = (props) => {
             <div className="py-6 text-white">
               <p className="font-bold">Total Balance</p>
               <p className="font-bold text-xl">{props.etherBalance}</p>
-              <p className="font-bold text-xl">{props.exchangeEtherBalance}</p>
+              {/* <p className="font-bold text-xl">{props.exchangeEtherBalance}</p> */}
               <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
                 ETH
               </p>
               <p className="font-bold text-xl">{props.tokenBalance}</p>
-              <p className="font-bold text-xl">{props.exchangeTokenBalance}</p>
+              {/* <p className="font-bold text-xl">{props.exchangeTokenBalance}</p> */}
               <p className="bg-pink-400 font-bold text-black rounded-full text-center w-16">
                 DDAP
               </p>
@@ -87,6 +87,31 @@ const Sidebar = (props) => {
             className="bg-[#02B156] py-2 cursor-pointer mt-4 text-white text-lg text-center rounded-md w-full space-y-4"
           >
             Withdraw
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:block">
+        <div className="mx-4 mt-5 lg:w-full lg:mx-0 lg:block p-4 rounded-md   bg-[#4181DB]">
+          <div className="flex flex-row justify-between items-center">
+            <div className="py-6 text-white">
+              <p className="font-bold">Exchange Balance</p>
+              {/* <p className="font-bold text-xl">{props.etherBalance}</p> */}
+              <p className="font-bold text-xl">{props.exchangeEtherBalance}</p>
+              <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
+                ETH
+              </p>
+              {/* <p className="font-bold text-xl">{props.tokenBalance}</p> */}
+              <p className="font-bold text-xl">{props.exchangeTokenBalance}</p>
+              <p className="bg-pink-400 font-bold text-black rounded-full text-center w-16">
+                DDAP
+              </p>
+            </div>
+            <img
+              className="w-20 h-20"
+              src="/images/ethereum-eth.svg"
+              alt="Display"
+            />
           </div>
         </div>
       </div>
