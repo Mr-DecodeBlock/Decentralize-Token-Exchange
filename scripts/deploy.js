@@ -24,8 +24,9 @@ async function main() {
   let user1;
   let user2;
 
-  [sender, receiver, addr2, ether, user1, user2, feeAccount] =
-    await hre.ethers.getSigners();
+  [sender, receiver, ether, feeAccount] = await hre.ethers.getSigners();
+
+  console.log(feeAccount);
   const exchange = await Exchange.deploy(feeAccount.address, feePercent);
   // const exchange = await Exchange.deploy();
 
