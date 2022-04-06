@@ -51,7 +51,7 @@ const Sidebar = (props) => {
             <div className="py-6 text-white">
               <p className="font-bold">Total Balance</p>
               <p className="font-bold text-xl">{props.etherBalance}</p>
-              {/* <p className="font-bold text-xl">{props.exchangeEtherBalance}</p> */}
+              <p className="font-bold text-xl">{props.exchangeEtherBalance}</p>
               <p className="bg-yellow-400 font-bold text-black rounded-full text-center w-16">
                 ETH
               </p>

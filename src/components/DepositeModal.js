@@ -16,6 +16,7 @@ import {
 import { depositEther, depositToken } from "../store/interactions";
 
 const DepositeModal = (props) => {
+  const [openTab, setOpenTab] = React.useState(1);
   const [etherAmount, setEtherAmount] = useState(0);
   const {
     dispatch,
@@ -28,18 +29,44 @@ const DepositeModal = (props) => {
   } = props;
   return (
     <div className="text-white flex flex-col">
+      <div className="flex flex-row justify-end mb-5  items-center space-x-8 cursor-pointer">
+        <div
+          onClick={() => {
+            setOpenTab(1);
+          }}
+          className={
+            openTab === 1
+              ? `class="inline-block p-0 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500`
+              : ""
+          }
+        >
+          Trade
+        </div>
+        <div
+          onClick={() => {
+            setOpenTab(2);
+          }}
+          className={
+            openTab === 2
+              ? `class="inline-block p-0 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500`
+              : ""
+          }
+        >
+          Order
+        </div>
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
-          depositToken(
-            dispatch,
-            exchange,
-            web3,
-            token,
-            tokenDepositeAmount,
-            account
-          );
+          depositEther(dispatch, exchange, web3, etherDepositeAmount, account);
+          // depositToken(
+          //   dispatch,
+          //   exchange,
+          //   web3,
+          //   token,
+          //   tokenDepositeAmount,
+          //   account
+          // );
         }}
       >
         <div class="mb-6">

@@ -49,7 +49,8 @@ export const loadToken = async (web3, networkId, dispatch) => {
     // console.log(web3, networkId, dispatch);
     const token = new web3.eth.Contract(
       Token.abi,
-      "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      // "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1"
       // Token.networks[networkId].address
     );
     // console.log();
@@ -69,7 +70,8 @@ export const loadExchange = async (web3, networkId, dispatch) => {
   try {
     const exchange = new web3.eth.Contract(
       Exchange.abi,
-      "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      // "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
     );
     dispatch(exchangeLoaded(exchange));
     return exchange;
@@ -233,11 +235,13 @@ export const depositToken = (
   account
 ) => {
   amount = web3.utils.toWei(amount, "ether");
-  console.log(exchange.options.address);
+  // amount = amount.toString();
+  console.log(amount);
   token.methods
     .approve(exchange.options.address, amount)
     .send({ from: account })
     .on("transactionHash", (hash) => {
+      console.log(hash);
       exchange.methods
         .depositeToken(token.options.address, amount)
         .send({ from: account })

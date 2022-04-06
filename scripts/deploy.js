@@ -1,7 +1,8 @@
 const hre = require("hardhat");
 const { ethers } = require("hardhat");
-
+// import Web3 from "web3";
 async function main() {
+  // ******************************************
   const tokens = (n) => {
     return ethers.utils.parseEther(n.toString());
   };
@@ -26,21 +27,24 @@ async function main() {
   [sender, receiver, addr2, ether, user1, user2, feeAccount] =
     await hre.ethers.getSigners();
   const exchange = await Exchange.deploy(feeAccount.address, feePercent);
+  // const exchange = await Exchange.deploy();
 
   await exchange.deployed();
   console.log("Token deployed to:", token.address);
   console.log("Exchange deployed to:", exchange.address);
 
   let amount = tokens("10000"); // 10,000 tokens
-
+  // user1 = sender.address;
+  // user2 = receiver.address;
   await token.transferTo(receiver.address, amount, { from: sender.address });
-  await token.transferTo(user2.address, amount, { from: sender.address });
+  // await token.transferTo(user2.address, amount, { from: sender.address });
   console.log(
     `Transferred ${amount} tokens from ${sender.address} to ${receiver.address}`
   );
 
   // Set up exchange users
-
+  user1 = sender;
+  user2 = receiver;
   // User .1 Deposits Ether
   await exchange
     .connect(user1)

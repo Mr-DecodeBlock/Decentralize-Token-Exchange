@@ -377,6 +377,7 @@ export const etherBalanceSelector = createSelector(etherBalance, (balance) => {
 
 const tokenBalance = (state) => get(state, "token.balance", 0);
 export const tokenBalanceSelector = createSelector(tokenBalance, (balance) => {
+  // console.log(balance);
   return formatBalance(balance);
 });
 
