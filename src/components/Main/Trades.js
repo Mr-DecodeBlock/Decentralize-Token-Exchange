@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { filledOrdersLoaded } from "../../store/actions";
+// import { filledOrdersLoaded } from "../../store/actions";
 import {
   filledOrdersLoadedSelector,
   filledOrdersSelector,
