@@ -75,6 +75,7 @@ export const loadExchange = async (web3, networkId, dispatch) => {
       // "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
       "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
     );
+    console.log(exchange);
     dispatch(exchangeLoaded(exchange));
     return exchange;
   } catch (error) {
