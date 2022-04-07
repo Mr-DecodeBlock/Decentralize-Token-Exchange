@@ -50,7 +50,8 @@ export const loadToken = async (web3, networkId, dispatch) => {
     const token = new web3.eth.Contract(
       Token.abi,
       // "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-      "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1"
+      // "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1"
+      "0xb2e6A57C84132c1F76cC3FBabfA10F7Dde520024"
       // Token.networks[networkId].address
     );
     // console.log();
@@ -71,7 +72,8 @@ export const loadExchange = async (web3, networkId, dispatch) => {
     const exchange = new web3.eth.Contract(
       Exchange.abi,
       // "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-      "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
+      // "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
+      "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
     );
     dispatch(exchangeLoaded(exchange));
     return exchange;
