@@ -200,7 +200,7 @@ const decorateOrderBookOrders = (orders) => {
 
 const decorateOrderBookOrder = (order) => {
   const orderType =
-    order.tokenGive.toLowerCase() == ETHER_ADDRESS ? "buy" : "sell";
+    order.tokenGive.toLowerCase() === ETHER_ADDRESS ? "buy" : "sell";
 
   return {
     ...order,
