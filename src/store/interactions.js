@@ -132,7 +132,7 @@ export const subscribeToEvents = async (exchange, dispatch) => {
     dispatch(orderFilled(event.returnValues));
   });
 
-  exchange.events.Deposit({}, (error, event) => {
+  exchange.events.Deposite({}, (error, event) => {
     dispatch(balancesLoaded());
   });
 
