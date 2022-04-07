@@ -91,7 +91,8 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // console.log(web3.eth.getBlockNumbe)
   const cancelStream = await exchange.getPastEvents("Cancel", {
     fromBlock: 0,
-    toBlock: "latest",
+    // toBlock: "latest",
+    toBlock: 20,
     // topBlock: -50,
   });
   // Format cancelled orders
@@ -102,7 +103,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Fetch filled orders with the "Trade" event stream
   const tradeStream = await exchange.getPastEvents("Trade", {
     fromBlock: 0,
-    toBlock: "latest",
+    toBlock: 20,
     // topBlock: -50,
   });
   // Format filled orders
@@ -113,7 +114,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Load order stream
   const orderStream = await exchange.getPastEvents("Order", {
     fromBlock: 0,
-    toBlock: "latest",
+    toBlock: 20,
     // topBlock: -50,
   });
   // Format order stream

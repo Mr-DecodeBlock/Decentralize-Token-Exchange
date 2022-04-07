@@ -1,8 +1,8 @@
 /* hardhat.config.js */
+const fs = require("fs");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const secrets = JSON.parse(fs.readFileSync(".secrets.json").toString().trim());
 require("@nomiclabs/hardhat-waffle");
-const fs = require("fs");
 const sender = fs.readFileSync("secret.txt").toString();
 const receiver =
   "5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a";
@@ -26,17 +26,26 @@ module.exports = {
       gasPrice: 8000000000,
     },
     kovan: {
-      networkCheckTimeout: 10000,
-      provider: () => {
-        return new HDWalletProvider(
-          secrets.mnemonic,
-          `https://kovan.infura.io/v3/${secrets.projectId}`
-        );
-      },
-      gas: 5000000,
-      gasPrice: 25000000000,
-      network_id: "42",
+      url: "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+      // url: "https://goerli.infura.io/v3/8b7ba5517c414450a93ec7334975a7fe",
+      accounts: [sender, receiver, ether, feeAccount],
+      // gas: 5000000,
+
+      // gasPrice: 25000000000,
     },
+    // https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161
+    // kovan_: {
+    //   networkCheckTimeout: 10000,
+    //   provider: () => {
+    //     return new HDWalletProvider(
+    //       secrets.mnemonic,
+    //       `https://kovan.infura.io/v3/${secrets.projectId}`
+    //     );
+    //   },
+    //   gas: 5000000,
+    //   gasPrice: 25000000000,
+    //   network_id: "42",
+    // },
     mainet: {
       url: `https://palm-mainnet.infura.io/v3/${projectId}`,
       // accounts: [privateKey],
