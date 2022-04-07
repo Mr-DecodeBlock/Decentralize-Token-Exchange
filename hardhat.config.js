@@ -20,6 +20,8 @@ module.exports = {
       url: "https://rpc-mumbai.maticvigil.com",
       // url: "https://goerli.infura.io/v3/8b7ba5517c414450a93ec7334975a7fe",
       accounts: [sender, receiver, ether, feeAccount],
+      gas: 2100000,
+      gasPrice: 8000000000,
     },
     mainet: {
       url: `https://palm-mainnet.infura.io/v3/${projectId}`,
