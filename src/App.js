@@ -18,7 +18,7 @@ import { contractsLoadedSelector, exchangeSelector } from "./store/selectors";
 const App = (props) => {
   useEffect(() => {
     loadBlockchain(props.dispatch);
-  }, []);
+  });
 
   const loadBlockchain = async (dispatch) => {
     const web3 = await loadWeb3(dispatch);

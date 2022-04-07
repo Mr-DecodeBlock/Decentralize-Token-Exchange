@@ -88,9 +88,11 @@ export const loadExchange = async (web3, networkId, dispatch) => {
 
 export const loadAllOrders = async (exchange, dispatch) => {
   // Fetch cancelled orders with the "Cancel" event stream
+  // console.log(web3.eth.getBlockNumbe)
   const cancelStream = await exchange.getPastEvents("Cancel", {
     fromBlock: 0,
     toBlock: "latest",
+    // topBlock: -50,
   });
   // Format cancelled orders
   const cancelledOrders = cancelStream.map((event) => event.returnValues);
@@ -101,6 +103,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   const tradeStream = await exchange.getPastEvents("Trade", {
     fromBlock: 0,
     toBlock: "latest",
+    // topBlock: -50,
   });
   // Format filled orders
   const filledOrders = tradeStream.map((event) => event.returnValues);
@@ -111,6 +114,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   const orderStream = await exchange.getPastEvents("Order", {
     fromBlock: 0,
     toBlock: "latest",
+    // topBlock: -50,
   });
   // Format order stream
   const allOrders = orderStream.map((event) => event.returnValues);
