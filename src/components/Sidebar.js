@@ -22,7 +22,7 @@ const Sidebar = (props) => {
 
   useEffect(() => {
     loadBlockchain(props);
-  });
+  },[]);
 
   const loadBlockchain = async (props) => {
     const { dispatch, web3, exchange, token, account } = props;
