@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { ethers, providers } from "ethers";
-import Web3Modal from "web3modal";
+import React from "react";
 import { connect } from "react-redux";
 import { fillOrder } from "../../store/interactions";
 import {
@@ -8,7 +6,6 @@ import {
   exchangeSelector,
   orderBookLoadedSelector,
   orderBookSelector,
-  orderFillingSelector,
 } from "../../store/selectors";
 
 const OrderBook = (props) => {
