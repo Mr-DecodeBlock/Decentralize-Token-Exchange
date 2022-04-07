@@ -26,7 +26,7 @@ async function main() {
 
   [sender, receiver, ether, feeAccount] = await hre.ethers.getSigners();
 
-  console.log(feeAccount);
+  // console.log(feeAccount);
   const exchange = await Exchange.deploy(feeAccount.address, feePercent);
   // const exchange = await Exchange.deploy();
 
@@ -49,7 +49,7 @@ async function main() {
   // User .1 Deposits Ether
   await exchange
     .connect(user1)
-    .depositeEther(ether.address, { from: user1.address, value: tokens(0.1) });
+    .depositeEther(ether.address, { from: user1.address, value: tokens(0.5) });
   console.log(`Deposited ${amount} Ether from ${user1.address}`);
 
   // User 2 Approves Tokens
