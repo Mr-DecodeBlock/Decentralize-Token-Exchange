@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { ethers, providers } from "ethers";
-import Web3Modal from "web3modal";
+import React, { useEffect } from "react";
 
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main/Main";
-import { tokenAddress, exchangeAddress } from "./config";
-import Token from "./artifacts/contracts/Token.sol/Token.json";
-import Exchange from "./artifacts/contracts/Exchange.sol/Exchange.json";
+
 import {
   loadAccount,
   loadAllOrders,
@@ -18,7 +14,6 @@ import {
 } from "./store/interactions";
 import { connect } from "react-redux";
 import { contractsLoadedSelector, exchangeSelector } from "./store/selectors";
-import Modal from "./components/Modal";
 
 const App = (props) => {
   useEffect(() => {
