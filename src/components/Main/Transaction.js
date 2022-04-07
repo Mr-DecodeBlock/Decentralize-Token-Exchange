@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { orderCancelling } from "../../store/actions";
+// import { orderCancelling } from "../../store/actions";
 import { cancelOrder } from "../../store/interactions";
 import {
   myFilledOrdersLoadedSelector,
@@ -55,7 +55,7 @@ const Transaction = (props) => {
       >
         <td
           class={
-            orders.orderTypeClass == "success"
+            orders.orderTypeClass === "success"
               ? "px-2 py-4 text-green-500"
               : " px-2 py-4 text-red-500"
           }
@@ -64,7 +64,7 @@ const Transaction = (props) => {
         </td>
         <td
           class={
-            orders.orderTypeClass == "success"
+            orders.orderTypeClass === "success"
               ? "px-2 py-4 text-green-500"
               : " px-2 py-4 text-red-500"
           }

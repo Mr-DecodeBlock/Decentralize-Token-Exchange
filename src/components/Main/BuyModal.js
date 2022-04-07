@@ -19,17 +19,8 @@ import { makeBuyOrder, makeSellOrder } from "../../store/interactions";
 const BuyModal = (props) => {
   const [openTab, setOpenTab] = React.useState(1);
 
-  const {
-    dispatch,
-    buyOrder,
-    exchange,
-    token,
-    web3,
-    account,
-    sellOrder,
-    showBuyTotal,
-    showSellTotal,
-  } = props;
+  const { dispatch, buyOrder, exchange, token, web3, account, sellOrder } =
+    props;
   return (
     <div className="text-white flex flex-col">
       <div className="flex flex-row justify-end mb-5  items-center space-x-8 cursor-pointer">

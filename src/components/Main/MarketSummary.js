@@ -6,7 +6,7 @@ import {
   priceChartSelector,
 } from "../../store/selectors";
 
-import { chartOptions, dummyData } from "../PriceChartConfig";
+import { chartOptions } from "../PriceChartConfig";
 const MarketSummary = (props) => {
   return (
     <div className="bg-[#20232C] p-4 lg:col-span-3 rounded-md text-white">

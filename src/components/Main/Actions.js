@@ -6,7 +6,6 @@ import {
 } from "../../store/selectors";
 import Modal from "../Modal";
 import BuyModal from "./BuyModal";
-import SellModal from "./SellModal";
 
 const Actions = (props) => {
   const [open, setOpen] = useState(false);
@@ -16,7 +15,7 @@ const Actions = (props) => {
       <div className="flex flex-row space-x-3 items-center text-xl text-white">
         <p className="font-bold">DDAP/ETH</p>
 
-        {props.priceChart.lastPriceChange == "+" ? (
+        {props.priceChart.lastPriceChange === "+" ? (
           <h4 className={"text-green-500"}>
             <span>&#9650;</span> {props.priceChart.lastPrice}
           </h4>
