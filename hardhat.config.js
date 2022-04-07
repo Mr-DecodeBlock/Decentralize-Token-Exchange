@@ -1,4 +1,6 @@
 /* hardhat.config.js */
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const secrets = JSON.parse(fs.readFileSync(".secrets.json").toString().trim());
 require("@nomiclabs/hardhat-waffle");
 const fs = require("fs");
 const sender = fs.readFileSync("secret.txt").toString();
@@ -22,6 +24,18 @@ module.exports = {
       accounts: [sender, receiver, ether, feeAccount],
       gas: 2100000,
       gasPrice: 8000000000,
+    },
+    kovan: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+        return new HDWalletProvider(
+          secrets.mnemonic,
+          `https://kovan.infura.io/v3/${secrets.projectId}`
+        );
+      },
+      gas: 5000000,
+      gasPrice: 25000000000,
+      network_id: "42",
     },
     mainet: {
       url: `https://palm-mainnet.infura.io/v3/${projectId}`,
