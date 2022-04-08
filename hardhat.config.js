@@ -5,7 +5,7 @@ const secrets = JSON.parse(fs.readFileSync(".secrets.json").toString().trim());
 require("@nomiclabs/hardhat-waffle");
 const sender = fs.readFileSync("secret.txt").toString();
 const receiver =
-  "5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a";
+  "fbad5b495a37387d8d4278fbf8c7cf87728c787f0487a283b78b930991132192";
 const ether =
   "59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d";
 const feeAccount =
@@ -26,11 +26,14 @@ module.exports = {
       gasPrice: 8000000000,
     },
     kovan: {
-      url: "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+      url: "https://kovan.infura.io/v3/745fcbe1f649402c9063fa946fdbb84c",
+      // url: "https://goerli.infura.io/v3/745fcbe1f649402c9063fa946fdbb84c",
+      // url: "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
       // url: "https://goerli.infura.io/v3/8b7ba5517c414450a93ec7334975a7fe",
       accounts: [sender, receiver, ether, feeAccount],
+      gas: 2100000,
+      gasPrice: 8000000000,
       // gas: 5000000,
-
       // gasPrice: 25000000000,
     },
     // https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161

@@ -28,6 +28,7 @@ import { ETHER_ADDRESS } from "../helpers";
 export const loadWeb3 = async (dispatch) => {
   if (typeof window.ethereum !== "undefined") {
     const web3 = new Web3(window.ethereum);
+    // const web3 = new Web3('https://rpc-mumbai.maticvigil.com');
     dispatch(web3Loaded(web3));
     return web3;
   } else {
@@ -51,7 +52,9 @@ export const loadToken = async (web3, networkId, dispatch) => {
       Token.abi,
       // "0x5FbDB2315678afecb367f032d93F642f64180aa3"
       // "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1"
-      "0xb2e6A57C84132c1F76cC3FBabfA10F7Dde520024"
+      // "0xb2e6A57C84132c1F76cC3FBabfA10F7Dde520024"
+      // "0x95e8B230edaaa904395ea208C00dF8fB54d9365f"
+      "0xB5c5Ce22c590d0c339e37B2bd2813Ee456E8dD9A"
       // Token.networks[networkId].address
     );
     // console.log();
@@ -73,7 +76,9 @@ export const loadExchange = async (web3, networkId, dispatch) => {
       Exchange.abi,
       // "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
       // "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
-      "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
+      // "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
+      // "0x261508E46Dad452FfD5eaAd674Da080125aC817C"
+      "0x1Fe617be55380C4e4687B0b07Dbb08c58125035B"
     );
     console.log(exchange);
     dispatch(exchangeLoaded(exchange));
@@ -92,7 +97,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   const cancelStream = await exchange.getPastEvents("Cancel", {
     fromBlock: 0,
     // toBlock: "latest",
-    toBlock: 20,
+    // toBlock: 20,
     // topBlock: -50,
   });
   // Format cancelled orders
@@ -103,7 +108,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Fetch filled orders with the "Trade" event stream
   const tradeStream = await exchange.getPastEvents("Trade", {
     fromBlock: 0,
-    toBlock: 20,
+    // toBlock: 20,
     // topBlock: -50,
   });
   // Format filled orders
@@ -114,7 +119,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Load order stream
   const orderStream = await exchange.getPastEvents("Order", {
     fromBlock: 0,
-    toBlock: 20,
+    // toBlock: 20,
     // topBlock: -50,
   });
   // Format order stream
