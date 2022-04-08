@@ -49,11 +49,11 @@ async function main() {
   // User .1 Deposits Ether
   await exchange
     .connect(user1)
-    .depositeEther(ether.address, { from: user1.address, value: tokens(0.05) });
+    .depositeEther(ether.address, { from: user1.address, value: tokens(0.1) });
   console.log(`Deposited ${amount} Ether from ${user1.address}`);
 
   // User 2 Approves Tokens
-  amount = 5;
+  amount = 1000;
   await token
     .connect(user2)
     .approve(exchange.address, tokens(amount), { from: user2.address });
@@ -74,7 +74,7 @@ async function main() {
   let orderId;
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens(1), ether.address, tokens(0.01), {
+    .makeOrder(token.address, tokens(100), ether.address, tokens(0.01), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
@@ -93,7 +93,7 @@ async function main() {
   // User 1 makes order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens(1), ether.address, tokens(0.01), {
+    .makeOrder(token.address, tokens(100), ether.address, tokens(0.01), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
@@ -110,7 +110,7 @@ async function main() {
   // User 1 makes another order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens(1), ether.address, tokens(0.001), {
+    .makeOrder(token.address, tokens(50), ether.address, tokens(0.001), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
@@ -127,7 +127,7 @@ async function main() {
   // User 1 makes final order
   result = await exchange
     .connect(user1)
-    .makeOrder(token.address, tokens(1), ether.address, tokens(0.015), {
+    .makeOrder(token.address, tokens(200), ether.address, tokens(0.015), {
       from: user1.address,
     });
   console.log(`Made order from ${user1.address}`);
@@ -142,7 +142,7 @@ async function main() {
   for (let i = 1; i <= 10; i++) {
     result = await exchange
       .connect(user1)
-      .makeOrder(token.address, tokens(0.1 * i), ether.address, tokens(0.001), {
+      .makeOrder(token.address, tokens(10 * i), ether.address, tokens(0.001), {
         from: user1.address,
       });
     console.log(`Made order from ${user1.address}`);
@@ -154,7 +154,7 @@ async function main() {
   for (let i = 1; i <= 10; i++) {
     result = await exchange
       .connect(user2)
-      .makeOrder(ether.address, tokens(0.001), token.address, tokens(0.1 * i), {
+      .makeOrder(ether.address, tokens(0.001), token.address, tokens(10 * i), {
         from: user2.address,
       });
     console.log(`Made order from ${user2.address}`);

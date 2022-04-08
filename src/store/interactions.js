@@ -54,7 +54,8 @@ export const loadToken = async (web3, networkId, dispatch) => {
       // "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1"
       // "0xb2e6A57C84132c1F76cC3FBabfA10F7Dde520024"
       // "0x95e8B230edaaa904395ea208C00dF8fB54d9365f"
-      "0xB5c5Ce22c590d0c339e37B2bd2813Ee456E8dD9A"
+      // "0xB5c5Ce22c590d0c339e37B2bd2813Ee456E8dD9A"
+      "0xEa01e0Ce81F520ddd89C1558f9120AF17a7E7Fc8"
       // Token.networks[networkId].address
     );
     // console.log();
@@ -78,7 +79,8 @@ export const loadExchange = async (web3, networkId, dispatch) => {
       // "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
       // "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
       // "0x261508E46Dad452FfD5eaAd674Da080125aC817C"
-      "0x1Fe617be55380C4e4687B0b07Dbb08c58125035B"
+      // "0x1Fe617be55380C4e4687B0b07Dbb08c58125035B"
+      "0x45C78c722D06E9a8FB1ff169671eb0968da9e85b"
     );
     console.log(exchange);
     dispatch(exchangeLoaded(exchange));
@@ -96,7 +98,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // console.log(web3.eth.getBlockNumbe)
   const cancelStream = await exchange.getPastEvents("Cancel", {
     fromBlock: 0,
-    // toBlock: "latest",
+    toBlock: "latest",
     // toBlock: 20,
     // topBlock: -50,
   });
@@ -108,6 +110,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Fetch filled orders with the "Trade" event stream
   const tradeStream = await exchange.getPastEvents("Trade", {
     fromBlock: 0,
+    toBlock: "latest",
     // toBlock: 20,
     // topBlock: -50,
   });
@@ -119,6 +122,7 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Load order stream
   const orderStream = await exchange.getPastEvents("Order", {
     fromBlock: 0,
+    toBlock: "latest",
     // toBlock: 20,
     // topBlock: -50,
   });
