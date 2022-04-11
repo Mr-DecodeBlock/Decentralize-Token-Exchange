@@ -26,15 +26,23 @@ import Exchange from "../artifacts/contracts/Exchange.sol/Exchange.json";
 import { ETHER_ADDRESS } from "../helpers";
 
 export const loadWeb3 = async (dispatch) => {
-  if (typeof window.ethereum !== "undefined") {
-    const web3 = new Web3(window.ethereum);
+  // if (typeof window.ethereum !== "undefined") {
+  //   const web3 = new Web3(window.ethereum);
 
-    // const web3 = new Web3('https://rpc-mumbai.maticvigil.com');
-    dispatch(web3Loaded(web3));
-    return web3;
+  //   // const web3 = new Web3('https://rpc-mumbai.maticvigil.com');
+  //   dispatch(web3Loaded(web3));
+  //   return web3;
+  // } else {
+  //   window.alert("Please install MetaMask");
+  //   window.location.assign("https://metamask.io/");
+  // }
+  if (window.ethereuem) {
+    window.web3 = new Web3(window.ethereum);
+    await window.ethereuem.enable();
+  } else if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider);
   } else {
-    window.alert("Please install MetaMask");
-    window.location.assign("https://metamask.io/");
+    window.alert("no ethereum browser detected");
   }
 };
 
