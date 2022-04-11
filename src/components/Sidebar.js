@@ -22,7 +22,7 @@ const Sidebar = (props) => {
 
   useEffect(() => {
     loadBlockchain(props);
-  },[]);
+  }, []);
 
   const loadBlockchain = async (props) => {
     const { dispatch, web3, exchange, token, account } = props;
@@ -33,9 +33,9 @@ const Sidebar = (props) => {
     <nav className="bg-transparent  lg:bg-[#20232C] lg:p-4 lg:w-4.5/12  ">
       <div className="bg-[#20232C]  lg:bg-transparent sm:w-full  px-4 py-4 flex flex-row justify-between items-center lg:flex-col-reverse lg:justify-end lg:py-8 ">
         <p className="text-white text-lg">
-          {props.account.substring(0, 5) +
+          {/* {props.account.substring(0, 5) +
             "..." +
-            props.account.substring(35, props.account.length)}
+            props.account.substring(35, props.account.length)} */}
         </p>
         <img
           className="lg:mb-4"
