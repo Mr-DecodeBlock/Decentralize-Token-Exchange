@@ -39,7 +39,7 @@ export const loadWeb3 = async (dispatch) => {
   if (window.ethereuem) {
     window.web3 = new Web3(window.ethereum);
     await window.ethereuem.enable();
-    dispatch(web3Loaded(web3));
+    dispatch(web3Loaded(window.web3));
   } else if (window.web3) {
     window.web3 = new Web3(window.web3.currentProvider);
     dispatch(web3Loaded(window.web3));
