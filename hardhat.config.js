@@ -33,6 +33,7 @@ module.exports = {
       accounts: [sender, receiver, ether, feeAccount],
       gas: 2100000,
       gasPrice: 8000000000,
+      network_id: 42,
       // gas: 5000000,
       // gasPrice: 25000000000,
     },
