@@ -62,8 +62,8 @@ export const loadToken = async (web3, networkId, dispatch) => {
       // "0xb2e6A57C84132c1F76cC3FBabfA10F7Dde520024"
       // "0x95e8B230edaaa904395ea208C00dF8fB54d9365f"
       // "0xB5c5Ce22c590d0c339e37B2bd2813Ee456E8dD9A"
-      // "0xEa01e0Ce81F520ddd89C1558f9120AF17a7E7Fc8"
-      "0x3aFfEa062AC54854E7F55C26c993E397271506d9"
+      "0xEa01e0Ce81F520ddd89C1558f9120AF17a7E7Fc8"
+      // "0x3aFfEa062AC54854E7F55C26c993E397271506d9"
       // Token.networks[networkId].address
     );
     // console.log();
@@ -88,8 +88,8 @@ export const loadExchange = async (web3, networkId, dispatch) => {
       // "0xd9fce126aa70358E7471174b311Bc71AB21F7F7e"
       // "0x261508E46Dad452FfD5eaAd674Da080125aC817C"
       // "0x1Fe617be55380C4e4687B0b07Dbb08c58125035B"
-      // "0x45C78c722D06E9a8FB1ff169671eb0968da9e85b"
-      "0xF140a377F1B8A99e14D7E7ed9D29a666cbBa9b5a"
+      "0x45C78c722D06E9a8FB1ff169671eb0968da9e85b"
+      // "0xF140a377F1B8A99e14D7E7ed9D29a666cbBa9b5a"
     );
     console.log(exchange);
     dispatch(exchangeLoaded(exchange));

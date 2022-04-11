@@ -34,12 +34,12 @@ const App = (props) => {
       return;
     }
     const exchange = await loadExchange(web3, networkId, dispatch);
-    // if (!exchange) {
-    //   window.alert(
-    //     "Exchange smart contract not detected on the current network. Please select another network with Metamask."
-    //   );
-    //   return;
-    // }
+    if (!exchange) {
+      window.alert(
+        "Exchange smart contract not detected on the current network. Please select another network with Metamask."
+      );
+      return;
+    }
     await loadAllOrders(exchange, dispatch);
     await subscribeToEvents(exchange, dispatch);
     // await subscribeToEvents(dispatch, exchange)
