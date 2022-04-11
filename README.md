@@ -185,14 +185,6 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License.
 
-<!-- CONTACT -->
-
-## Contact
-
-Mends Albert - [@mendsalbert](https://twitter.com/mendalbert) - mendsalbert@gmail.com
-
-Project Link: [https://github.com/mendsalbert/Decentralize-Token-Exchange](https://github.com/mendsalbert/Decentralize-Token-Exchange)
-
 <!-- ACKNOWLEDGMENTS -->
 
 ## Acknowledgments
