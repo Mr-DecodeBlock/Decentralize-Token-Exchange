@@ -89,6 +89,7 @@ export const loadExchange = async (web3, networkId, dispatch) => {
     dispatch(exchangeLoaded(exchange));
     return exchange;
   } catch (error) {
+    console.log(error);
     console.log(
       "Contract not deployed to the current network. Please select another network with Metamask."
     );
